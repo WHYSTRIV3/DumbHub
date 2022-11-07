@@ -32,7 +32,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Block Breaker Simulator
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Block%20Breaker%20Simulator.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Block%20Breaker%20Simulator.lua"))()
 	
-
+	elseif game.PlaceId == 8540346411 then
+	
+--Rebirth Champions	
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Rebirth%20Champions.lua"))()
+	
 end
