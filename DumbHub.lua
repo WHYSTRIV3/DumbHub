@@ -1,5 +1,7 @@
 if game.PlaceId == 9522149469 then
+	
 --Strong Clicker
+	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Strong%20Clickers!.Lua"))()
 
 	elseif game.PlaceId == 8750997647 then
