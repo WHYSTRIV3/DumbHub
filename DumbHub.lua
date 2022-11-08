@@ -50,7 +50,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Tapping Simulator! Not Finished
 	
-loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Tapping%20Simulator!.lua")()	
+loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Tapping%20Simulator!.lua")()
 	
+	elseif game.PlaceId == 8585657145 then
 	
+--Anime Heros Simulator	
+	
+loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Hero%20Simulator.lua")()	
 end
