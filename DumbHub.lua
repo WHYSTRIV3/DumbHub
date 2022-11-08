@@ -40,4 +40,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Rebirth%20Champions.lua"))()
 	
+	elseif game.PlaceId == 6284583030 then
+	
+--Pet Simulator X
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Pet%20Simulator%20X.lua"))()
+	
 end
