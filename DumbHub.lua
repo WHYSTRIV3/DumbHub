@@ -63,8 +63,5 @@ loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Load
 --Farming Tycoon
 	
 loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Farming%20Tycoon.lua")()	
-	
-	
-	
-	
+		
 end
