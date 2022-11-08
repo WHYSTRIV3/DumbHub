@@ -68,6 +68,12 @@ loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Load
 	
 --Anime Tap Simulator Not Finished 
 	
-loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Tap%20Simulator.lua")()	
+loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Tap%20Simulator.lua")()
+	
+	elseif game.PlaceId == 2512643572 then
+	
+--Bubble Gum Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Bubble%20Gum%20Simulator.lua", true))()
 		
 end
