@@ -42,8 +42,15 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 	elseif game.PlaceId == 6284583030 then
 	
---Pet Simulator X
+--Pet Simulator X Not Finished
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Pet%20Simulator%20X.lua"))()
+		
+	elseif game.PlaceId == 6284583030 then
+	
+--Tapping Simulator! Not Finished
+	
+loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Tapping%20Simulator!.lua")()	
+	
 	
 end
