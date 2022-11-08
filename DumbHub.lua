@@ -66,7 +66,7 @@ loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Load
 
 	elseif game.PlaceId == 8998370421 then
 	
---Anime Tap Simulator
+--Anime Tap Simulator Not Finished 
 	
 loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Tap%20Simulator.lua")()	
 		
