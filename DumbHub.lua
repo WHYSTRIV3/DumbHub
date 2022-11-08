@@ -56,5 +56,15 @@ loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Load
 	
 --Anime Heros Simulator	
 	
-loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Hero%20Simulator.lua")()	
+loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Hero%20Simulator.lua")()
+	
+	elseif game.PlaceId == 10198661638 then
+	
+--Farming Tycoon
+	
+loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Farming%20Tycoon.lua")()	
+	
+	
+	
+	
 end
