@@ -63,5 +63,11 @@ loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Load
 --Farming Tycoon
 	
 loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Farming%20Tycoon.lua")()	
+
+	elseif game.PlaceId == 8998370421 then
+	
+--Anime Tap Simulator
+	
+loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Tap%20Simulator.lua")()	
 		
 end
