@@ -75,5 +75,11 @@ loadstring(game:HttpGet"https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Load
 --Bubble Gum Simulator
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Bubble%20Gum%20Simulator.lua", true))()
-		
+	
+	elseif game.PlaceId == 9170761016 then
+	
+--Magic Clicker
+	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Magic%20Clicker.lua'))()	
+	
 end
