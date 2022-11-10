@@ -80,6 +80,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Magic Clicker
 	
-loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Magic%20Clicker.lua'))()	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Magic%20Clicker.lua'))()
 	
+	elseif game.PlaceId == 10594623896 then
+	
+-- Master Punching Simulator
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Punching%20Simulator.lua'))()	
+		
 end
