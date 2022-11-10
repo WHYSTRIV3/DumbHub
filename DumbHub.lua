@@ -86,6 +86,12 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Master Punching Simulator
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Punching%20Simulator.lua'))()	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Punching%20Simulator.lua'))()
+	
+	elseif game.PlaceId == 9157400082 then
+	
+--Anime Power Tycoon	
+	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Power%20Tycoon.lua'))()	
 		
 end
