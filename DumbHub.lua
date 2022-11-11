@@ -92,6 +92,12 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Anime Power Tycoon	
 	
-loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Power%20Tycoon.lua'))()	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Power%20Tycoon.lua'))()
+	
+	elseif game.PlaceId == 10069260094 then
+	
+--Licking Legends
+	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Licking%20Legends.lua'))()	
 		
 end
