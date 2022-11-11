@@ -98,6 +98,12 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Licking Legends
 	
-loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Licking%20Legends.lua'))()	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Licking%20Legends.lua'))()
+	
+	elseif game.PlaceId == 3101667897 then
+	
+--Legends Of Speed	
+	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Legends%20Of%20Speed.lua'))()	
 		
 end
