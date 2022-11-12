@@ -116,7 +116,13 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Clicker Party Simulator!
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Clicker%20Party%20Simulator!.lua'))()	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Clicker%20Party%20Simulator!.lua'))()
 	
-		
+	elseif game.PlaceId == 7971857341 then
+	
+--Youtuber Tycoon!
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Youtuber%20Tycoon!.lua"))()	
+	
+			
 end
