@@ -112,5 +112,11 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Rank%20Simulator.lua'))()	
 	
+	elseif game.PlaceId == 7562033213 then
 	
+--Clicker Party Simulator!
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Clicker%20Party%20Simulator!.lua'))()	
+	
+		
 end
