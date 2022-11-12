@@ -110,5 +110,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Rank Simulator
 	
-loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Rank%20Simulator.lua'))()				
+loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Rank%20Simulator.lua'))()	
+	
+	
 end
