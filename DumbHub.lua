@@ -106,7 +106,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Legends%20Of%20Speed.lua'))()
 	
-	elseif game.PlaceId == 3101667897 then
+	elseif game.PlaceId == 9941633436 then
 	
 --Rank Simulator
 	
