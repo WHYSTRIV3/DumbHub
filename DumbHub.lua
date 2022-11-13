@@ -122,7 +122,13 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Youtuber Tycoon!
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Youtuber%20Tycoon!.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Youtuber%20Tycoon!.lua"))()
 	
-			
+	elseif game.PlaceId == 6679968919 then
+	
+--Fly Race
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Fly%20Race.lua"))()	
+	
+				
 end
