@@ -134,7 +134,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --Anime Clicker Fight
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Clicker%20Fight.lua"))()	
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Clicker%20Fight.lua"))()
+	
+	elseif game.PlaceId == 10723695195 then
+	
+--Anime Evolution Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Evolution%20Simulator.lua"))()	
+	
 	
 end
