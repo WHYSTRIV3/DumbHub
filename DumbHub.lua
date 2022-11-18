@@ -146,7 +146,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --+1 Jump Every Second
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1%20Jump%20Every%20Second.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1%20Jump%20Every%20Second.lua"))()
 	
+	elseif game.PlaceId == 9285238704 then
+	
+-- Race Clicker
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Race%20Clicker.lua"))()		
+
 	
 end
