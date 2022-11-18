@@ -146,7 +146,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --+1 Jump Every Second
 	
-loadstring(game:HttpGet("https://github.com/WHYSTRIV3/DumbHub-LoadStrings/edit/main/+1%20Jump%20Every%20Second.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1%20Jump%20Every%20Second.lua"))()	
 	
 	
 end
