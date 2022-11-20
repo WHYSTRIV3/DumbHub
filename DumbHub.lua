@@ -152,7 +152,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Race Clicker
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Race%20Clicker.lua"))()		
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Race%20Clicker.lua"))()
+	
+	elseif game.PlaceId == 10914683361 then
+	
+-- Busy Business!
+	
+https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Busy%20Business!.lua	
 
 	
 end
