@@ -158,7 +158,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Busy Business!
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Busy%20Business!.lua"))()	
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Busy%20Business!.lua"))()
+	
+	elseif game.PlaceId == 11563572312 then
+	
+-- Ultimate Magnet Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Ultimate%20Magnet%20Simulator.lua"))()		
 	
 end
