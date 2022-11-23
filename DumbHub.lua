@@ -183,6 +183,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 -- Skydive Race Clicker	
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Skydive%20Race%20Clicker.lua"))()
-	
-	
+		
 end
