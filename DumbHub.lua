@@ -164,6 +164,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Ultimate Magnet Simulator
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Ultimate%20Magnet%20Simulator.lua"))()		
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Ultimate%20Magnet%20Simulator.lua"))()
+	
+	elseif game.PlaceId == 7183242684 then
+	
+-- Strength Training Simulator!
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Strength%20Training%20Simulator!.lua"))()	
+	
 	
 end
