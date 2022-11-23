@@ -172,5 +172,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Strength%20Training%20Simulator!.lua"))()	
 	
+	elseif game.PlaceId == 3102144307 then
+	
+-- Anime Clicker Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Clicker%20Simulator.lua"))()	
+	
 	
 end
