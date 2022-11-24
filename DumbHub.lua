@@ -183,6 +183,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 -- Skydive Race Clicker	
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Skydive%20Race%20Clicker.lua"))()
+	
+	elseif game.PlaceId == 8579989858 then
+	
+-- Super Clicker Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Super%20Clicker%20Simulator.lua"))()	
 
 	
 end
