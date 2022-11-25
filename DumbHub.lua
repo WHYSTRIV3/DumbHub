@@ -200,7 +200,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Sword Fighters Simulator!
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sword%20Fighters%20Simulator!.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sword%20Fighters%20Simulator!.lua"))()
+	
+	elseif game.PlaceId == 11150416759 then
+	
+-- Pet Race Clicker!
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Pet%20Race%20Clicker!.lua"))()	
 
 	
 end
