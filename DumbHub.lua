@@ -194,7 +194,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Sandbox Hatchers X
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sandbox%20Hatchers%20X.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sandbox%20Hatchers%20X.lua"))()
+	
+	elseif game.PlaceId == 11040063484 then
+	
+-- Sword Fighters Simulator!
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sword%20Fighters%20Simulator!.lua"))()	
 
 	
 end
