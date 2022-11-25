@@ -188,7 +188,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Super Clicker Simulator
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Super%20Clicker%20Simulator.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Super%20Clicker%20Simulator.lua"))()
+	
+	elseif game.PlaceId == 11162791099 then
+	
+-- Sandbox Hatchers X
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sandbox%20Hatchers%20X.lua"))()	
 
 	
 end
