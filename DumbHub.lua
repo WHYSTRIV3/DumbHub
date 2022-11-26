@@ -224,6 +224,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- +1 Speed Every Second
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1%20Speed%20Every%20Second.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1%20Speed%20Every%20Second.lua"))()
+	
+	elseif game.PlaceId == 9336544530 then
+	
+-- Dice Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Dice%20Simulator.lua"))()
 	
 end
