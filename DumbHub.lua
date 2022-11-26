@@ -214,7 +214,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/STRONGEST%20PUNCH%20SIMULATOR.lua"))()
 	
-	elseif game.PlaceId == 10758955211 then
+	elseif game.PlaceId == 10714365287 then
 	
 -- Anime Racing Clicker
 	
