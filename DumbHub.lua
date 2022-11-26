@@ -218,7 +218,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Anime Racing Clicker
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Racing%20Clicker.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Racing%20Clicker.lua"))()
+	
+	elseif game.PlaceId == 11298615665 then
+	
+-- +1 Speed Every Second
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1%20Speed%20Every%20Second.lua"))()	
 
 	
 end
