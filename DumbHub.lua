@@ -206,7 +206,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Pet Race Clicker!
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Pet%20Race%20Clicker!.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Pet%20Race%20Clicker!.lua"))()
+	
+	elseif game.PlaceId == 6875469709 then
+	
+-- STRONGEST PUNCH SIMULATOR
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/STRONGEST%20PUNCH%20SIMULATOR.lua"))()	
 
 	
 end
