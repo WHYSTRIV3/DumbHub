@@ -242,6 +242,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 -- Lifting Simulaotr
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Lifting%20Simulator.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Lifting%20Simulator.lua"))()
+	
+	elseif game.PlaceId == 11381074034 then
+	
+-- Flying Race Clicker
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Flying%20Race%20Clicker.lua"))()
 	
 end
