@@ -238,4 +238,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Mine%20Racer.lua"))()
 	
+	elseif game.PlaceId == 3652625463 then
+	
+-- Lifting Simulaotr
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Lifting%20Simulator.lua"))()	
+	
 end
