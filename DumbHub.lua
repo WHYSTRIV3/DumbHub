@@ -232,4 +232,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Dice%20Simulator.lua"))()
 	
+	elseif game.PlaceId == 10898965735 then
+	
+-- Mine Racer
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Mine%20Racer.lua"))()
+	
 end
