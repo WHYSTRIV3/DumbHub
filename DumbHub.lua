@@ -250,4 +250,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Flying%20Race%20Clicker.lua"))()
 	
+	elseif game.PlaceId == 3823781113 then
+	
+-- Saber Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Saber%20Simulator.lua"))()
+	
 end
