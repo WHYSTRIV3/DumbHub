@@ -262,4 +262,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Higher%20Jump%20Every%20Second.lua"))()
 	
+	elseif game.PlaceId == 11445923563 then
+	
+--  One Fruit Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/One%20Fruit%20Simulator.lua"))()
+	
 end
