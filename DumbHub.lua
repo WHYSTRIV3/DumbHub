@@ -256,4 +256,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Saber%20Simulator.lua"))()
 	
+	elseif game.PlaceId == 8507479511 then
+	
+--  Higher Jump Every Second
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Higher%20Jump%20Every%20Second.lua"))()
+	
 end
