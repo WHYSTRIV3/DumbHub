@@ -268,4 +268,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/One%20Fruit%20Simulator.lua"))()
 	
+	elseif game.PlaceId == 10070062081 then
+	
+--  Minion Simulator
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Minion%20Simulator.lua"))()
+	
 end
