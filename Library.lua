@@ -73,7 +73,7 @@ function library:CreateWindow(GameName)
     TopBarTitle.BackgroundTransparency = 1.000
     TopBarTitle.Size = UDim2.new(0.5, 0, 1, 0)
     TopBarTitle.Font = Enum.Font.Gotham
-    TopBarTitle.Text = "UI Libarary"
+    TopBarTitle.Text = GameName
     TopBarTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
     TopBarTitle.TextSize = 14.000
     TopBarTitle.TextXAlignment = Enum.TextXAlignment.Left
