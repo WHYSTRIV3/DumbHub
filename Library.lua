@@ -9,6 +9,10 @@ local Hb = game:GetService("RunService").Heartbeat;
 local UIS = game:GetService("UserInputService")
 local CG = game:GetService("CoreGui")
 
+if CG:FindFirstChild("DumbHub") then
+    CG.DumbHub:Destroy()
+end
+
 
 function library:CreateWindow(GameName)
     assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
