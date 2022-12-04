@@ -26,7 +26,7 @@ function library:CreateWindow(GameName)
     local NavigationButtonHolder = Instance.new("Frame")
     local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
     local NavigationButtonHolderUIListLayout = Instance.new("UIListLayout")
-    local NavigationButtonHolderTemplate = Instance.new("TextLabel")
+    local NavigationButtonHolderTemplate = Instance.new("TextButton")
     local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
     local NavigationUICorner = Instance.new("UICorner")
     local ContientContainer = Instance.new("Frame")
@@ -115,21 +115,7 @@ function library:CreateWindow(GameName)
     NavigationButtonHolderUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
     NavigationButtonHolderUIListLayout.Padding = UDim.new(0, 1)
 
-    NavigationButtonHolderTemplate.Name = "NavigationButtonHolderTemplate"
-    NavigationButtonHolderTemplate.Parent = NavigationButtonHolder
-    NavigationButtonHolderTemplate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    NavigationButtonHolderTemplate.BackgroundTransparency = 0.900
-    NavigationButtonHolderTemplate.BorderSizePixel = 0
-    NavigationButtonHolderTemplate.Size = UDim2.new(1, 0, 0, 24)
-    NavigationButtonHolderTemplate.Font = Enum.Font.Ubuntu
-    NavigationButtonHolderTemplate.Text = "Home"
-    NavigationButtonHolderTemplate.TextColor3 = Color3.fromRGB(255, 255, 255)
-    NavigationButtonHolderTemplate.TextSize = 15.000
-    NavigationButtonHolderTemplate.TextXAlignment = Enum.TextXAlignment.Left
-
-    NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
-    NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemplate
-    NavigationButtonHolderUITemplatePadding.PaddingLeft = UDim.new(0, 15)
+   
 
     NavigationUICorner.CornerRadius = UDim.new(0, 6)
     NavigationUICorner.Name = "NavigationUICorner"
@@ -157,26 +143,47 @@ function library:CreateWindow(GameName)
     ContientContainerFadeUIGradient.Name = "ContientContainerFadeUIGradient"
     ContientContainerFadeUIGradient.Parent = ContientContainerFade
 
-    HomeTab.Name = "HomeTab"
-    HomeTab.Parent = ContientContainer
-    HomeTab.Active = true
-    HomeTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    HomeTab.BackgroundTransparency = 1.000
-    HomeTab.BorderSizePixel = 0
-    HomeTab.Size = UDim2.new(1, 0, 1, 0)
-    HomeTab.ScrollBarThickness = 0
+local Module = {}
+    function Module:CreateNew(TabName)
+        assert(typeof(TabName) == "string", "specify type string for CreateNew function")
 
-    HomeTabUIPadding.Name = "HomeTabUIPadding"
-    HomeTabUIPadding.Parent = HomeTab
-    HomeTabUIPadding.PaddingBottom = UDim.new(0, 1)
-    HomeTabUIPadding.PaddingLeft = UDim.new(0, 1)
-    HomeTabUIPadding.PaddingRight = UDim.new(0, 1)
-    HomeTabUIPadding.PaddingTop = UDim.new(0, 1)
+        HomeTab.Name = TabName
+        HomeTab.Parent = ContientContainer
+        HomeTab.Active = true
+        HomeTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        HomeTab.BackgroundTransparency = 1.000
+        HomeTab.BorderSizePixel = 0
+        HomeTab.Size = UDim2.new(1, 0, 1, 0)
+        HomeTab.ScrollBarThickness = 0
 
-    HomeTabUIListLayout.Name = "HomeTabUIListLayout"
-    HomeTabUIListLayout.Parent = HomeTab
-    HomeTabUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    HomeTabUIListLayout.Padding = UDim.new(0, 6)
+        HomeTabUIPadding.Name = "HomeTabUIPadding"
+        HomeTabUIPadding.Parent = HomeTab
+        HomeTabUIPadding.PaddingBottom = UDim.new(0, 1)
+        HomeTabUIPadding.PaddingLeft = UDim.new(0, 1)
+        HomeTabUIPadding.PaddingRight = UDim.new(0, 1)
+        HomeTabUIPadding.PaddingTop = UDim.new(0, 1)
 
+        HomeTabUIListLayout.Name = "HomeTabUIListLayout"
+        HomeTabUIListLayout.Parent = HomeTab
+        HomeTabUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+        HomeTabUIListLayout.Padding = UDim.new(0, 6)
+
+        NavigationButtonHolderTemplate.Name = TabName
+        NavigationButtonHolderTemplate.Parent = NavigationButtonHolder
+        NavigationButtonHolderTemplate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        NavigationButtonHolderTemplate.BackgroundTransparency = 0.900
+        NavigationButtonHolderTemplate.BorderSizePixel = 0
+        NavigationButtonHolderTemplate.Size = UDim2.new(1, 0, 0, 24)
+        NavigationButtonHolderTemplate.Font = Enum.Font.Ubuntu
+        NavigationButtonHolderTemplate.Text = TabName
+        NavigationButtonHolderTemplate.TextColor3 = Color3.fromRGB(255, 255, 255)
+        NavigationButtonHolderTemplate.TextSize = 15.000
+        NavigationButtonHolderTemplate.TextXAlignment = Enum.TextXAlignment.Left
+    
+        NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
+        NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemplate
+        NavigationButtonHolderUITemplatePadding.PaddingLeft = UDim.new(0, 15)
+    end
+    return Module
 end
 return library
