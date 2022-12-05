@@ -154,7 +154,7 @@ function library:CreateWindow(GameName)
 
 
      TopBarClose.MouseButton1Click:connect(function()
-        CG.DumbHub;Destroy()
+        CG.DumbHub:Destroy()
      end)
 
 
@@ -262,3 +262,4 @@ function library:CreateWindow(GameName)
     return Category
 end
 return library
+
