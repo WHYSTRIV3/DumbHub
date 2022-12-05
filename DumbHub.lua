@@ -272,5 +272,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-Loa
 	
 --  Minion Simulator
 	
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Minion%20Simulator.lua"))()	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Minion%20Simulator.lua"))()
+	
+	elseif game.PlaceId == 10033487652 then
+	
+--  Clicker League!
+	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Clicker%20League!.lua"))()
+	
 end
