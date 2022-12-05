@@ -25,7 +25,7 @@ function library:CreateWindow(GameName)
     local TopBarExtension = Instance.new("Frame")
     local TopBarTitle = Instance.new("TextLabel")
     local TopBarTitleUIPadding = Instance.new("UIPadding")
-    local TopBarClose = Instance.new("ImageLabel")
+    local TopBarClose = Instance.new("ImageButton")
     local Navigatin = Instance.new("Frame")
     local NavigationButtonHolder = Instance.new("Frame")
     local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
@@ -147,8 +147,20 @@ function library:CreateWindow(GameName)
     ContientContainerFadeUIGradient.Name = "ContientContainerFadeUIGradient"
     ContientContainerFadeUIGradient.Parent = ContientContainerFade
 
-local Module = {}
-    function Module:CreateNew(TabName)
+
+
+
+
+
+
+     TopBarClose.MouseButton1Click:connect(function()
+        CG.DumbHub;Destroy()
+     end)
+
+
+
+    local Category = {}
+    function Category:new(TabName)
         assert(typeof(TabName) == "string", "specify type string for CreateNew function")
 
         HomeTab.Name = TabName
@@ -187,7 +199,66 @@ local Module = {}
         NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
         NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemplate
         NavigationButtonHolderUITemplatePadding.PaddingLeft = UDim.new(0, 15)
+
+
+        local Module = {}
+
+        function Module:CreateButton(Name, CallBack)
+
+        end
+
+        function Module:CreateToggle(ToggleName, Repeating, CallBack)
+
+        end
+
+        function Module:CreateSlider(SliderName, Settings, CallBack)
+
+        end
+
+        function Module:CreateDropdown(DropdownName, Selection, CallBack)
+
+        end
+
+        function Module:CreateLabel(LabelName)
+            assert(typeof(LabelName) == "string", "specify type string for CreateLabel function")
+
+            local Label = Instance.new("Frame")
+            local LabelUICorner = Instance.new("UICorner")
+            local LabelTitle = Instance.new("TextLabel")
+            local LabelUIPadding = Instance.new("UIPadding")
+
+            Label.Name = LabelName
+            Label.Parent = HomeTab
+            Label.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+            Label.BackgroundTransparency = 1.000
+            Label.Size = UDim2.new(1, 0, 0, 32)
+
+            LabelUICorner.CornerRadius = UDim.new(0, 4)
+            LabelUICorner.Name = "LabelUICorner"
+            LabelUICorner.Parent = Label
+
+            LabelTitle.Name = "LabelTitle"
+            LabelTitle.Parent = Label
+            LabelTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            LabelTitle.BackgroundTransparency = 1.000
+            LabelTitle.Size = UDim2.new(1, 0, 1, 0)
+            LabelTitle.Font = Enum.Font.Ubuntu
+            LabelTitle.TextColor3 = Color3.fromRGB(252, 252, 252)
+            LabelTitle.TextSize = 15.000
+            LabelTitle.Text = LabelName
+
+            LabelUIPadding.Name = "LabelUIPadding"
+            LabelUIPadding.Parent = Label
+            LabelUIPadding.PaddingBottom = UDim.new(0, 6)
+            LabelUIPadding.PaddingLeft = UDim.new(0, 6)
+            LabelUIPadding.PaddingRight = UDim.new(0, 6)
+            LabelUIPadding.PaddingTop = UDim.new(0, 6)
+        end
+
+
+
+
     end
-    return Module
+    return Category
 end
 return library
