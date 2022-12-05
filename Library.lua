@@ -254,7 +254,7 @@ function library:CreateWindow(GameName)
             LabelUIPadding.PaddingRight = UDim.new(0, 6)
             LabelUIPadding.PaddingTop = UDim.new(0, 6)
         end
-
+        return Module
 
 
 
