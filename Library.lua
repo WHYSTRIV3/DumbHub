@@ -9,36 +9,31 @@ local Hb = game:GetService("RunService").Heartbeat;
 local UIS = game:GetService("UserInputService")
 local CG = game:GetService("CoreGui")
 
-if CG:FindFirstChild("DumbHub") then
-    CG.DumbHub:Destroy()
-end
+
 
 
 function library:CreateWindow(GameName)
     assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
 
-    local DumbHub = Instance.new("ScreenGui")
-    local Main = Instance.new("Frame")
-    local MainUICorner = Instance.new("UICorner")
-    local TopBar = Instance.new("Frame")
-    local TopBarUICorner = Instance.new("UICorner")
-    local TopBarExtension = Instance.new("Frame")
-    local TopBarTitle = Instance.new("TextLabel")
-    local TopBarTitleUIPadding = Instance.new("UIPadding")
-    local TopBarClose = Instance.new("ImageButton")
-    local Navigatin = Instance.new("Frame")
-    local NavigationButtonHolder = Instance.new("Frame")
-    local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
-    local NavigationButtonHolderUIListLayout = Instance.new("UIListLayout")
-    local NavigationButtonHolderTemplate = Instance.new("TextButton")
-    local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
-    local NavigationUICorner = Instance.new("UICorner")
-    local ContientContainer = Instance.new("Frame")
-    local ContientContainerFade = Instance.new("Frame")
-    local ContientContainerFadeUIGradient = Instance.new("UIGradient")
-    local HomeTab = Instance.new("ScrollingFrame")
-    local HomeTabUIPadding = Instance.new("UIPadding")
-    local HomeTabUIListLayout = Instance.new("UIListLayout")
+        local DumbHub = Instance.new("ScreenGui")
+        local Main = Instance.new("Frame")
+        local MainUICorner = Instance.new("UICorner")
+        local TopBar = Instance.new("Frame")
+        local TopBarUICorner = Instance.new("UICorner")
+        local TopBarExtension = Instance.new("Frame")
+        local TopBarTitle = Instance.new("TextLabel")
+        local TopBarTitleUIPadding = Instance.new("UIPadding")
+        local TopBarClose = Instance.new("ImageButton")
+        local Navigatin = Instance.new("Frame")
+        local NavigationButtonHolder = Instance.new("Frame")
+        local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
+        local NavigationButtonHolderUIListLayout = Instance.new("UIListLayout")
+        local NavigationUICorner = Instance.new("UICorner")
+        local ContientContainer = Instance.new("Frame")
+        local ContientContainerFade = Instance.new("Frame")
+        local ContientContainerFadeUIGradient = Instance.new("UIGradient")
+    
+
 
     DumbHub.Name = "DumbHub"
     DumbHub.Parent = game:GetService("CoreGui")
@@ -163,6 +158,14 @@ function library:CreateWindow(GameName)
     function Category:new(TabName)
         assert(typeof(TabName) == "string", "specify type string for CreateNew function")
 
+        local HomeTab = Instance.new("ScrollingFrame")
+        local HomeTabUIPadding = Instance.new("UIPadding")
+        local HomeTabUIListLayout = Instance.new("UIListLayout")
+
+
+        local NavigationButtonHolderTemplate = Instance.new("TextButton")
+        local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
+
         HomeTab.Name = TabName
         HomeTab.Parent = ContientContainer
         HomeTab.Active = true
@@ -199,6 +202,15 @@ function library:CreateWindow(GameName)
         NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
         NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemplate
         NavigationButtonHolderUITemplatePadding.PaddingLeft = UDim.new(0, 15)
+
+        NavigationButtonHolderTemplate.MouseButton1Click:connect(function()
+            for _,v in pairs(ContientContainer:GetChildren()) do
+                if v:Isa("ScrollingFrame") ScrollBarThickness
+                    v.Visible = false
+            end
+        end
+        HomeTab.Visible = true
+    end)
 
 
         local Module = {}
