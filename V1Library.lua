@@ -11,8 +11,8 @@ local CG = game:GetService("CoreGui")
 
 local HomeTabGridLayoutAdd = 20
 
-function library:CreateWindow(GameName)
-	assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
+function library:CreateWindow()
+	local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
 	local DumbHub = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
