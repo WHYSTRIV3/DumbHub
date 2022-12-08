@@ -34,7 +34,7 @@ function library:CreateWindow()
 
 
 	DumbHubV2.Name = "DumbHubV2"
-	DumbHub.Parent = game:GetService("CoreGui")
+	DumbHubV2.Parent = game:GetService("CoreGui")
 	DumbHubV2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	Main.Name = "Main"
