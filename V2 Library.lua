@@ -35,7 +35,7 @@ function library:CreateWindow()
 
 	DumbHubV2.Name = "DumbHubV2"
 	DumbHubV2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	DumbHubV2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
 
 	Main.Name = "Main"
 	Main.Parent = DumbHubV2
@@ -110,15 +110,6 @@ function library:CreateWindow()
 	NavigationButtonHolderUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	NavigationButtonHolderUIListLayout.Padding = UDim.new(0, 3)
 
-	NavigationButtonHoldeTemeplate.Name = "NavigationButtonHoldeTemeplate"
-	NavigationButtonHoldeTemeplate.Parent = NavigationButtonHolder
-	NavigationButtonHoldeTemeplate.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
-	NavigationButtonHoldeTemeplate.Position = UDim2.new(0.0782608688, 0, -0.0158730168, 0)
-	NavigationButtonHoldeTemeplate.Size = UDim2.new(0, 112, 0, 27)
-	NavigationButtonHoldeTemeplate.Font = Enum.Font.SourceSans
-	NavigationButtonHoldeTemeplate.Text = "Home"
-	NavigationButtonHoldeTemeplate.TextColor3 = Color3.fromRGB(255, 255, 255)
-	NavigationButtonHoldeTemeplate.TextSize = 17.000
 
 	NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
 	NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHoldeTemeplate
@@ -159,53 +150,6 @@ function library:CreateWindow()
 	OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	OpenButton.TextSize = 14.000
 
-	local function OYFL_fake_script() -- OpenButton.OpenButtonRainbow 
-		local script = Instance.new('LocalScript', OpenButton)
-
-
-
-		local TextLabel = script.Parent
-
-
-
-
-		local t = 10;
-
-		while wait() do
-
-			local hue = tick() % t / t
-
-			local color = Color3.fromHSV(hue,1,1)
-
-			script.Parent.TextColor3 = color
-
-		end
-	end
-	coroutine.wrap(OYFL_fake_script)()
-
-    local function EIDWFG_fake_script() -- HubName.HubNameRainbow 
-        local script = Instance.new('LocalScript', HubName)
-    
-        
-        
-        local TextLabel = script.Parent
-        
-        
-        
-        
-        local t = 10;
-        
-        while wait() do
-        
-            local hue = tick() % t / t
-        
-            local color = Color3.fromHSV(hue,1,1)
-        
-            script.Parent.TextColor3 = color
-        
-        end
-    end
-    coroutine.wrap(EIDWFG_fake_script)()
 
 
 
@@ -275,7 +219,7 @@ function library:CreateWindow()
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
 		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHoldeTemeplate
 
-		NavigationButtonHolderTemplate.MouseButton1Click:Connect(function()
+		NavigationButtonHoldeTemplate.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
 					v.Visible = false
