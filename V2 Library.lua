@@ -35,7 +35,7 @@ function library:CreateWindow()
 
 	DumbHubV2.Name = "DumbHubV2"
 	DumbHubV2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
+    DumbHubV2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	Main.Name = "Main"
 	Main.Parent = DumbHubV2
@@ -180,7 +180,7 @@ function library:CreateWindow()
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
 
 
-		local NavigationButtonHolderTemplate = Instance.new("TextButton")
+		local NavigationButtonHoldeTemplate = Instance.new("TextButton")
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
 
 		HomeTab.Name = TabName
