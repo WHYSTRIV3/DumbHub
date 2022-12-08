@@ -279,10 +279,10 @@ function library:CreateWindow()
 			local ToggleButton = Instance.new("TextButton")
 			local ToggleButtonUICorner = Instance.new("UICorner")
 
-			Toggle.Name = "Toggle"
-			Toggle.Parent = HomeTab
-			Toggle.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
-			Toggle.Size = UDim2.new(1, 0, 0, 32)
+            Toggle.Name = "Toggle"
+            Toggle.Parent = HomeTab
+            Toggle.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+            Toggle.Size = UDim2.new(1, 0, 0, 40)
 
 			ToggleUICorner.CornerRadius = UDim.new(0, 4)
 			ToggleUICorner.Name = "ToggleUICorner"
@@ -306,12 +306,12 @@ function library:CreateWindow()
 			ToggleUIPadding.PaddingRight = UDim.new(0, 6)
 			ToggleUIPadding.PaddingTop = UDim.new(0, 6)
 
-			ToggleButton.Name = "ToggleButton"
-			ToggleButton.Parent = Toggle
-			ToggleButton.AnchorPoint = Vector2.new(1, 0.5)
-			ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ToggleButton.Position = UDim2.new(1, -3, 0.5, 0)
-			ToggleButton.Size = UDim2.new(0, 16, 0, 16)
+            ToggleButton.Name = "ToggleButton"
+            ToggleButton.Parent = Toggle
+            ToggleButton.AnchorPoint = Vector2.new(1, 0.5)
+            ToggleButton.BackgroundColor3 = Color3.fromRGB(93, 255, 57)
+            ToggleButton.Position = UDim2.new(1, -3, 0.5, 0)
+            ToggleButton.Size = UDim2.new(0, 16, 0, 16)
 			ToggleButton.Text = ""
 
 			ToggleButtonUICorner.CornerRadius = UDim.new(0, 2)
@@ -486,14 +486,15 @@ function library:CreateWindow()
 			DropdownTitle.TextSize = 15.000
 			DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-			DropdownArrow.Name = "DropdownArrow"
-			DropdownArrow.Parent = Dropdown
-			DropdownArrow.AnchorPoint = Vector2.new(1, 0)
-			DropdownArrow.BackgroundTransparency = 1.000
-			DropdownArrow.BorderColor3 = Color3.fromRGB(27, 42, 53)
-			DropdownArrow.Position = UDim2.new(1, 0, -2, 40)
-			DropdownArrow.Size = UDim2.new(0, 30, 0, 30)
-			DropdownArrow.Image = "rbxassetid://2777862738"
+            DropdownArrow.Name = "DropdownArrow"
+            DropdownArrow.Parent = Dropdown
+            DropdownArrow.AnchorPoint = Vector2.new(1, 0)
+            DropdownArrow.BackgroundTransparency = 1.000
+            DropdownArrow.BorderColor3 = Color3.fromRGB(27, 42, 53)
+            DropdownArrow.Position = UDim2.new(1, 0, -2, 40)
+            DropdownArrow.Size = UDim2.new(0, 30, 0, 30)
+            DropdownArrow.Image = "rbxassetid://2777862738"
+            
 
 			DropdownUIPadding.Name = "DropdownUIPadding"
 			DropdownUIPadding.Parent = Dropdown
@@ -536,14 +537,14 @@ function library:CreateWindow()
 				local DropdownTextButton = Instance.new("TextButton")
 				local DropdownTextButtonUICorner = Instance.new("UICorner")
 
-				DropdownTextButton.Name = "DropdownTextButton"
-				DropdownTextButton.Parent = DropdownOptionsHolder
-				DropdownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				DropdownTextButton.Position = UDim2.new(0.397601187, 0, 0.219966203, 0)
-				DropdownTextButton.Size = UDim2.new(0.973170877, 0, 0.0449930914, 16)
-				DropdownTextButton.Font = Enum.Font.Gotham
-				DropdownTextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-				DropdownTextButton.TextSize = 14.000
+                DropdownTextButton.Name = "DropdownTextButton"
+                DropdownTextButton.Parent = DropdownOptionsHolder
+                DropdownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                DropdownTextButton.Position = UDim2.new(0.397601187, 0, 0.219966203, 0)
+                DropdownTextButton.Size = UDim2.new(0.973170877, 0, 0.0449930914, 16)
+                DropdownTextButton.Font = Enum.Font.Gotham
+                DropdownTextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+                DropdownTextButton.TextSize = 14.000
 				DropdownTextButton.Text = v
 
 
