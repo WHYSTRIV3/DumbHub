@@ -9,6 +9,8 @@ local Hb = game:GetService("RunService").Heartbeat;
 local UIS = game:GetService("UserInputService")
 local CG = game:GetService("CoreGui")
 
+local HomeTabGridLayoutAdd = 20
+
 function library:CreateWindow(GameName)
 	assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
 
@@ -19,14 +21,15 @@ function library:CreateWindow(GameName)
 	local TopBarClose = Instance.new("ImageButton")
 	local TopBarinimize = Instance.new("ImageButton")
 	local TopBarTitle = Instance.new("TextLabel")
+	local Navigatin = Instance.new("Frame")
+	local NavigationButtonHolder = Instance.new("Frame")
+	local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
+	local NavigationButtonHolderUIListLayout = Instance.new("UIListLayout")
+	local NavigationUICorner = Instance.new("UICorner")
 	local TopBarTitleUIPadding = Instance.new("UIPadding")
 	local ContientContainer = Instance.new("Frame")
 	local ContientContainerFade = Instance.new("Frame")
 	local ContientContainerFadeUIGradient = Instance.new("UIGradient")
-	local Label = Instance.new("Frame")
-	local LabelUIPadding = Instance.new("UIPadding")
-	local LabelTitle = Instance.new("TextLabel")
-	local LabelUICorner = Instance.new("UICorner")
 	local OpenButton = Instance.new("TextButton")
 
 
@@ -162,13 +165,15 @@ function library:CreateWindow(GameName)
 
 	local Category = {}
 	function Category:new(TabName)
-		ssert(typeof(TabName) == "string", "specify type string for CreateNew function")
+		assert(typeof(TabName) == "string", "specify type string for CreateNew function")
 
 		local HomeTab = Instance.new("ScrollingFrame")
 		local HomeTabUIPadding = Instance.new("UIPadding")
 		local HomeTabUIListLayout = Instance.new("UIListLayout")
 
-		local NavigationButtonHolderTemplate = Instance.new("TextButton")
+		local HomeTabGridLayout = Instance.new("UIGridLayout")
+
+		local NavigationButtonHolderTemeplate = Instance.new("TextButton")
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
 
 		HomeTab.Name = "HomeTab"
@@ -180,6 +185,12 @@ function library:CreateWindow(GameName)
 		HomeTab.Size = UDim2.new(1, 0, 1, 0)
 		HomeTab.ScrollBarThickness = 0
 		HomeTab.Visible = false
+
+		HomeTabGridLayout.Name = "HomeTabGridLayout"
+		HomeTabGridLayout.Parent = HomeTab
+		HomeTabGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		HomeTabGridLayout.CellPadding = UDim2.new(0, 0, 0, 6)
+		HomeTabGridLayout.CellSize = UDim2.new(0, 315, 0, 30)
 
 		HomeTabUIPadding.Name = "HomeTabUIPadding"
 		HomeTabUIPadding.Parent = HomeTab
@@ -202,7 +213,7 @@ function library:CreateWindow(GameName)
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
 		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemeplate
 
-		NavigationButtonHolderTemplate.MouseButton1Click:Connect(function()
+		NavigationButtonHolderTemeplate.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
 					v.Visible = false
@@ -620,6 +631,24 @@ function library:CreateWindow(GameName)
 	end
 	return Category
 end
+
+
+local ui = library:CreateWindow("Baseplate")
+
+local Main = ui:new("Main")
+
+local HoiThere = false
+local SelectedFUCK;
+
+Main:CreateLabel("FirstLabel","This is you're first label, Congrats!")
+
+
+
+
+
+
+
+
 
 
 
