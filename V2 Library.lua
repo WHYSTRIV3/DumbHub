@@ -281,7 +281,7 @@ function library:CreateWindow()
 
             Toggle.Name = "Toggle"
             Toggle.Parent = HomeTab
-            Toggle.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+            Toggle.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
             Toggle.Size = UDim2.new(1, 0, 0, 40)
 
 			ToggleUICorner.CornerRadius = UDim.new(0, 4)
@@ -311,7 +311,7 @@ function library:CreateWindow()
             ToggleButton.AnchorPoint = Vector2.new(1, 0.5)
             ToggleButton.BackgroundColor3 = Color3.fromRGB(93, 255, 57)
             ToggleButton.Position = UDim2.new(1, -3, 0.5, 0)
-            ToggleButton.Size = UDim2.new(0, 16, 0, 16)
+            ToggleButton.Size = UDim2.new(0, 16, 0, 16)            
 			ToggleButton.Text = ""
 
 			ToggleButtonUICorner.CornerRadius = UDim.new(0, 2)
