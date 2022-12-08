@@ -9,7 +9,7 @@ local Hb = game:GetService("RunService").Heartbeat;
 local UIS = game:GetService("UserInputService")
 local CG = game:GetService("CoreGui")
 
-local HomeTabGridLayoutAdd = 20
+local HomeTabGridLayoutAdd = 30
 
 function library:CreateWindow(GameName)
 	assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
@@ -641,15 +641,15 @@ local HoiThere = false
 local SelectedFUCK;
 
 Main:CreateLabel("FirstLabel","This is you're first label, Congrats!")
+
+
+
+
+
+
+
+
+
 --]]
-
-
-
-
-
-
-
-
-
 
 return library
