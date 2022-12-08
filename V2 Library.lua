@@ -140,8 +140,8 @@ function library:CreateWindow()
 	OpenButton.Parent = DumbHubV2
 	OpenButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	OpenButton.BackgroundTransparency = 0.300
-	OpenButton.Position = UDim2.new(0.0424076617, 0, 0.0151515044, 0)
-	OpenButton.Size = UDim2.new(0, 1337, 0, 14)
+	OpenButton.Position = UDim2.new(0.154502064, 0, 0.0219082609, 0)
+    OpenButton.Size = UDim2.new(0, 1337, 0, 14)
 	OpenButton.Font = Enum.Font.SourceSans
 	OpenButton.Text = "DUMBHUB - Click To Open"
 	OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -151,7 +151,7 @@ function library:CreateWindow()
 
 
 	TopBarClose.MouseButton1Click:Connect(function()
-		CG.DumbHub:Destroy()
+		CG.DumbHubV2:Destroy()
 	end)
 
 	TopBarinimize.MouseButton1Click:Connect(function()
