@@ -30,13 +30,13 @@ function library:CreateWindow()
 	local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
 	local OpenButton = Instance.new("TextButton")
 	local HubName = Instance.new("TextLabel")
-	
+
 
 
 	DumbHubV2.Name = "DumbHubV2"
 	DumbHubV2.Parent = game:GetService("CoreGui")
-	DumbHubV2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+	
 	Main.Name = "Main"
 	Main.Parent = DumbHubV2
 	Main.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
@@ -140,8 +140,8 @@ function library:CreateWindow()
 	OpenButton.Parent = DumbHubV2
 	OpenButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	OpenButton.BackgroundTransparency = 0.300
-    OpenButton.Position = UDim2.new(0.194816709, 0, 0.0219082609, 0)
-    OpenButton.Size = UDim2.new(0, 1337, 0, 14)
+	OpenButton.Position = UDim2.new(0.194816709, 0, 0.0219082609, 0)
+	OpenButton.Size = UDim2.new(0, 1337, 0, 14)
 	OpenButton.Font = Enum.Font.SourceSans
 	OpenButton.Text = "DUMBHUB - Click To Open"
 	OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -178,7 +178,7 @@ function library:CreateWindow()
 
 
 		local NavigationButtonHolderTemeplate = Instance.new("TextButton")
-		
+
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
 
 		HomeTab.Name = TabName
