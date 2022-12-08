@@ -9,13 +9,12 @@ local Hb = game:GetService("RunService").Heartbeat;
 local UIS = game:GetService("UserInputService")
 local CG = game:GetService("CoreGui")
 
-local HomeTabGridLayoutAdd = 20
-
-function library:CreateWindow()
-	local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+function library:CreateWindow(GameName)
+	assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
 
 	local DumbHubV2 = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
+	local HubName = Instance.new("TextLabel")
 	local TopBar = Instance.new("Frame")
 	local TopBarClose = Instance.new("ImageButton")
 	local TopBarinimize = Instance.new("ImageButton")
@@ -24,22 +23,20 @@ function library:CreateWindow()
 	local ContientContainer = Instance.new("Frame")
 	local ContientContainerFade = Instance.new("Frame")
 	local ContientContainerFadeUIGradient = Instance.new("UIGradient")
-	local Navigatin = Instance.new("Frame")
-	local NavigationButtonHolder = Instance.new("Frame")
-	local NavigationButtonHolderUIListLayout = Instance.new("UIListLayout")
-	local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
+	local Label = Instance.new("Frame")
+	local LabelUIPadding = Instance.new("UIPadding")
+	local LabelTitle = Instance.new("TextLabel")
+	local LabelUICorner = Instance.new("UICorner")
 	local OpenButton = Instance.new("TextButton")
-	local HubName = Instance.new("TextLabel")
-
 
 
 	DumbHubV2.Name = "DumbHubV2"
 	DumbHubV2.Parent = game:GetService("CoreGui")
 
-	
+
 	Main.Name = "Main"
 	Main.Parent = DumbHubV2
-	Main.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+	Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	Main.Position = UDim2.new(0.294801623, 0, 0.26060605, 0)
 	Main.Size = UDim2.new(0, 567, 0, 281)
 
@@ -97,7 +94,7 @@ function library:CreateWindow()
 	Navigatin.BorderColor3 = Color3.fromRGB(27, 42, 53)
 	Navigatin.BorderSizePixel = 0
 	Navigatin.Position = UDim2.new(0.0119999209, 0, 0.252000034, 0)
-	Navigatin.Size = UDim2.new(0, 112, 0, 205)
+	Navigatin.Size = UDim2.new(0, 112, 0, 198)
 
 	NavigationButtonHolder.Name = "NavigationButtonHolder"
 	NavigationButtonHolder.Parent = Navigatin
@@ -109,7 +106,6 @@ function library:CreateWindow()
 	NavigationButtonHolderUIListLayout.Parent = NavigationButtonHolder
 	NavigationButtonHolderUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	NavigationButtonHolderUIListLayout.Padding = UDim.new(0, 3)
-
 
 	NavigationButtonHolderUIPadding.Name = "NavigationButtonHolderUIPadding"
 	NavigationButtonHolderUIPadding.Parent = NavigationButtonHolder
@@ -136,7 +132,6 @@ function library:CreateWindow()
 	ContientContainerFadeUIGradient.Name = "ContientContainerFadeUIGradient"
 	ContientContainerFadeUIGradient.Parent = ContientContainerFade
 
-
 	OpenButton.Parent = DumbHubV2
 	OpenButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	OpenButton.BackgroundTransparency = 0.300
@@ -146,8 +141,7 @@ function library:CreateWindow()
 	OpenButton.Text = "DUMBHUB - Click To Open"
 	OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	OpenButton.TextSize = 14.000
-
-
+	OpenButton.Visible = false
 
 
 	TopBarClose.MouseButton1Click:Connect(function()
@@ -164,24 +158,20 @@ function library:CreateWindow()
 		OpenButton.Visible = false
 	end)
 
+
+
 	local Category = {}
 	function Category:new(TabName)
-		assert(typeof(TabName) == "string", "specify type string for CreateNew function")
+		ssert(typeof(TabName) == "string", "specify type string for CreateNew function")
 
 		local HomeTab = Instance.new("ScrollingFrame")
 		local HomeTabUIPadding = Instance.new("UIPadding")
-
-		local HomeTabGridLayout = Instance.new("UIGridLayout")
+		local HomeTabUIListLayout = Instance.new("UIListLayout")
 
 		local NavigationButtonHolderTemplate = Instance.new("TextButton")
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
 
-
-		local NavigationButtonHolderTemeplate = Instance.new("TextButton")
-
-		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
-
-		HomeTab.Name = TabName
+		HomeTab.Name = "HomeTab"
 		HomeTab.Parent = ContientContainer
 		HomeTab.Active = true
 		HomeTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -189,7 +179,7 @@ function library:CreateWindow()
 		HomeTab.BorderSizePixel = 0
 		HomeTab.Size = UDim2.new(1, 0, 1, 0)
 		HomeTab.ScrollBarThickness = 0
-
+		HomeTab.Visible = false
 
 		HomeTabUIPadding.Name = "HomeTabUIPadding"
 		HomeTabUIPadding.Parent = HomeTab
@@ -198,26 +188,21 @@ function library:CreateWindow()
 		HomeTabUIPadding.PaddingRight = UDim.new(0, 1)
 		HomeTabUIPadding.PaddingTop = UDim.new(0, 1)
 
-		HomeTabGridLayout.Name = "HomeTabGridLayout"
-		HomeTabGridLayout.Parent = HomeTab
-		HomeTabGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		HomeTabGridLayout.CellPadding = UDim2.new(0, 0, 0, 6)
-		HomeTabGridLayout.CellSize = UDim2.new(0, 315, 0, 30)
-
 		NavigationButtonHolderTemeplate.Name = TabName
 		NavigationButtonHolderTemeplate.Parent = NavigationButtonHolder
 		NavigationButtonHolderTemeplate.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+		NavigationButtonHolderTemeplate.BackgroundTransparency = 1.000
 		NavigationButtonHolderTemeplate.Position = UDim2.new(0.0782608688, 0, -0.0158730168, 0)
 		NavigationButtonHolderTemeplate.Size = UDim2.new(0, 112, 0, 27)
 		NavigationButtonHolderTemeplate.Font = Enum.Font.SourceSans
-		NavigationButtonHolderTemeplate.Text = "Home"
+		NavigationButtonHolderTemeplate.Text = TabName
 		NavigationButtonHolderTemeplate.TextColor3 = Color3.fromRGB(255, 255, 255)
-		NavigationButtonHolderTemeplate.TextSize = 17.000
+		NavigationButtonHolderTemeplate.TextSize = 20.000
 
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
 		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemeplate
 
-		NavigationButtonHolderTemeplate.MouseButton1Click:Connect(function()
+		NavigationButtonHolderTemplate.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
 					v.Visible = false
@@ -238,13 +223,14 @@ function library:CreateWindow()
 
 			Button.Name = "Button"
 			Button.Parent = HomeTab
-			Button.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
-			Button.Size = UDim2.new(1, 0, 0, 32)
+			Button.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			Button.Size = UDim2.new(1, 0, 0, 37)
 			Button.Text = ""
 
 			ButtonUICorner.CornerRadius = UDim.new(0, 4)
 			ButtonUICorner.Name = "ButtonUICorner"
 			ButtonUICorner.Parent = Button
+
 
 			ButtonTitle.Name = "ButtonTitle"
 			ButtonTitle.Parent = Button
@@ -279,10 +265,10 @@ function library:CreateWindow()
 			local ToggleButton = Instance.new("TextButton")
 			local ToggleButtonUICorner = Instance.new("UICorner")
 
-            Toggle.Name = "Toggle"
-            Toggle.Parent = HomeTab
-            Toggle.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-            Toggle.Size = UDim2.new(1, 0, 0, 40)
+			Toggle.Name = "Toggle"
+			Toggle.Parent = HomeTab
+			Toggle.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			Toggle.Size = UDim2.new(1, 0, 0, 40)
 
 			ToggleUICorner.CornerRadius = UDim.new(0, 4)
 			ToggleUICorner.Name = "ToggleUICorner"
@@ -306,12 +292,12 @@ function library:CreateWindow()
 			ToggleUIPadding.PaddingRight = UDim.new(0, 6)
 			ToggleUIPadding.PaddingTop = UDim.new(0, 6)
 
-            ToggleButton.Name = "ToggleButton"
-            ToggleButton.Parent = Toggle
-            ToggleButton.AnchorPoint = Vector2.new(1, 0.5)
-            ToggleButton.BackgroundColor3 = Color3.fromRGB(93, 255, 57)
-            ToggleButton.Position = UDim2.new(1, -3, 0.5, 0)
-            ToggleButton.Size = UDim2.new(0, 16, 0, 16)            
+			ToggleButton.Name = "ToggleButton"
+			ToggleButton.Parent = Toggle
+			ToggleButton.AnchorPoint = Vector2.new(1, 0.5)
+			ToggleButton.BackgroundColor3 = Color3.fromRGB(93, 255, 57)
+			ToggleButton.Position = UDim2.new(1, -3, 0.5, 0)
+			ToggleButton.Size = UDim2.new(0, 16, 0, 16)
 			ToggleButton.Text = ""
 
 			ToggleButtonUICorner.CornerRadius = UDim.new(0, 2)
@@ -366,7 +352,7 @@ function library:CreateWindow()
 
 			Slider.Name = "Slider"
 			Slider.Parent = HomeTab
-			Slider.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+			Slider.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 			Slider.Size = UDim2.new(1, 0, 0, 38)
 
 			SliderUICorner.CornerRadius = UDim.new(0, 4)
@@ -406,8 +392,7 @@ function library:CreateWindow()
 			MainSlider.Name = "MainSlider"
 			MainSlider.Parent = SliderBack
 			MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			MainSlider.Position = UDim2.new(0, 0, 0, 0)
-			MainSlider.Size = UDim2.new(0, 0, 0, 8)
+			MainSlider.Size = UDim2.new(0.5, 0, 1, 0)
 
 			MainSliderUICorner.CornerRadius = UDim.new(0, 4)
 			MainSliderUICorner.Name = "MainSliderUICorner"
@@ -467,9 +452,9 @@ function library:CreateWindow()
 
 			Dropdown.Name = "Dropdown"
 			Dropdown.Parent = HomeTab
-			Dropdown.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+			Dropdown.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 			Dropdown.Position = UDim2.new(0, 0, 0.46875, 0)
-			Dropdown.Size = UDim2.new(1, 0, 0.0199999996, 24)
+			Dropdown.Size = UDim2.new(1, 0, 0.0199999996, 30)
 
 			DropdownUICorner.CornerRadius = UDim.new(0, 4)
 			DropdownUICorner.Name = "DropdownUICorner"
@@ -479,22 +464,22 @@ function library:CreateWindow()
 			DropdownTitle.Parent = Dropdown
 			DropdownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropdownTitle.BackgroundTransparency = 1.000
-			DropdownTitle.Size = UDim2.new(1, -20, 0, 20)
+			DropdownTitle.Position = UDim2.new(0.00476190494, 0, 0.109160244, 0)
+			DropdownTitle.Size = UDim2.new(0.985714257, -20, 0, 20)
 			DropdownTitle.Font = Enum.Font.Ubuntu
 			DropdownTitle.Text = DropdownName
 			DropdownTitle.TextColor3 = Color3.fromRGB(252, 252, 252)
 			DropdownTitle.TextSize = 15.000
 			DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-            DropdownArrow.Name = "DropdownArrow"
-            DropdownArrow.Parent = Dropdown
-            DropdownArrow.AnchorPoint = Vector2.new(1, 0)
-            DropdownArrow.BackgroundTransparency = 1.000
-            DropdownArrow.BorderColor3 = Color3.fromRGB(27, 42, 53)
-            DropdownArrow.Position = UDim2.new(1, 0, -2, 40)
-            DropdownArrow.Size = UDim2.new(0, 30, 0, 30)
-            DropdownArrow.Image = "rbxassetid://2777862738"
-            
+			DropdownArrow.Name = "DropdownArrow"
+			DropdownArrow.Parent = Dropdown
+			DropdownArrow.AnchorPoint = Vector2.new(1, 0)
+			DropdownArrow.BackgroundTransparency = 1.000
+			DropdownArrow.BorderColor3 = Color3.fromRGB(27, 42, 53)
+			DropdownArrow.Position = UDim2.new(1.01666665, 0, -1.56463027, 40)
+			DropdownArrow.Size = UDim2.new(0, 37, 0, 32)
+			DropdownArrow.Image = "rbxassetid://2777862738"
 
 			DropdownUIPadding.Name = "DropdownUIPadding"
 			DropdownUIPadding.Parent = Dropdown
@@ -508,8 +493,8 @@ function library:CreateWindow()
 			DropdownOptionsHolder.Active = true
 			DropdownOptionsHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropdownOptionsHolder.BackgroundTransparency = 1.000
-			DropdownOptionsHolder.Position = UDim2.new(0, 0, 0, 28)
-			DropdownOptionsHolder.Size = UDim2.new(1, 0, 10.8940001, -24)
+			DropdownOptionsHolder.Position = UDim2.new(0, 0, 0, 33)
+			DropdownOptionsHolder.Size = UDim2.new(1, 0, 10.6945086, -24)
 			DropdownOptionsHolder.Visible = false
 
 			DropdownOptionsHolderUIGridLayout.Name = "DropdownOptionsHolderUIGridLayout"
@@ -535,16 +520,16 @@ function library:CreateWindow()
 
 			for _,v in pairs(ItemList) do
 				local DropdownTextButton = Instance.new("TextButton")
-				local DropdownTextButtonUICorner = Instance.new("UICorner")
 
-                DropdownTextButton.Name = "DropdownTextButton"
-                DropdownTextButton.Parent = DropdownOptionsHolder
-                DropdownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                DropdownTextButton.Position = UDim2.new(0.397601187, 0, 0.219966203, 0)
-                DropdownTextButton.Size = UDim2.new(0.973170877, 0, 0.0449930914, 16)
-                DropdownTextButton.Font = Enum.Font.Gotham
-                DropdownTextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-                DropdownTextButton.TextSize = 14.000
+
+				DropdownTextButton.Name = "DropdownTextButton"
+				DropdownTextButton.Parent = DropdownOptionsHolder
+				DropdownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				DropdownTextButton.Position = UDim2.new(0.397601187, 0, 0.219966203, 0)
+				DropdownTextButton.Size = UDim2.new(0.973170877, 0, 0.0449930914, 16)
+				DropdownTextButton.Font = Enum.Font.Gotham
+				DropdownTextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+				DropdownTextButton.TextSize = 14.000
 				DropdownTextButton.Text = v
 
 
@@ -596,8 +581,8 @@ function library:CreateWindow()
 
 			Label.Name = LabelName
 			Label.Parent = HomeTab
-			Label.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
-			Label.BackgroundTransparency = 1
+			Label.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			Label.BackgroundTransparency = 1.000
 			Label.Size = UDim2.new(1, 0, 0, 32)
 
 			LabelUICorner.CornerRadius = UDim.new(0, 4)
@@ -631,50 +616,56 @@ function library:CreateWindow()
 			HomeTab:FindFirstChild(LabelName).LabelTitle.Text = NewText
 		end
 
-        --[[
-local ui = library:CreateWindow("Baseplate")
-
-local Main = ui:new("Main")
-
-local HoiThere = false
-local SelectedFUCK;
-
-Main:CreateLabel("FirstLabel","This is you're first label, Congrats!")
-
-Main:CreateButton("Hello World!", function()
-	print("Hello World!")
-end)
-
-Main:CreateButton("Change Label To asss!", function()
-	Main:EditLabel("FirstLabel", "ass")
-end)
-
-Main:CreateToggle("This Toggle will repeatedly print Hello World!", true, function()
-	print("Hello World!")
-end)
-
-Main:CreateToggle("This is a buttonToggle", false, function(heeey)
-	HoiThere = heeey
-	print("This is what this does: "..tostring(HoiThere))
-end)
-
-Main:CreateSlider("WalkSpeed", {min = 16, max = 200, default = 16}, function(state)
-	LocalPlayer.Character.Humanoid.WalkSpeed = state
-end)
-
-Main:CreateDropdown("FUCK", {"I", "Want", "Some", "Pussy"}, function(pssy)
-    SelectedFUCK = pssy
-    print(SelectedFUCK)
-end)
-]]
-
-
-
-
-
 		return Module
 	end
 	return Category
 end
 
-return library
+
+
+local function NQGTJ_fake_script() -- HubName.HubNameRainbow 
+	local script = Instance.new('LocalScript', HubName)
+
+
+
+	local TextLabel = script.Parent
+
+
+
+
+	local t = 10;
+
+	while wait() do
+
+		local hue = tick() % t / t
+
+		local color = Color3.fromHSV(hue,1,1)
+
+		script.Parent.TextColor3 = color
+
+	end
+end
+coroutine.wrap(NQGTJ_fake_script)()
+local function RDYT_fake_script() -- OpenButton.OpenButtonRainbow 
+	local script = Instance.new('LocalScript', OpenButton)
+
+
+
+	local TextLabel = script.Parent
+
+
+
+
+	local t = 10;
+
+	while wait() do
+
+		local hue = tick() % t / t
+
+		local color = Color3.fromHSV(hue,1,1)
+
+		script.Parent.TextColor3 = color
+
+	end
+end
+coroutine.wrap(RDYT_fake_script)()
