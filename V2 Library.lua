@@ -21,7 +21,7 @@ function library:CreateWindow()
 	local TopBarinimize = Instance.new("ImageButton")
 	local TopBarTitle = Instance.new("TextLabel")
 	local TopBarTitleUIPadding = Instance.new("UIPadding")
-    local ContientContainer = Instance.new("Frame")
+	local ContientContainer = Instance.new("Frame")
 	local ContientContainerFade = Instance.new("Frame")
 	local ContientContainerFadeUIGradient = Instance.new("UIGradient")
 	local Navigatin = Instance.new("Frame")
@@ -29,13 +29,13 @@ function library:CreateWindow()
 	local NavigationButtonHolderUIListLayout = Instance.new("UIListLayout")
 	local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
 	local OpenButton = Instance.new("TextButton")
-    local HubName = Instance.new("TextLabel")
-
+	local HubName = Instance.new("TextLabel")
+	
 
 
 	DumbHubV2.Name = "DumbHubV2"
 	DumbHubV2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-    DumbHubV2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	DumbHubV2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	Main.Name = "Main"
 	Main.Parent = DumbHubV2
@@ -43,16 +43,16 @@ function library:CreateWindow()
 	Main.Position = UDim2.new(0.294801623, 0, 0.26060605, 0)
 	Main.Size = UDim2.new(0, 567, 0, 281)
 
-    HubName.Name = "HubName"
-    HubName.Parent = Main
-    HubName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    HubName.BackgroundTransparency = 1.000
-    HubName.Position = UDim2.new(0.0052910056, 0, 0.131672591, 0)
-    HubName.Size = UDim2.new(0, 122, 0, 32)
-    HubName.Font = Enum.Font.SourceSans
-    HubName.Text = "DUMBHUB"
-    HubName.TextColor3 = Color3.fromRGB(255, 255, 127)
-    HubName.TextSize = 18.000
+	HubName.Name = "HubName"
+	HubName.Parent = Main
+	HubName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	HubName.BackgroundTransparency = 1.000
+	HubName.Position = UDim2.new(0.0052910056, 0, 0.131672591, 0)
+	HubName.Size = UDim2.new(0, 122, 0, 32)
+	HubName.Font = Enum.Font.SourceSans
+	HubName.Text = "DUMBHUB"
+	HubName.TextColor3 = Color3.fromRGB(255, 255, 127)
+	HubName.TextSize = 18.000
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main
@@ -110,9 +110,6 @@ function library:CreateWindow()
 	NavigationButtonHolderUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	NavigationButtonHolderUIListLayout.Padding = UDim.new(0, 3)
 
-
-	NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
-	NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHoldeTemeplate
 
 	NavigationButtonHolderUIPadding.Name = "NavigationButtonHolderUIPadding"
 	NavigationButtonHolderUIPadding.Parent = NavigationButtonHolder
@@ -180,7 +177,8 @@ function library:CreateWindow()
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
 
 
-		local NavigationButtonHoldeTemplate = Instance.new("TextButton")
+		local NavigationButtonHolderTemeplate = Instance.new("TextButton")
+		
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
 
 		HomeTab.Name = TabName
@@ -206,20 +204,20 @@ function library:CreateWindow()
 		HomeTabGridLayout.CellPadding = UDim2.new(0, 0, 0, 6)
 		HomeTabGridLayout.CellSize = UDim2.new(0, 315, 0, 30)
 
-		NavigationButtonHoldeTemeplate.Name = TabName
-		NavigationButtonHoldeTemeplate.Parent = NavigationButtonHolder
-		NavigationButtonHoldeTemeplate.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
-		NavigationButtonHoldeTemeplate.Position = UDim2.new(0.0782608688, 0, -0.0158730168, 0)
-		NavigationButtonHoldeTemeplate.Size = UDim2.new(0, 112, 0, 27)
-		NavigationButtonHoldeTemeplate.Font = Enum.Font.SourceSans
-		NavigationButtonHoldeTemeplate.Text = "Home"
-		NavigationButtonHoldeTemeplate.TextColor3 = Color3.fromRGB(255, 255, 255)
-		NavigationButtonHoldeTemeplate.TextSize = 17.000
+		NavigationButtonHolderTemeplate.Name = TabName
+		NavigationButtonHolderTemeplate.Parent = NavigationButtonHolder
+		NavigationButtonHolderTemeplate.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+		NavigationButtonHolderTemeplate.Position = UDim2.new(0.0782608688, 0, -0.0158730168, 0)
+		NavigationButtonHolderTemeplate.Size = UDim2.new(0, 112, 0, 27)
+		NavigationButtonHolderTemeplate.Font = Enum.Font.SourceSans
+		NavigationButtonHolderTemeplate.Text = "Home"
+		NavigationButtonHolderTemeplate.TextColor3 = Color3.fromRGB(255, 255, 255)
+		NavigationButtonHolderTemeplate.TextSize = 17.000
 
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
-		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHoldeTemeplate
+		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemeplate
 
-		NavigationButtonHoldeTemplate.MouseButton1Click:Connect(function()
+		NavigationButtonHolderTemeplate.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
 					v.Visible = false
