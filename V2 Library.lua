@@ -9,7 +9,7 @@ local Hb = game:GetService("RunService").Heartbeat;
 local UIS = game:GetService("UserInputService")
 local CG = game:GetService("CoreGui")
 
-local HomeTabGridLayoutAdd = 30
+local HomeTabGridLayoutAdd = 50
 
 function library:CreateWindow(GameName)
 	assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
