@@ -222,7 +222,8 @@ function library:CreateWindow(GameName)
 		NavigationButtonHolderTemplate.TextSize = 20.000
 
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
-		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderUITemplatePadding
+		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemplate
+		NavigationButtonHolderUITemplatePadding.PaddingLeft = UDim.new(0, 15)
 
 		NavigationButtonHolderUITemplatePadding.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
@@ -234,7 +235,7 @@ function library:CreateWindow(GameName)
 		end)
 
 
-        
+
 		local Module = {}
 
 		function Module:CreateButton(ButtonName, CallBack)
