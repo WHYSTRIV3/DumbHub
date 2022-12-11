@@ -252,6 +252,7 @@ function library:CreateWindow(GameName)
 			Button.Parent = HomeTab
 			Button.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 			Button.Size = UDim2.new(1, 0, 0, 37)
+			Button.Text = ""
 			
 
 			ButtonUICorner.CornerRadius = UDim.new(0, 4)
@@ -328,7 +329,7 @@ function library:CreateWindow(GameName)
 			ToggleButton.BackgroundColor3 = Color3.fromRGB(93, 255, 57)
 			ToggleButton.Position = UDim2.new(1, -3, 0.5, 0)
 			ToggleButton.Size = UDim2.new(0, 16, 0, 16)
-			ToggleButton.Text = ""
+			
 
 			ToggleButtonUICorner.CornerRadius = UDim.new(0, 2)
 			ToggleButtonUICorner.Name = "ToggleButtonUICorner"
