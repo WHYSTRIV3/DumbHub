@@ -252,7 +252,7 @@ function library:CreateWindow(GameName)
 			Button.Parent = HomeTab
 			Button.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 			Button.Size = UDim2.new(1, 0, 0, 37)
-			Button.Text = ""
+			
 
 			ButtonUICorner.CornerRadius = UDim.new(0, 4)
 			ButtonUICorner.Name = "ButtonUICorner"
