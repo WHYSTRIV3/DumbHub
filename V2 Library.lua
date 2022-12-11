@@ -84,7 +84,7 @@ function library:CreateWindow(GameName)
 	TopBarTitle.BackgroundTransparency = 1.000
 	TopBarTitle.Size = UDim2.new(0.309523821, 0, 1, 0)
 	TopBarTitle.Font = Enum.Font.Gotham
-	TopBarTitle.Text = "UI Libarary"
+	TopBarTitle.Text = GameName
 	TopBarTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TopBarTitle.TextSize = 14.000
 	TopBarTitle.TextXAlignment = Enum.TextXAlignment.Left
@@ -213,6 +213,7 @@ function library:CreateWindow(GameName)
 		NavigationButtonHolderTemplate.Parent = NavigationButtonHolder
 		NavigationButtonHolderTemplate.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 		NavigationButtonHolderTemplate.BackgroundTransparency = 1.000
+        NavigationButtonHolderTemplate.BorderSizePixel = 0
 		NavigationButtonHolderTemplate.Position = UDim2.new(0.0782608688, 0, -0.0158730168, 0)
 		NavigationButtonHolderTemplate.Size = UDim2.new(0, 112, 0, 27)
 		NavigationButtonHolderTemplate.Font = Enum.Font.SourceSans
@@ -232,6 +233,8 @@ function library:CreateWindow(GameName)
 			HomeTab.Visible = true
 		end)
 
+
+        
 		local Module = {}
 
 		function Module:CreateButton(ButtonName, CallBack)
