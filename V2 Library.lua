@@ -9,10 +9,11 @@ local Hb = game:GetService("RunService").Heartbeat;
 local UIS = game:GetService("UserInputService")
 local CG = game:GetService("CoreGui")
 
-local HomeTabGridLayoutAdd = 50
+local HomeTabGridLayoutAdd = 20
 
 function library:CreateWindow(GameName)
 	assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
+
 
 	local DumbHubV2 = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
@@ -21,16 +22,18 @@ function library:CreateWindow(GameName)
 	local TopBarClose = Instance.new("ImageButton")
 	local TopBarinimize = Instance.new("ImageButton")
 	local TopBarTitle = Instance.new("TextLabel")
+	local TopBarTitleUIPadding = Instance.new("UIPadding")
 	local Navigatin = Instance.new("Frame")
 	local NavigationButtonHolder = Instance.new("Frame")
-	local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
 	local NavigationButtonHolderUIListLayout = Instance.new("UIListLayout")
-	local NavigationUICorner = Instance.new("UICorner")
-	local TopBarTitleUIPadding = Instance.new("UIPadding")
+	local NavigationButtonHolderUIPadding = Instance.new("UIPadding")
 	local ContientContainer = Instance.new("Frame")
 	local ContientContainerFade = Instance.new("Frame")
 	local ContientContainerFadeUIGradient = Instance.new("UIGradient")
+	local HomeTabUIListLayout = Instance.new("UIListLayout")
 	local OpenButton = Instance.new("TextButton")
+
+
 
 
 	DumbHubV2.Name = "DumbHubV2"
@@ -40,8 +43,8 @@ function library:CreateWindow(GameName)
 	Main.Name = "Main"
 	Main.Parent = DumbHubV2
 	Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Main.Position = UDim2.new(0.294801623, 0, 0.26060605, 0)
-	Main.Size = UDim2.new(0, 567, 0, 281)
+	Main.Position = UDim2.new(0.325264424, 0, 0.284737319, 0)
+	Main.Size = UDim2.new(0, 569, 0, 281)
 
 	HubName.Name = "HubName"
 	HubName.Parent = Main
@@ -81,7 +84,7 @@ function library:CreateWindow(GameName)
 	TopBarTitle.BackgroundTransparency = 1.000
 	TopBarTitle.Size = UDim2.new(0.309523821, 0, 1, 0)
 	TopBarTitle.Font = Enum.Font.Gotham
-	TopBarTitle.Text = GameName
+	TopBarTitle.Text = "UI Libarary"
 	TopBarTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TopBarTitle.TextSize = 14.000
 	TopBarTitle.TextXAlignment = Enum.TextXAlignment.Left
@@ -90,6 +93,7 @@ function library:CreateWindow(GameName)
 	TopBarTitleUIPadding.Parent = TopBarTitle
 	TopBarTitleUIPadding.PaddingLeft = UDim.new(0, 10)
 	TopBarTitleUIPadding.PaddingTop = UDim.new(0, 1)
+
 
 	Navigatin.Name = "Navigatin"
 	Navigatin.Parent = Main
@@ -105,13 +109,14 @@ function library:CreateWindow(GameName)
 	NavigationButtonHolder.BackgroundTransparency = 1.000
 	NavigationButtonHolder.Size = UDim2.new(1, 0, 1, 0)
 
+	NavigationButtonHolderUIPadding.Name = "NavigationButtonHolderUIPadding"
+	NavigationButtonHolderUIPadding.Parent = NavigationButtonHolder
+
+
 	NavigationButtonHolderUIListLayout.Name = "NavigationButtonHolderUIListLayout"
 	NavigationButtonHolderUIListLayout.Parent = NavigationButtonHolder
 	NavigationButtonHolderUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	NavigationButtonHolderUIListLayout.Padding = UDim.new(0, 3)
-
-	NavigationButtonHolderUIPadding.Name = "NavigationButtonHolderUIPadding"
-	NavigationButtonHolderUIPadding.Parent = NavigationButtonHolder
 
 	ContientContainer.Name = "ContientContainer"
 	ContientContainer.Parent = Main
@@ -135,6 +140,7 @@ function library:CreateWindow(GameName)
 	ContientContainerFadeUIGradient.Name = "ContientContainerFadeUIGradient"
 	ContientContainerFadeUIGradient.Parent = ContientContainerFade
 
+
 	OpenButton.Parent = DumbHubV2
 	OpenButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	OpenButton.BackgroundTransparency = 0.300
@@ -145,7 +151,6 @@ function library:CreateWindow(GameName)
 	OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	OpenButton.TextSize = 14.000
 	OpenButton.Visible = false
-
 
 	TopBarClose.MouseButton1Click:Connect(function()
 		CG.DumbHubV2:Destroy()
@@ -162,21 +167,21 @@ function library:CreateWindow(GameName)
 	end)
 
 
-
 	local Category = {}
 	function Category:new(TabName)
 		assert(typeof(TabName) == "string", "specify type string for CreateNew function")
 
+
 		local HomeTab = Instance.new("ScrollingFrame")
 		local HomeTabUIPadding = Instance.new("UIPadding")
-		local HomeTabUIListLayout = Instance.new("UIListLayout")
 
 		local HomeTabGridLayout = Instance.new("UIGridLayout")
 
-		local NavigationButtonHolderTemeplate = Instance.new("TextButton")
+		local NavigationButtonHolderTemplate = Instance.new("TextButton")
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
 
-		HomeTab.Name = "HomeTab"
+
+		HomeTab.Name = TabName
 		HomeTab.Parent = ContientContainer
 		HomeTab.Active = true
 		HomeTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -186,12 +191,6 @@ function library:CreateWindow(GameName)
 		HomeTab.ScrollBarThickness = 0
 		HomeTab.Visible = false
 
-		HomeTabGridLayout.Name = "HomeTabGridLayout"
-		HomeTabGridLayout.Parent = HomeTab
-		HomeTabGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		HomeTabGridLayout.CellPadding = UDim2.new(0, 0, 0, 6)
-		HomeTabGridLayout.CellSize = UDim2.new(0, 315, 0, 30)
-
 		HomeTabUIPadding.Name = "HomeTabUIPadding"
 		HomeTabUIPadding.Parent = HomeTab
 		HomeTabUIPadding.PaddingBottom = UDim.new(0, 1)
@@ -199,21 +198,32 @@ function library:CreateWindow(GameName)
 		HomeTabUIPadding.PaddingRight = UDim.new(0, 1)
 		HomeTabUIPadding.PaddingTop = UDim.new(0, 1)
 
-		NavigationButtonHolderTemeplate.Name = TabName
-		NavigationButtonHolderTemeplate.Parent = NavigationButtonHolder
-		NavigationButtonHolderTemeplate.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
-		NavigationButtonHolderTemeplate.BackgroundTransparency = 1.000
-		NavigationButtonHolderTemeplate.Position = UDim2.new(0.0782608688, 0, -0.0158730168, 0)
-		NavigationButtonHolderTemeplate.Size = UDim2.new(0, 112, 0, 27)
-		NavigationButtonHolderTemeplate.Font = Enum.Font.SourceSans
-		NavigationButtonHolderTemeplate.Text = TabName
-		NavigationButtonHolderTemeplate.TextColor3 = Color3.fromRGB(255, 255, 255)
-		NavigationButtonHolderTemeplate.TextSize = 20.000
+		HomeTabUIListLayout.Name = "HomeTabUIListLayout"
+		HomeTabUIListLayout.Parent = HomeTab
+		HomeTabUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		HomeTabUIListLayout.Padding = UDim.new(0, 6)    
+
+		HomeTabGridLayout.Name = "HomeTabGridLayout"
+		HomeTabGridLayout.Parent = HomeTab
+		HomeTabGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		HomeTabGridLayout.CellPadding = UDim2.new(0, 0, 0, 6)
+		HomeTabGridLayout.CellSize = UDim2.new(0, 315, 0, 30)
+
+		NavigationButtonHolderTemplate.Name = TabName
+		NavigationButtonHolderTemplate.Parent = NavigationButtonHolder
+		NavigationButtonHolderTemplate.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+		NavigationButtonHolderTemplate.BackgroundTransparency = 1.000
+		NavigationButtonHolderTemplate.Position = UDim2.new(0.0782608688, 0, -0.0158730168, 0)
+		NavigationButtonHolderTemplate.Size = UDim2.new(0, 112, 0, 27)
+		NavigationButtonHolderTemplate.Font = Enum.Font.SourceSans
+		NavigationButtonHolderTemplate.Text = TabName
+		NavigationButtonHolderTemplate.TextColor3 = Color3.fromRGB(255, 255, 255)
+		NavigationButtonHolderTemplate.TextSize = 20.000
 
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
-		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemeplate
+		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderUITemplatePadding
 
-		NavigationButtonHolderTemeplate.MouseButton1Click:Connect(function()
+		NavigationButtonHolderUITemplatePadding.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
 					v.Visible = false
@@ -227,10 +237,12 @@ function library:CreateWindow(GameName)
 		function Module:CreateButton(ButtonName, CallBack)
 			assert(type(ButtonName) == "string", "specify type string for CreateButton() function")
 
-			local Button = Instance.new("TextButton")
-			local ButtonUICorner = Instance.new("UICorner")
-			local ButtonTitle = Instance.new("TextLabel")
+
+			local Button = Instance.new("Frame")
 			local ButtonUIPadding = Instance.new("UIPadding")
+			local ButtonTitle = Instance.new("TextLabel")
+			local ButtonUICorner = Instance.new("UICorner")
+
 
 			Button.Name = "Button"
 			Button.Parent = HomeTab
@@ -241,7 +253,6 @@ function library:CreateWindow(GameName)
 			ButtonUICorner.CornerRadius = UDim.new(0, 4)
 			ButtonUICorner.Name = "ButtonUICorner"
 			ButtonUICorner.Parent = Button
-
 
 			ButtonTitle.Name = "ButtonTitle"
 			ButtonTitle.Parent = Button
@@ -260,6 +271,7 @@ function library:CreateWindow(GameName)
 			ButtonUIPadding.PaddingRight = UDim.new(0, 6)
 			ButtonUIPadding.PaddingTop = UDim.new(0, 6)
 
+
 			HomeTab.CanvasSize = UDim2.new(0,0,0, HomeTabGridLayout.AbsoluteContentSize.Y + HomeTabGridLayoutAdd)
 
 			Button.MouseButton1Click:Connect(CallBack)
@@ -270,11 +282,12 @@ function library:CreateWindow(GameName)
 			assert(type(ToggleName) == "string", "specify type string for CreateToggle() function")
 
 			local Toggle = Instance.new("Frame")
-			local ToggleUICorner = Instance.new("UICorner")
-			local ToggleTitle = Instance.new("TextLabel")
-			local ToggleUIPadding = Instance.new("UIPadding")
-			local ToggleButton = Instance.new("TextButton")
+			local ToggleButton = Instance.new("Frame")
 			local ToggleButtonUICorner = Instance.new("UICorner")
+			local ToggleTitle = Instance.new("TextLabel")
+			local ToggleUICorner = Instance.new("UICorner")
+			local ToggleUIPadding = Instance.new("UIPadding")
+
 
 			Toggle.Name = "Toggle"
 			Toggle.Parent = HomeTab
@@ -284,6 +297,7 @@ function library:CreateWindow(GameName)
 			ToggleUICorner.CornerRadius = UDim.new(0, 4)
 			ToggleUICorner.Name = "ToggleUICorner"
 			ToggleUICorner.Parent = Toggle
+
 
 			ToggleTitle.Name = "ToggleTitle"
 			ToggleTitle.Parent = Toggle
@@ -302,6 +316,7 @@ function library:CreateWindow(GameName)
 			ToggleUIPadding.PaddingLeft = UDim.new(0, 6)
 			ToggleUIPadding.PaddingRight = UDim.new(0, 6)
 			ToggleUIPadding.PaddingTop = UDim.new(0, 6)
+
 
 			ToggleButton.Name = "ToggleButton"
 			ToggleButton.Parent = Toggle
@@ -352,6 +367,7 @@ function library:CreateWindow(GameName)
 			assert(type(Options) == "table", "specify type table for CreateSlider() function Example: {default = 1, min = 1, max = 16}")
 			assert(type(CallBack) == "function", "specify type function for CreateSlider()")
 
+
 			local Slider = Instance.new("Frame")
 			local SliderUICorner = Instance.new("UICorner")
 			local SliderTitle = Instance.new("TextLabel")
@@ -360,6 +376,7 @@ function library:CreateWindow(GameName)
 			local SliderBackUICorner = Instance.new("UICorner")
 			local MainSlider = Instance.new("Frame")
 			local MainSliderUICorner = Instance.new("UICorner")
+
 
 			Slider.Name = "Slider"
 			Slider.Parent = HomeTab
@@ -379,7 +396,8 @@ function library:CreateWindow(GameName)
 			SliderTitle.Text = SliderName
 			SliderTitle.TextColor3 = Color3.fromRGB(252, 252, 252)
 			SliderTitle.TextSize = 15.000
-			SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
+			SliderTitle.TextXAlignment = Enum.TextXAlignment.Left              
+
 
 			SliderUIPadding.Name = "SliderUIPadding"
 			SliderUIPadding.Parent = Slider
@@ -387,6 +405,7 @@ function library:CreateWindow(GameName)
 			SliderUIPadding.PaddingLeft = UDim.new(0, 6)
 			SliderUIPadding.PaddingRight = UDim.new(0, 6)
 			SliderUIPadding.PaddingTop = UDim.new(0, 6)
+
 
 			SliderBack.Name = "SliderBack"
 			SliderBack.Parent = Slider
@@ -400,6 +419,7 @@ function library:CreateWindow(GameName)
 			SliderBackUICorner.Name = "SliderBackUICorner"
 			SliderBackUICorner.Parent = SliderBack
 
+
 			MainSlider.Name = "MainSlider"
 			MainSlider.Parent = SliderBack
 			MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -408,6 +428,7 @@ function library:CreateWindow(GameName)
 			MainSliderUICorner.CornerRadius = UDim.new(0, 4)
 			MainSliderUICorner.Name = "MainSliderUICorner"
 			MainSliderUICorner.Parent = MainSlider
+
 
 			HomeTab.CanvasSize = UDim2.new(0,0,0, HomeTabGridLayout.AbsoluteContentSize.Y + HomeTabGridLayoutAdd)
 
@@ -447,10 +468,12 @@ function library:CreateWindow(GameName)
 			end)
 		end
 
+
 		function Module:CreateDropdown(DropdownName, ItemList, CallBack)
 			assert(type(DropdownName) == "string", "specify type string for CreateDropdown() function")
 			assert(type(ItemList) == "table", "specify type table for CreateDropdown() function Example: {'wow', 'your cool', 'gay'}")
 			assert(type(CallBack) == "function", "specify type function for CreateDropdown()")
+
 
 			local Dropdown = Instance.new("Frame")
 			local DropdownUICorner = Instance.new("UICorner")
@@ -471,6 +494,7 @@ function library:CreateWindow(GameName)
 			DropdownUICorner.Name = "DropdownUICorner"
 			DropdownUICorner.Parent = Dropdown
 
+
 			DropdownTitle.Name = "DropdownTitle"
 			DropdownTitle.Parent = Dropdown
 			DropdownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -482,6 +506,7 @@ function library:CreateWindow(GameName)
 			DropdownTitle.TextColor3 = Color3.fromRGB(252, 252, 252)
 			DropdownTitle.TextSize = 15.000
 			DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
+
 
 			DropdownArrow.Name = "DropdownArrow"
 			DropdownArrow.Parent = Dropdown
@@ -508,11 +533,19 @@ function library:CreateWindow(GameName)
 			DropdownOptionsHolder.Size = UDim2.new(1, 0, 10.6945086, -24)
 			DropdownOptionsHolder.Visible = false
 
+
 			DropdownOptionsHolderUIGridLayout.Name = "DropdownOptionsHolderUIGridLayout"
 			DropdownOptionsHolderUIGridLayout.Parent = DropdownOptionsHolder
 			DropdownOptionsHolderUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			DropdownOptionsHolderUIGridLayout.CellPadding = UDim2.new(0, 0, 0, 10)
 			DropdownOptionsHolderUIGridLayout.CellSize = UDim2.new(0, 376, 0, 25)
+
+
+			DropdownOptionsHolderUIPadding.Name = "DropdownOptionsHolderUIPadding"
+			DropdownOptionsHolderUIPadding.Parent = DropdownOptionsHolder
+			DropdownOptionsHolderUIPadding.PaddingLeft = UDim.new(0, 25)
+			DropdownOptionsHolderUIPadding.PaddingTop = UDim.new(0, 10)
+
 
 			DropdownOptionsHolderUIPadding.Name = "DropdownOptionsHolderUIPadding"
 			DropdownOptionsHolderUIPadding.Parent = DropdownOptionsHolder
@@ -531,7 +564,7 @@ function library:CreateWindow(GameName)
 
 			for _,v in pairs(ItemList) do
 				local DropdownTextButton = Instance.new("TextButton")
-
+				local DropdownTextButtonUICorner = Instance.new("UICorner")
 
 				DropdownTextButton.Name = "DropdownTextButton"
 				DropdownTextButton.Parent = DropdownOptionsHolder
@@ -543,6 +576,9 @@ function library:CreateWindow(GameName)
 				DropdownTextButton.TextSize = 14.000
 				DropdownTextButton.Text = v
 
+				DropdownTextButtonUICorner.CornerRadius = UDim.new(0, 2)
+				DropdownTextButtonUICorner.Name = "DropdownTextButtonUICorner"
+				DropdownTextButtonUICorner.Parent = DropdownTextButton
 
 				DropdownTextButton.MouseButton1Click:Connect(function()
 					DropdownTitle.Text = DropdownName..": "..v
@@ -581,6 +617,7 @@ function library:CreateWindow(GameName)
 
 		end
 
+
 		function Module:CreateLabel(LabelName, LabelText)
 			assert(type(LabelName) == "string", "specify type string for CreateLabel() function")
 			assert(type(LabelText) == "string", "specify type string for CreateLabel() function")
@@ -617,6 +654,8 @@ function library:CreateWindow(GameName)
 			LabelUIPadding.PaddingRight = UDim.new(0, 6)
 			LabelUIPadding.PaddingTop = UDim.new(0, 6)
 
+
+
 			HomeTab.CanvasSize = UDim2.new(0,0,0, HomeTabGridLayout.AbsoluteContentSize.Y + HomeTabGridLayoutAdd)
 		end
 
@@ -631,7 +670,6 @@ function library:CreateWindow(GameName)
 	end
 	return Category
 end
-
 --[[
 local ui = library:CreateWindow("Baseplate")
 
@@ -642,14 +680,44 @@ local SelectedFUCK;
 
 Main:CreateLabel("FirstLabel","This is you're first label, Congrats!")
 
+Main:CreateButton("Hello World!", function()
+	print("Hello World!")
+end)
 
+Main:CreateButton("Change Label To asss!", function()
+	Main:EditLabel("FirstLabel", "ass")
+end)
 
+Main:CreateToggle("This Toggle will repeatedly print Hello World!", true, function()
+	print("Hello World!")
+end)
 
+Main:CreateToggle("This is a buttonToggle", false, function(heeey)
+	HoiThere = heeey
+	print("This is what this does: "..tostring(HoiThere))
+end)
 
+Main:CreateSlider("WalkSpeed", {min = 16, max = 200, default = 16}, function(state)
+	LocalPlayer.Character.Humanoid.WalkSpeed = state
+end)
 
-
-
-
---]]
-
+Main:CreateDropdown("FUCK", {"I", "Want", "Some", "Pussy"}, function(pssy)
+    SelectedFUCK = pssy
+    print(SelectedFUCK)
+end)
+]]
 return library
+
+
+
+
+
+
+
+
+
+
+
+
+
+
