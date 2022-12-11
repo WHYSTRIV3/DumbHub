@@ -223,7 +223,8 @@ function library:CreateWindow(GameName)
 
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
 		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemplate
-
+        NavigationButtonHolderUITemplatePadding.PaddingLeft = UDim.new(0, 15)
+        
 		NavigationButtonHolderTemplate.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
