@@ -406,9 +406,11 @@ AcceptKey.MouseButton1Click:Connect(function()
 
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Every%20Second%20You%20Get%20%2B1%20Jump%20Power.lua"))()
 
+		elseif game.PlaceId == 8328351891 then
 
-
-
+			--  Mega Mansion Tycoon
+			
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/V1%20Mega%20Mansion%20Tycoon.lua"))()
 
 
 
