@@ -409,7 +409,7 @@ AcceptKey.MouseButton1Click:Connect(function()
 		elseif game.PlaceId == 8328351891 then
 
 			--  Mega Mansion Tycoon
-			
+
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/V1%20Mega%20Mansion%20Tycoon.lua"))()
 
 
