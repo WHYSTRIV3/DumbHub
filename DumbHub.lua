@@ -46,7 +46,7 @@ AcceptKey.TextColor3 = Color3.fromRGB(255, 255, 255)
 AcceptKey.TextSize = 14.000
 
 UICorner_2.Parent = AcceptKey
-
+local Key = "MerryChristmasPussy"
 Cancel.Name = "Cancel"
 Cancel.Parent = Main
 Cancel.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
@@ -428,7 +428,7 @@ AcceptKey.MouseButton1Click:Connect(function()
 	end
 
 end)
-local Key = "MerryChristmasPussy"
+
 Cancel.MouseButton1Click:Connect(function()
 	UIV1KEY:Destroy()
 end)
