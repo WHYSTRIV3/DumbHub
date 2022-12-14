@@ -1,6 +1,6 @@
 
 
-
+local Key = "TACOTUESDAY"
 
 
 -- Instances:
@@ -87,7 +87,7 @@ TopBarExtension.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 TopBarExtension.BorderSizePixel = 0
 TopBarExtension.Position = UDim2.new(0, 0, 1, 0)
 TopBarExtension.Size = UDim2.new(1, 0, 0.5, 0)
-local Key = "TACOTUESDAY"
+
 TopBarTitle.Name = "TopBarTitle"
 TopBarTitle.Parent = TopBar
 TopBarTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
