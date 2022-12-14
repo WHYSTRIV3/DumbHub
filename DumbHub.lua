@@ -277,7 +277,7 @@ AcceptKey.MouseButton1Click:Connect(function()
 		elseif game.PlaceId == 10914683361 then
 
 			-- Busy Business!
-			local Key = "MerryChristmasPussy"
+			
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Busy%20Business!.lua"))()
 
 		elseif game.PlaceId == 11563572312 then
@@ -428,7 +428,7 @@ AcceptKey.MouseButton1Click:Connect(function()
 	end
 
 end)
-
+local Key = "MerryChristmasPussy"
 Cancel.MouseButton1Click:Connect(function()
 	UIV1KEY:Destroy()
 end)
