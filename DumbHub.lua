@@ -1,6 +1,6 @@
 
 
-local Key = "TACOTUESDAY"
+local Key = "MerryChristmasPussy"
 
 
 -- Instances:
