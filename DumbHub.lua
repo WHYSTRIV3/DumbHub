@@ -46,7 +46,7 @@ AcceptKey.TextColor3 = Color3.fromRGB(255, 255, 255)
 AcceptKey.TextSize = 14.000
 
 UICorner_2.Parent = AcceptKey
-local Key = "MerryChristmas"
+
 Cancel.Name = "Cancel"
 Cancel.Parent = Main
 Cancel.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
@@ -87,7 +87,7 @@ TopBarExtension.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 TopBarExtension.BorderSizePixel = 0
 TopBarExtension.Position = UDim2.new(0, 0, 1, 0)
 TopBarExtension.Size = UDim2.new(1, 0, 0.5, 0)
-
+local Key = "MERRYCHRISTMASPUSSY"
 TopBarTitle.Name = "TopBarTitle"
 TopBarTitle.Parent = TopBar
 TopBarTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -277,7 +277,7 @@ AcceptKey.MouseButton1Click:Connect(function()
 		elseif game.PlaceId == 10914683361 then
 
 			-- Busy Business!
-			
+
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Busy%20Business!.lua"))()
 
 		elseif game.PlaceId == 11563572312 then
