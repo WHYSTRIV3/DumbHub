@@ -115,7 +115,7 @@ Enter.TextColor3 = Color3.fromRGB(0, 0, 0)
 Enter.TextSize = 14.000
 
 AcceptKey.MouseButton1Click:Connect(function()
-	if Enter.Text == Key then
+	if Enter.Text == Men then
 		UIV1KEY:Destroy()
 
 		if game.PlaceId == 9522149469 then
