@@ -1,4 +1,3 @@
-
 --Key = "FuckYouBypasser"
 
 
@@ -412,8 +411,11 @@ AcceptKey.MouseButton1Click:Connect(function()
 
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/V1%20Mega%20Mansion%20Tycoon.lua"))()
 
+		elseif game.PlaceId == 3956818381 then
 
-
+			--  Ninja Legends
+			
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Ninja%20Legends.lua"))()
 
 
 
