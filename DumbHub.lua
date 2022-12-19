@@ -416,8 +416,12 @@ AcceptKey.MouseButton1Click:Connect(function()
 			--  Ninja Legends
 			
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Ninja%20Legends.lua"))()
-
-
+				
+		elseif game.PlaceId == 4058282580 then
+				
+			--  Boxing Simualtor
+				
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Boxing%20Simulator.lua"))()
 
 
 
