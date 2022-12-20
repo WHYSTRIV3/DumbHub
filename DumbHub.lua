@@ -439,8 +439,13 @@ AcceptKey.MouseButton1Click:Connect(function()
 				
 			--  +1 Jump Race
 				
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1JumpRace.lua"))()		
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1JumpRace.lua"))()
 				
+		elseif game.PlaceId == 10476933477 then
+				
+			--  Strong Ninja Simulator
+				
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Strong%20Ninja%20Simulator.lua"))()
 				
 				
 				
