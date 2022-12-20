@@ -433,7 +433,7 @@ AcceptKey.MouseButton1Click:Connect(function()
 				
 			--  Animal Simulator
 				
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1JumpRace.lua"))()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Animal%20Simulator.lua"))()
 				
 		elseif game.PlaceId == 9492364312 then
 				
