@@ -422,12 +422,28 @@ AcceptKey.MouseButton1Click:Connect(function()
 			--  Boxing Simualtor
 				
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Boxing%20Simulator.lua"))()
+				
+		elseif game.PlaceId == 11302865934 then
+				
+			--  Every Second You Get +1 Health
+				
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Every%20Second%20You%20Get%20%2B1%20Health.lua"))()
 
-
-
-
-
-			
+		elseif game.PlaceId == 5712833750 then
+				
+			--  Animal Simulator
+				
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1JumpRace.lua"))()
+				
+		elseif game.PlaceId == 9492364312 then
+				
+			--  +1 Jump Race
+				
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1JumpRace.lua"))()		
+				
+				
+				
+				
 		end
 	else
 		Enter.Text = "Wrong Key DumbAss"
