@@ -1,4 +1,4 @@
-Key = "FuckYouBypasser"
+Key = "TacoLover"
 
 
 
@@ -86,7 +86,7 @@ TopBarExtension.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 TopBarExtension.BorderSizePixel = 0
 TopBarExtension.Position = UDim2.new(0, 0, 1, 0)
 TopBarExtension.Size = UDim2.new(1, 0, 0.5, 0)
-
+local Key = "ReadyForChristmas"
 TopBarTitle.Name = "TopBarTitle"
 TopBarTitle.Parent = TopBar
 TopBarTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -102,7 +102,7 @@ TopBarTitleUIPadding.Name = "TopBarTitleUIPadding"
 TopBarTitleUIPadding.Parent = TopBarTitle
 TopBarTitleUIPadding.PaddingLeft = UDim.new(0, 10)
 TopBarTitleUIPadding.PaddingTop = UDim.new(0, 1)
-local Key = "8DaysTillChristmas"
+
 Enter.Name = "Enter"
 Enter.Parent = Main
 Enter.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
