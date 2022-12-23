@@ -14,6 +14,7 @@ local UICorner_3 = Instance.new("UICorner")
 local KeyLink = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
 local TopBar = Instance.new("Frame")
+local Key = "FuckBypassers"
 local TopBarUICorner = Instance.new("UICorner")
 local TopBarExtension = Instance.new("Frame")
 local TopBarTitle = Instance.new("TextLabel")
@@ -86,7 +87,7 @@ TopBarExtension.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 TopBarExtension.BorderSizePixel = 0
 TopBarExtension.Position = UDim2.new(0, 0, 1, 0)
 TopBarExtension.Size = UDim2.new(1, 0, 0.5, 0)
-local Key = "ReadyForChristmas"
+
 TopBarTitle.Name = "TopBarTitle"
 TopBarTitle.Parent = TopBar
 TopBarTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
