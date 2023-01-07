@@ -494,3 +494,4 @@
                         "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Tapping%20League.lua"
                     )
                 )()
+ end
