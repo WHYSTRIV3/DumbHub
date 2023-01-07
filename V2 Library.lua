@@ -11,9 +11,8 @@ local CG = game:GetService("CoreGui")
 
 local HomeTabGridLayoutAdd = 20
 
-function library:CreateWindow(GameName)
-	assert(typeof(GameName) == "string", "specify type string for CreateWindow function")
-
+function library:CreateWindow()
+	local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
 	local DumbHubV2 = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
@@ -34,10 +33,95 @@ function library:CreateWindow(GameName)
 	local OpenButton = Instance.new("TextButton")
 
 
+	local function WYUAJ_fake_script() -- HubName.HubNameRainbow 
+		local script = Instance.new('LocalScript', HubName)
+
+
+
+		local TextLabel = script.Parent
+
+
+
+
+		local t = 10;
+
+		while wait() do
+
+			local hue = tick() % t / t
+
+			local color = Color3.fromHSV(hue,1,1)
+
+			script.Parent.TextColor3 = color
+
+		end
+	end
+	coroutine.wrap(WYUAJ_fake_script)()
+	local function EDRPPL_fake_script() -- OpenButton.OpenButtonRainbow 
+		local script = Instance.new('LocalScript', OpenButton)
+
+
+
+		local TextLabel = script.Parent
+
+
+
+
+		local t = 10;
+
+		while wait() do
+
+			local hue = tick() % t / t
+
+			local color = Color3.fromHSV(hue,1,1)
+
+			script.Parent.TextColor3 = color
+
+		end
+	end
+	coroutine.wrap(EDRPPL_fake_script)()
+
+
+	function dragify(Frame)
+		dragToggle = nil
+		local dragSpeed = 0
+		dragInput = nil
+		dragStart = nil
+		local dragPos = nil
+		function updateInput(input)
+			local Delta = input.Position - dragStart
+			local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+			game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+		end
+		Frame.InputBegan:Connect(function(input)
+			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+				dragToggle = true
+				dragStart = input.Position
+				startPos = Frame.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragToggle = false
+					end
+				end)
+			end
+		end)
+		Frame.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if input == dragInput and dragToggle then
+				updateInput(input)
+			end
+		end)
+	end
+
+	dragify(Main)
 
 
 	DumbHubV2.Name = "DumbHubV2"
 	DumbHubV2.Parent = game:GetService("CoreGui")
+
 
 
 	Main.Name = "Main"
@@ -62,21 +146,6 @@ function library:CreateWindow(GameName)
 	TopBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	TopBar.Size = UDim2.new(0, 567, 0, 31)
 
-	TopBarClose.Name = "TopBarClose"
-	TopBarClose.Parent = TopBar
-	TopBarClose.AnchorPoint = Vector2.new(1, 0)
-	TopBarClose.BackgroundTransparency = 1.000
-	TopBarClose.Position = UDim2.new(1.0035274, -2, -0.0715971589, 4)
-	TopBarClose.Size = UDim2.new(0, 24, 0, 24)
-	TopBarClose.Image = "rbxassetid://2777727756"
-
-	TopBarinimize.Name = "TopBarinimize"
-	TopBarinimize.Parent = TopBar
-	TopBarinimize.AnchorPoint = Vector2.new(1, 0)
-	TopBarinimize.BackgroundTransparency = 1.000
-	TopBarinimize.Position = UDim2.new(0.974179864, -2, -0.427170217, 4)
-	TopBarinimize.Size = UDim2.new(0, 43, 0, 46)
-	TopBarinimize.Image = "rbxassetid://2777862738"
 
 	TopBarTitle.Name = "TopBarTitle"
 	TopBarTitle.Parent = TopBar
@@ -94,6 +163,21 @@ function library:CreateWindow(GameName)
 	TopBarTitleUIPadding.PaddingLeft = UDim.new(0, 10)
 	TopBarTitleUIPadding.PaddingTop = UDim.new(0, 1)
 
+	TopBarClose.Name = "TopBarClose"
+	TopBarClose.Parent = TopBar
+	TopBarClose.AnchorPoint = Vector2.new(1, 0)
+	TopBarClose.BackgroundTransparency = 1.000
+	TopBarClose.Position = UDim2.new(1.0035274, -2, -0.0715971589, 4)
+	TopBarClose.Size = UDim2.new(0, 24, 0, 24)
+	TopBarClose.Image = "rbxassetid://2777727756"
+
+	TopBarinimize.Name = "TopBarinimize"
+	TopBarinimize.Parent = TopBar
+	TopBarinimize.AnchorPoint = Vector2.new(1, 0)
+	TopBarinimize.BackgroundTransparency = 1.000
+	TopBarinimize.Position = UDim2.new(0.974179864, -2, -0.427170217, 4)
+	TopBarinimize.Size = UDim2.new(0, 43, 0, 46)
+	TopBarinimize.Image = "rbxassetid://2777862738"
 
 	Navigatin.Name = "Navigatin"
 	Navigatin.Parent = Main
@@ -111,12 +195,14 @@ function library:CreateWindow(GameName)
 
 	NavigationButtonHolderUIPadding.Name = "NavigationButtonHolderUIPadding"
 	NavigationButtonHolderUIPadding.Parent = NavigationButtonHolder
-
+	NavigationButtonHolderUIPadding.PaddingRight = UDim.new(0, 5)
 
 	NavigationButtonHolderUIListLayout.Name = "NavigationButtonHolderUIListLayout"
 	NavigationButtonHolderUIListLayout.Parent = NavigationButtonHolder
+	NavigationButtonHolderUIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 	NavigationButtonHolderUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	NavigationButtonHolderUIListLayout.Padding = UDim.new(0, 3)
+
 
 	ContientContainer.Name = "ContientContainer"
 	ContientContainer.Parent = Main
@@ -140,7 +226,7 @@ function library:CreateWindow(GameName)
 	ContientContainerFadeUIGradient.Name = "ContientContainerFadeUIGradient"
 	ContientContainerFadeUIGradient.Parent = ContientContainerFade
 
-
+	OpenButton.Name = "OpenButton"
 	OpenButton.Parent = DumbHubV2
 	OpenButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	OpenButton.BackgroundTransparency = 0.300
@@ -151,6 +237,7 @@ function library:CreateWindow(GameName)
 	OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	OpenButton.TextSize = 14.000
 	OpenButton.Visible = false
+
 
 	TopBarClose.MouseButton1Click:Connect(function()
 		CG.DumbHubV2:Destroy()
@@ -171,7 +258,6 @@ function library:CreateWindow(GameName)
 	function Category:new(TabName)
 		assert(typeof(TabName) == "string", "specify type string for CreateNew function")
 
-
 		local HomeTab = Instance.new("ScrollingFrame")
 		local HomeTabUIPadding = Instance.new("UIPadding")
 
@@ -179,7 +265,6 @@ function library:CreateWindow(GameName)
 
 		local NavigationButtonHolderTemplate = Instance.new("TextButton")
 		local NavigationButtonHolderUITemplatePadding = Instance.new("UIPadding")
-
 
 		HomeTab.Name = TabName
 		HomeTab.Parent = ContientContainer
@@ -198,22 +283,20 @@ function library:CreateWindow(GameName)
 		HomeTabUIPadding.PaddingRight = UDim.new(0, 1)
 		HomeTabUIPadding.PaddingTop = UDim.new(0, 1)
 
-		HomeTabUIListLayout.Name = "HomeTabUIListLayout"
-		HomeTabUIListLayout.Parent = HomeTab
-		HomeTabUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		HomeTabUIListLayout.Padding = UDim.new(0, 6)    
+
 
 		HomeTabGridLayout.Name = "HomeTabGridLayout"
 		HomeTabGridLayout.Parent = HomeTab
 		HomeTabGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		HomeTabGridLayout.CellPadding = UDim2.new(0, 0, 0, 6)
-		HomeTabGridLayout.CellSize = UDim2.new(0, 315, 0, 30)
+		HomeTabGridLayout.CellSize = UDim2.new(0.3, 300, 0,30)
+
+
 
 		NavigationButtonHolderTemplate.Name = TabName
 		NavigationButtonHolderTemplate.Parent = NavigationButtonHolder
 		NavigationButtonHolderTemplate.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 		NavigationButtonHolderTemplate.BackgroundTransparency = 1.000
-        NavigationButtonHolderTemplate.BorderSizePixel = 0
 		NavigationButtonHolderTemplate.Position = UDim2.new(0.0782608688, 0, -0.0158730168, 0)
 		NavigationButtonHolderTemplate.Size = UDim2.new(0, 112, 0, 27)
 		NavigationButtonHolderTemplate.Font = Enum.Font.SourceSans
@@ -223,7 +306,6 @@ function library:CreateWindow(GameName)
 
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
 		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemplate
-        NavigationButtonHolderUITemplatePadding.PaddingLeft = UDim.new(0, 15)
 
 		NavigationButtonHolderTemplate.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
@@ -241,17 +323,15 @@ function library:CreateWindow(GameName)
 		function Module:CreateButton(ButtonName, CallBack)
 			assert(type(ButtonName) == "string", "specify type string for CreateButton() function")
 
-
-			local Button = Instance.new("Frame")
-			local ButtonUIPadding = Instance.new("UIPadding")
-			local ButtonTitle = Instance.new("TextLabel")
+			local Button = Instance.new("TextButton")
 			local ButtonUICorner = Instance.new("UICorner")
-
+			local ButtonTitle = Instance.new("TextLabel")
+			local ButtonUIPadding = Instance.new("UIPadding")
 
 			Button.Name = "Button"
 			Button.Parent = HomeTab
 			Button.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-			Button.Size = UDim2.new(1, 0, 0, 37)
+			Button.Size = UDim2.new(1, 0, 0, 40)
 			Button.Text = ""
 
 			ButtonUICorner.CornerRadius = UDim.new(0, 4)
@@ -275,7 +355,6 @@ function library:CreateWindow(GameName)
 			ButtonUIPadding.PaddingRight = UDim.new(0, 6)
 			ButtonUIPadding.PaddingTop = UDim.new(0, 6)
 
-
 			HomeTab.CanvasSize = UDim2.new(0,0,0, HomeTabGridLayout.AbsoluteContentSize.Y + HomeTabGridLayoutAdd)
 
 			Button.MouseButton1Click:Connect(CallBack)
@@ -286,12 +365,11 @@ function library:CreateWindow(GameName)
 			assert(type(ToggleName) == "string", "specify type string for CreateToggle() function")
 
 			local Toggle = Instance.new("Frame")
-			local ToggleButton = Instance.new("Frame")
-			local ToggleButtonUICorner = Instance.new("UICorner")
-			local ToggleTitle = Instance.new("TextLabel")
 			local ToggleUICorner = Instance.new("UICorner")
+			local ToggleTitle = Instance.new("TextLabel")
 			local ToggleUIPadding = Instance.new("UIPadding")
-
+			local ToggleButton = Instance.new("TextButton")
+			local ToggleButtonUICorner = Instance.new("UICorner")
 
 			Toggle.Name = "Toggle"
 			Toggle.Parent = HomeTab
@@ -301,8 +379,6 @@ function library:CreateWindow(GameName)
 			ToggleUICorner.CornerRadius = UDim.new(0, 4)
 			ToggleUICorner.Name = "ToggleUICorner"
 			ToggleUICorner.Parent = Toggle
-
-
 			ToggleTitle.Name = "ToggleTitle"
 			ToggleTitle.Parent = Toggle
 			ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -314,6 +390,7 @@ function library:CreateWindow(GameName)
 			ToggleTitle.TextSize = 15.000
 			ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 
+
 			ToggleUIPadding.Name = "ToggleUIPadding"
 			ToggleUIPadding.Parent = Toggle
 			ToggleUIPadding.PaddingBottom = UDim.new(0, 6)
@@ -321,13 +398,13 @@ function library:CreateWindow(GameName)
 			ToggleUIPadding.PaddingRight = UDim.new(0, 6)
 			ToggleUIPadding.PaddingTop = UDim.new(0, 6)
 
-
 			ToggleButton.Name = "ToggleButton"
 			ToggleButton.Parent = Toggle
 			ToggleButton.AnchorPoint = Vector2.new(1, 0.5)
-			ToggleButton.BackgroundColor3 = Color3.fromRGB(93, 255, 57)
+			ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			ToggleButton.Position = UDim2.new(1, -3, 0.5, 0)
 			ToggleButton.Size = UDim2.new(0, 16, 0, 16)
+			ToggleButton.Text = ""
 
 			ToggleButtonUICorner.CornerRadius = UDim.new(0, 2)
 			ToggleButtonUICorner.Name = "ToggleButtonUICorner"
@@ -370,7 +447,6 @@ function library:CreateWindow(GameName)
 			assert(type(Options) == "table", "specify type table for CreateSlider() function Example: {default = 1, min = 1, max = 16}")
 			assert(type(CallBack) == "function", "specify type function for CreateSlider()")
 
-
 			local Slider = Instance.new("Frame")
 			local SliderUICorner = Instance.new("UICorner")
 			local SliderTitle = Instance.new("TextLabel")
@@ -380,11 +456,10 @@ function library:CreateWindow(GameName)
 			local MainSlider = Instance.new("Frame")
 			local MainSliderUICorner = Instance.new("UICorner")
 
-
 			Slider.Name = "Slider"
 			Slider.Parent = HomeTab
 			Slider.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-			Slider.Size = UDim2.new(1, 0, 0, 38)
+			Slider.Size = UDim2.new(1, 0, 0, 40)
 
 			SliderUICorner.CornerRadius = UDim.new(0, 4)
 			SliderUICorner.Name = "SliderUICorner"
@@ -399,8 +474,7 @@ function library:CreateWindow(GameName)
 			SliderTitle.Text = SliderName
 			SliderTitle.TextColor3 = Color3.fromRGB(252, 252, 252)
 			SliderTitle.TextSize = 15.000
-			SliderTitle.TextXAlignment = Enum.TextXAlignment.Left              
-
+			SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
 
 			SliderUIPadding.Name = "SliderUIPadding"
 			SliderUIPadding.Parent = Slider
@@ -409,19 +483,17 @@ function library:CreateWindow(GameName)
 			SliderUIPadding.PaddingRight = UDim.new(0, 6)
 			SliderUIPadding.PaddingTop = UDim.new(0, 6)
 
-
 			SliderBack.Name = "SliderBack"
 			SliderBack.Parent = Slider
 			SliderBack.AnchorPoint = Vector2.new(0, 1)
 			SliderBack.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
 			SliderBack.Position = UDim2.new(0, 0, 1, 0)
-			SliderBack.Size = UDim2.new(1, 0, 0, 4)
+			SliderBack.Size = UDim2.new(1, 0, 0, 6)
 			SliderBack.Text = ""
 
 			SliderBackUICorner.CornerRadius = UDim.new(0, 4)
 			SliderBackUICorner.Name = "SliderBackUICorner"
 			SliderBackUICorner.Parent = SliderBack
-
 
 			MainSlider.Name = "MainSlider"
 			MainSlider.Parent = SliderBack
@@ -431,7 +503,6 @@ function library:CreateWindow(GameName)
 			MainSliderUICorner.CornerRadius = UDim.new(0, 4)
 			MainSliderUICorner.Name = "MainSliderUICorner"
 			MainSliderUICorner.Parent = MainSlider
-
 
 			HomeTab.CanvasSize = UDim2.new(0,0,0, HomeTabGridLayout.AbsoluteContentSize.Y + HomeTabGridLayoutAdd)
 
@@ -471,12 +542,10 @@ function library:CreateWindow(GameName)
 			end)
 		end
 
-
 		function Module:CreateDropdown(DropdownName, ItemList, CallBack)
 			assert(type(DropdownName) == "string", "specify type string for CreateDropdown() function")
 			assert(type(ItemList) == "table", "specify type table for CreateDropdown() function Example: {'wow', 'your cool', 'gay'}")
 			assert(type(CallBack) == "function", "specify type function for CreateDropdown()")
-
 
 			local Dropdown = Instance.new("Frame")
 			local DropdownUICorner = Instance.new("UICorner")
@@ -497,12 +566,11 @@ function library:CreateWindow(GameName)
 			DropdownUICorner.Name = "DropdownUICorner"
 			DropdownUICorner.Parent = Dropdown
 
-
 			DropdownTitle.Name = "DropdownTitle"
 			DropdownTitle.Parent = Dropdown
 			DropdownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropdownTitle.BackgroundTransparency = 1.000
-			DropdownTitle.Position = UDim2.new(0.00476190494, 0, 0.109160244, 0)
+			DropdownTitle.Position = UDim2.new(0.00476190494, 0, -.1)
 			DropdownTitle.Size = UDim2.new(0.985714257, -20, 0, 20)
 			DropdownTitle.Font = Enum.Font.Ubuntu
 			DropdownTitle.Text = DropdownName
@@ -510,13 +578,12 @@ function library:CreateWindow(GameName)
 			DropdownTitle.TextSize = 15.000
 			DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-
 			DropdownArrow.Name = "DropdownArrow"
 			DropdownArrow.Parent = Dropdown
 			DropdownArrow.AnchorPoint = Vector2.new(1, 0)
 			DropdownArrow.BackgroundTransparency = 1.000
 			DropdownArrow.BorderColor3 = Color3.fromRGB(27, 42, 53)
-			DropdownArrow.Position = UDim2.new(1.01666665, 0, -1.56463027, 40)
+			DropdownArrow.Position = UDim2.new(1.01661111, 0, -2, 28)
 			DropdownArrow.Size = UDim2.new(0, 37, 0, 32)
 			DropdownArrow.Image = "rbxassetid://2777862738"
 
@@ -536,19 +603,11 @@ function library:CreateWindow(GameName)
 			DropdownOptionsHolder.Size = UDim2.new(1, 0, 10.6945086, -24)
 			DropdownOptionsHolder.Visible = false
 
-
 			DropdownOptionsHolderUIGridLayout.Name = "DropdownOptionsHolderUIGridLayout"
 			DropdownOptionsHolderUIGridLayout.Parent = DropdownOptionsHolder
 			DropdownOptionsHolderUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			DropdownOptionsHolderUIGridLayout.CellPadding = UDim2.new(0, 0, 0, 10)
 			DropdownOptionsHolderUIGridLayout.CellSize = UDim2.new(0, 376, 0, 25)
-
-
-			DropdownOptionsHolderUIPadding.Name = "DropdownOptionsHolderUIPadding"
-			DropdownOptionsHolderUIPadding.Parent = DropdownOptionsHolder
-			DropdownOptionsHolderUIPadding.PaddingLeft = UDim.new(0, 25)
-			DropdownOptionsHolderUIPadding.PaddingTop = UDim.new(0, 10)
-
 
 			DropdownOptionsHolderUIPadding.Name = "DropdownOptionsHolderUIPadding"
 			DropdownOptionsHolderUIPadding.Parent = DropdownOptionsHolder
@@ -567,21 +626,17 @@ function library:CreateWindow(GameName)
 
 			for _,v in pairs(ItemList) do
 				local DropdownTextButton = Instance.new("TextButton")
-				local DropdownTextButtonUICorner = Instance.new("UICorner")
+
 
 				DropdownTextButton.Name = "DropdownTextButton"
 				DropdownTextButton.Parent = DropdownOptionsHolder
 				DropdownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				DropdownTextButton.Position = UDim2.new(0.397601187, 0, 0.219966203, 0)
-				DropdownTextButton.Size = UDim2.new(0.973170877, 0, 0.0449930914, 16)
+				DropdownTextButton.Size = UDim2.new(1, 0, 0, 16)
 				DropdownTextButton.Font = Enum.Font.Gotham
 				DropdownTextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 				DropdownTextButton.TextSize = 14.000
 				DropdownTextButton.Text = v
 
-				DropdownTextButtonUICorner.CornerRadius = UDim.new(0, 2)
-				DropdownTextButtonUICorner.Name = "DropdownTextButtonUICorner"
-				DropdownTextButtonUICorner.Parent = DropdownTextButton
 
 				DropdownTextButton.MouseButton1Click:Connect(function()
 					DropdownTitle.Text = DropdownName..": "..v
@@ -620,7 +675,6 @@ function library:CreateWindow(GameName)
 
 		end
 
-
 		function Module:CreateLabel(LabelName, LabelText)
 			assert(type(LabelName) == "string", "specify type string for CreateLabel() function")
 			assert(type(LabelText) == "string", "specify type string for CreateLabel() function")
@@ -632,8 +686,8 @@ function library:CreateWindow(GameName)
 
 			Label.Name = LabelName
 			Label.Parent = HomeTab
-			Label.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-			Label.BackgroundTransparency = 1.000
+			Label.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+			Label.BackgroundTransparency = 1
 			Label.Size = UDim2.new(1, 0, 0, 32)
 
 			LabelUICorner.CornerRadius = UDim.new(0, 4)
@@ -657,8 +711,6 @@ function library:CreateWindow(GameName)
 			LabelUIPadding.PaddingRight = UDim.new(0, 6)
 			LabelUIPadding.PaddingTop = UDim.new(0, 6)
 
-
-
 			HomeTab.CanvasSize = UDim2.new(0,0,0, HomeTabGridLayout.AbsoluteContentSize.Y + HomeTabGridLayoutAdd)
 		end
 
@@ -673,54 +725,152 @@ function library:CreateWindow(GameName)
 	end
 	return Category
 end
+
+
+
+
+
 --[[
 local ui = library:CreateWindow("Baseplate")
 
+
+
+local VU = game:GetService("VirtualUser")
+local Player = game:GetService("Players").LocalPlayer
+local WS = game:GetService("Workspace")
+local RS = game:GetService("ReplicatedStorage")
+local T = WS.Terrain
+local LI = game:GetService("Lighting")
+local Codes = {"UPDATE1"}
+local Upgrades = {"More Speed", "Jump Boost", "Extra Luck", "Extra Gems", "Pet Storage", "Pets Equipped"}
+local Rebirths = {1, 5, 10, 50, 100, 250, 500, 1000, 4200, 10000, 25000, 50000, 75000, 420000, 910000, 1200000, 10000000, 50000000, 100000000, 500000000, 750000000, 1000000000}
+
+
+local SelectedRebirths;
+local SelectedEgg;
+local EquipBestWait = false
+
+
+
+function getEggs()
+	local Eggs = {}
+
+	for _,v in pairs(WS.Eggs:GetChildren()) do
+		table.insert(Eggs, v.Name)
+	end
+	return Eggs
+end
+
+
+
+
 local Main = ui:new("Main")
+local Egg = ui:new("Eggs")
+local tp = ui:new("Teleport")
+local Misc = ui:new("Misc")
 
-local HoiThere = false
-local SelectedFUCK;
 
-Main:CreateLabel("FirstLabel","This is you're first label, Congrats!")
 
-Main:CreateButton("Hello World!", function()
-	print("Hello World!")
+Main:CreateToggle("Auto Tap", true, function()
+	game:GetService("ReplicatedStorage").Events.Tap:FireServer()
 end)
 
-Main:CreateButton("Change Label To asss!", function()
-	Main:EditLabel("FirstLabel", "ass")
+Main:CreateDropdown("Select Rebirth", Rebirths, function(Rebirths)
+	SelectedRebirths = Rebirths
+	print(SelectedRebirths)
 end)
 
-Main:CreateToggle("This Toggle will repeatedly print Hello World!", true, function()
-	print("Hello World!")
+
+Main:CreateToggle("Auto Rebirth", true, function()
+	if SelectedRebirths then 
+		RS.Events.Rebirth:FireServer(SelectedRebirths)
+	end
 end)
 
-Main:CreateToggle("This is a buttonToggle", false, function(heeey)
-	HoiThere = heeey
-	print("This is what this does: "..tostring(HoiThere))
+
+
+Main:CreateToggle("Auto Buy Upgrades", true, function()
+	for _,v in pairs(Upgrades) do
+		RS.Functions.BuyUpgrade:InvokeServer(v)
+	end
 end)
 
-Main:CreateSlider("WalkSpeed", {min = 16, max = 200, default = 16}, function(state)
-	LocalPlayer.Character.Humanoid.WalkSpeed = state
+Main:CreateToggle("Auto Collect Chest", true, function()
+	for i, v in pairs(game:GetService("Workspace").Chests:GetDescendants()) do
+		if v:FindFirstChild("TouchInterest") then
+			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+		end
+	end
 end)
 
-Main:CreateDropdown("FUCK", {"I", "Want", "Some", "Pussy"}, function(pssy)
-    SelectedFUCK = pssy
-    print(SelectedFUCK)
+
+Main:CreateToggle("Auto Collect Moons", true, function()
+	for i, v in pairs(game:GetService("Workspace").CSpawn:GetDescendants()) do
+		if v:FindFirstChild("TouchInterest") then
+			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+			firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+		end
+	end
 end)
-]]
+
+
+Main:CreateToggle("Auto Delete Notifications", true, function()
+	for _,v in pairs(Player.PlayerGui.CoreUI.Popups:GetChildren()) do 
+		if v.Name == "Popup" then 
+			v:Destroy()
+		end
+	end
+end)
+
+
+
+
+tp:CreateButton("Teleport To Moon", function()
+	Player.Character.HumanoidRootPart.CFrame = CFrame.new(2981.30762, -0.000500202179, -1026.24304)
+end)
+
+
+
+Egg:CreateDropdown("Select Egg", getEggs(), function(Egg)
+	SelectedEgg = Egg
+	print(SelectedEgg)
+end)
+
+Egg:CreateToggle("Auto Egg", true, function()
+	if SelectedEgg then
+		RS.Events.OpenEgg:FireServer(SelectedEgg, nil, nil, nil, {["1"] = false,["4"] = false,["3"] = false,["2"] = false})
+	end
+end)
+
+Egg:CreateToggle("Auto x3 Egg", true, function()
+	if SelectedEgg then
+		RS.Events.OpenEgg:FireServer(SelectedEgg, true, nil, nil, {["1"] = false,["4"] = false,["3"] = false,["2"] = false})
+	end
+end)
+
+Egg:CreateToggle("Auto Equip Best", true, function()
+	if EquipBestWait == false then 
+		EquipBestWait = true
+		RS.Events.PetAction:InvokeServer("EquipBest")
+		task.wait(5)
+		EquipBestWait = false
+	end
+end)
+
+
+Misc:CreateSlider("WalkSpeed", {min = 16, max = 200, default = 16}, function(state)
+	Player.Character.Humanoid.WalkSpeed = state
+end)
+
+Misc:CreateButton("Copy Discord Invite", function()
+	setclipboard("https://discord.gg/ups8GeuYAD")
+end)
+--]]
+
+
+
+
+
+
 return library
-
-
-
-
-
-
-
-
-
-
-
-
-
-
