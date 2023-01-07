@@ -33,52 +33,6 @@ function library:CreateWindow()
 	local OpenButton = Instance.new("TextButton")
 
 
-	local function WYUAJ_fake_script() -- HubName.HubNameRainbow 
-		local script = Instance.new('LocalScript', HubName)
-
-
-
-		local TextLabel = script.Parent
-
-
-
-
-		local t = 10;
-
-		while wait() do
-
-			local hue = tick() % t / t
-
-			local color = Color3.fromHSV(hue,1,1)
-
-			script.Parent.TextColor3 = color
-
-		end
-	end
-	coroutine.wrap(WYUAJ_fake_script)()
-	local function EDRPPL_fake_script() -- OpenButton.OpenButtonRainbow 
-		local script = Instance.new('LocalScript', OpenButton)
-
-
-
-		local TextLabel = script.Parent
-
-
-
-
-		local t = 10;
-
-		while wait() do
-
-			local hue = tick() % t / t
-
-			local color = Color3.fromHSV(hue,1,1)
-
-			script.Parent.TextColor3 = color
-
-		end
-	end
-	coroutine.wrap(EDRPPL_fake_script)()
 
 
 	function dragify(Frame)
@@ -140,6 +94,31 @@ function library:CreateWindow()
 	HubName.Text = "DUMBHUB"
 	HubName.TextColor3 = Color3.fromRGB(255, 255, 127)
 	HubName.TextSize = 18.000
+
+	local function WYUAJ_fake_script() -- HubName.HubNameRainbow 
+		local script = Instance.new('LocalScript', HubName)
+
+
+
+		local TextLabel = script.Parent
+
+
+
+
+		local t = 10;
+
+		while wait() do
+
+			local hue = tick() % t / t
+
+			local color = Color3.fromHSV(hue,1,1)
+
+			script.Parent.TextColor3 = color
+
+		end
+	end
+	coroutine.wrap(WYUAJ_fake_script)()
+
 
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main
@@ -238,6 +217,33 @@ function library:CreateWindow()
 	OpenButton.TextSize = 14.000
 	OpenButton.Visible = false
 
+
+	local function EDRPPL_fake_script() -- OpenButton.OpenButtonRainbow 
+		local script = Instance.new('LocalScript', OpenButton)
+
+
+
+		local TextLabel = script.Parent
+
+
+
+
+		local t = 10;
+
+		while wait() do
+
+			local hue = tick() % t / t
+
+			local color = Color3.fromHSV(hue,1,1)
+
+			script.Parent.TextColor3 = color
+
+		end
+	end
+
+	coroutine.wrap(EDRPPL_fake_script)()
+
+    
 
 	TopBarClose.MouseButton1Click:Connect(function()
 		CG.DumbHubV2:Destroy()
@@ -730,7 +736,7 @@ end
 
 
 
---[[
+
 local ui = library:CreateWindow("Baseplate")
 
 
