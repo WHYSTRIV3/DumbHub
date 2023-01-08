@@ -534,10 +534,10 @@
                 -- Tapping League
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Tapping%20League.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-            elseif game.PlaceId == 11901437921 then
-                -- Tapping League
+            elseif game.PlaceId == 10095130487 then
+                -- Gladiator Tycoon
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Gladiator%20Tycoon.lua"))()
- 
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
  
     end
 
