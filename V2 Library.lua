@@ -90,7 +90,7 @@ function library:CreateWindow()
 	HubName.BackgroundTransparency = 1.000
 	HubName.Position = UDim2.new(0.0052910056, 0, 0.131672591, 0)
 	HubName.Size = UDim2.new(0, 122, 0, 32)
-	HubName.Font = Enum.Font.SourceSans
+	HubName.Font = Enum.Font.LuckiestGuy
 	HubName.Text = "DUMBHUB"
 	HubName.TextColor3 = Color3.fromRGB(255, 255, 127)
 	HubName.TextSize = 18.000
