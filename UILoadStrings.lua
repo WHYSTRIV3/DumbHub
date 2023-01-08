@@ -538,6 +538,5 @@
                 -- Gladiator Tycoon
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Gladiator%20Tycoon.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
- 
     end
 
