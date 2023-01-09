@@ -538,5 +538,9 @@
                 -- Gladiator Tycoon
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Gladiator%20Tycoon.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+             elseif game.PlaceId == 11196588443 then
+                -- Zombie Merge Tycoon
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/ZombieMergeTycoon.lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
     end
 
