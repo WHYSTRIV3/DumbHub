@@ -542,5 +542,9 @@
                 -- Zombie Merge Tycoon
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/ZombieMergeTycoon.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+              elseif game.PlaceId == 11746859781 then
+                -- BubbleGum Clicker
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/BubbleGumClicker.lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
     end
 
