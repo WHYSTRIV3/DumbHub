@@ -32,6 +32,7 @@ function library:CreateWindow()
 	local HomeTabUIListLayout = Instance.new("UIListLayout")
 	local OpenButton = Instance.new("TextButton")
 	local Open = false
+	local close = true
 
 
 
@@ -228,6 +229,12 @@ function library:CreateWindow()
 	TopBarinimize.MouseButton1Click:Connect(function()
 		Main.Visible = false
 		OpenButton.Visible = true
+			game.StarterGui:SetCore("SendNotification", {
+			Title = "DumbHub Hidden";
+			Text = "If You Reopen With RightShift, Click It Twice"; 
+			Icon = "rbxassetid://12111341919";
+			Duration = 5;
+		})
 	end)
 
 	-- Press Key To Open And Close Ui/Send Notifaction
@@ -240,13 +247,16 @@ function library:CreateWindow()
 			else
 				Open = true
 				Main.Visible = false
-				if Open then 
-				game.StarterGui:SetCore("SendNotification", {
-					Title = "DumbHub Hidden";
-					Text = "Tap RightShift To Reopen DumbHub"; 
-					Icon = "rbxassetid://12111341919";
-					Duration = 10;
-					})
+					if Open then 
+						game.StarterGui:SetCore("SendNotification", {
+						Title = "DumbHub Hidden";
+						Text = "Tap RightShift To Reopen DumbHub"; 
+						Icon = "rbxassetid://12111341919";
+						Duration = 5;
+						})
+					if close then 
+						OpenButton.Visible = false
+					end
 				end
 			end
 		end
@@ -735,8 +745,8 @@ end
 
 
 
-
 --[[
+
 local ui = library:CreateWindow("Baseplate")
 
 
