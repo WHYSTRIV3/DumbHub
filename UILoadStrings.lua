@@ -546,5 +546,9 @@
                 -- BubbleGum Clicker
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/BubbleGumClicker.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+               elseif game.PlaceId == 10836055001 then
+                -- Monster Hunt Simulator
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Monster%20Hunt%20Simulator.Lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
     end
 
