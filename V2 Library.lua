@@ -31,7 +31,7 @@ function library:CreateWindow()
 	local ContientContainerFadeUIGradient = Instance.new("UIGradient")
 	local HomeTabUIListLayout = Instance.new("UIListLayout")
 	local OpenButton = Instance.new("TextButton")
-
+	local Open = false
 
 
 
@@ -73,9 +73,9 @@ function library:CreateWindow()
 	dragify(Main)
 
 
+
 	DumbHubV2.Name = "DumbHubV2"
 	DumbHubV2.Parent = game:GetService("CoreGui")
-
 
 
 	Main.Name = "Main"
@@ -97,24 +97,12 @@ function library:CreateWindow()
 
 	local function WYUAJ_fake_script() -- HubName.HubNameRainbow 
 		local script = Instance.new('LocalScript', HubName)
-
-
-
 		local TextLabel = script.Parent
-
-
-
-
 		local t = 10;
-
 		while wait() do
-
 			local hue = tick() % t / t
-
 			local color = Color3.fromHSV(hue,1,1)
-
 			script.Parent.TextColor3 = color
-
 		end
 	end
 	coroutine.wrap(WYUAJ_fake_script)()
@@ -220,45 +208,57 @@ function library:CreateWindow()
 
 	local function EDRPPL_fake_script() -- OpenButton.OpenButtonRainbow 
 		local script = Instance.new('LocalScript', OpenButton)
-
-
-
 		local TextLabel = script.Parent
-
-
-
-
 		local t = 10;
-
 		while wait() do
-
 			local hue = tick() % t / t
-
 			local color = Color3.fromHSV(hue,1,1)
-
 			script.Parent.TextColor3 = color
-
 		end
 	end
-
 	coroutine.wrap(EDRPPL_fake_script)()
 
-    
-
+-----------------------------------------------------------------------------------------------------------------------------------------------
 	TopBarClose.MouseButton1Click:Connect(function()
 		CG.DumbHubV2:Destroy()
 	end)
+
+
 
 	TopBarinimize.MouseButton1Click:Connect(function()
 		Main.Visible = false
 		OpenButton.Visible = true
 	end)
 
+	-- Press Key To Open And Close Ui/Send Notifaction
+
+	UIS.InputBegan:Connect(function(Input, WindowConfig)
+		if Input.KeyCode == Enum.KeyCode.RightShift then 
+			if Open then
+				Open = false
+				Main.Visible = true
+			else
+				Open = true
+				Main.Visible = false
+				if Open then 
+				game.StarterGui:SetCore("SendNotification", {
+					Title = "DumbHub Hidden";
+					Text = "Tap RightShift To Reopen DumbHub"; 
+					Icon = "rbxassetid://12111341919";
+					Duration = 10;
+					})
+				end
+			end
+		end
+	end)
+	
+
 	OpenButton.MouseButton1Click:Connect(function()
 		Main.Visible = true
 		OpenButton.Visible = false
 	end)
 
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 	local Category = {}
 	function Category:new(TabName)
