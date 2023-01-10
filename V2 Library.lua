@@ -84,7 +84,17 @@ function library:CreateWindow()
 	Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	Main.Position = UDim2.new(0.325264424, 0, 0.284737319, 0)
 	Main.Size = UDim2.new(0, 569, 0, 281)
-
+--------------------------------------------------------------------------------------------------------------------------
+--Sends Notification  when opened
+	if Main.Visible == true then	
+		game.StarterGui:SetCore("SendNotification", {
+		Title = "DumbHub Hidden";
+		Text = "Tap RightShift To Close DumbHub"; 
+		Icon = "rbxassetid://12111341919";
+		Duration = 5;
+		})
+end
+--------------------------------------------------------------------------------------------------------------------------
 	HubName.Name = "HubName"
 	HubName.Parent = Main
 	HubName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -745,7 +755,7 @@ end
 
 
 
---[[
+
 
 local ui = library:CreateWindow("Baseplate")
 
