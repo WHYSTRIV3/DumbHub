@@ -542,13 +542,29 @@
                 -- Zombie Merge Tycoon
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/ZombieMergeTycoon.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-              elseif game.PlaceId == 11746859781 then
+             elseif game.PlaceId == 11746859781 then
                 -- BubbleGum Clicker
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/BubbleGumClicker.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-               elseif game.PlaceId == 10836055001 then
+             elseif game.PlaceId == 10836055001 then
                 -- Monster Hunt Simulator
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Monster%20Hunt%20Simulator.Lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+              elseif game.PlaceId == 8585657145 then
+                -- Anime Heros
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeHeros.lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+               elseif game.PlaceId == 11620947043 then
+                -- Flappy Clicker
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/FlappyClicker.lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                elseif game.PlaceId == 11481101550 then
+                -- Magic Clicker
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/MagicClicker.lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                elseif game.PlaceId == 10824616460 then
+                -- Sword Slashers
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/SwordSlasher.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
     end
 
