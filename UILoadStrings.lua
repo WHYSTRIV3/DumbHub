@@ -566,5 +566,9 @@
                 -- Sword Slashers
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/SwordSlasher.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                 elseif game.PlaceId == 11542692507 then
+                -- Anime Souls Simulator
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeSoulsSimulator.lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
     end
 
