@@ -570,5 +570,9 @@
                 -- Anime Souls Simulator
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeSoulsSimulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  elseif game.PlaceId == 11430505281 then
+                -- Anime Weapon Simulator
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeWeaponSimulator.lua"))()
+ 
     end
 
