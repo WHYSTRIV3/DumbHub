@@ -578,6 +578,10 @@
                  -- Anime Weapon Simulator Trade World
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeWeaponSimulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                   elseif game.PlaceId == 11430505281 then
+                 -- Anime Weapon Simulator Private Worlds
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeWeaponSimulator.lua"))()
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
                    elseif game.PlaceId == 11700676171 then
                 -- Strong Training Simulator
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/StrongTrainingSimulator"))()
