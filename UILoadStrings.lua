@@ -571,8 +571,11 @@
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeSoulsSimulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
                   elseif game.PlaceId == 11430505281 then
-                   elseif game.PlaceId == 12351956001 then
                 -- Anime Weapon Simulator
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeWeaponSimulator.lua"))()
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                  elseif game.PlaceId == 12351956001 then
+                 -- Anime Weapon Simulator Trade World
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeWeaponSimulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
                    elseif game.PlaceId == 11700676171 then
