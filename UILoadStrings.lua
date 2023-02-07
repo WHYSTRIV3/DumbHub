@@ -1,42 +1,18 @@
  if game.PlaceId == 9522149469 then
                 --Strong Clicker
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Strong%20Clickers!.Lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Strong%20Clickers!.Lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 8750997647 then
                 --Tapping Simulator x
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Tapping%20Simulator%20X.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Tapping%20Simulator%20X.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 6022309314 then
                 --Madness Tapping
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Madness%20Tapping.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Madness%20Tapping.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 9150032572 then
                 --Clicking Gods
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Clicking%20Gods.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Clicking%20Gods.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 8884334497 then
                 --Mining Clicker Simulator
@@ -311,163 +287,67 @@
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 11162791099 then
                 -- Sandbox Hatchers X
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sandbox%20Hatchers%20X.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sandbox%20Hatchers%20X.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 11040063484 then
                 -- Sword Fighters Simulator!
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sword%20Fighters%20Simulator!.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Sword%20Fighters%20Simulator!.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 11150416759 then
                 -- Pet Race Clicker!
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Pet%20Race%20Clicker!.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Pet%20Race%20Clicker!.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 6875469709 then
                 -- STRONGEST PUNCH SIMULATOR
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/STRONGEST%20PUNCH%20SIMULATOR.lua"
-                    )
-                )()
- 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/STRONGEST%20PUNCH%20SIMULATOR.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 10714365287 then
                 -- Anime Racing Clicker
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Racing%20Clicker.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Racing%20Clicker.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 11298615665 then
                 -- +1 Speed Every Second
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1%20Speed%20Every%20Second.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/%2B1%20Speed%20Every%20Second.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 9336544530 then
                 -- Dice Simulator
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Dice%20Simulator.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Dice%20Simulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 10898965735 then
                 -- Mine Racer
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Mine%20Racer.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Mine%20Racer.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 3652625463 then
                 -- Lifting Simulaotr
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Lifting%20Simulator.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Lifting%20Simulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 11381074034 then
                 -- Flying Race Clicker
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Flying%20Race%20Clicker.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Flying%20Race%20Clicker.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 3823781113 then
                 -- Saber Simulator
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Saber%20Simulator.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Saber%20Simulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 8507479511 then
                 --  Higher Jump Every Second
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Higher%20Jump%20Every%20Second.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Higher%20Jump%20Every%20Second.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 11445923563 then
                 --  One Fruit Simulator
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/One%20Fruit%20Simulator.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/One%20Fruit%20Simulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 10070062081 then
                 --  Minion Simulator
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Minion%20Simulator.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Minion%20Simulator.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 10033487652 then
                 --  Clicker League!
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Clicker%20League!.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Clicker%20League!.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 11063612131 then
                 --  Every Second You Get +1 Jump Power
-
-                loadstring(
-                    game:HttpGet(
-                        "https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Every%20Second%20You%20Get%20%2B1%20Jump%20Power.lua"
-                    )
-                )()
- 
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Every%20Second%20You%20Get%20%2B1%20Jump%20Power.lua"))()
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
             elseif game.PlaceId == 8328351891 then
                 --  Mega Mansion Tycoon
