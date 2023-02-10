@@ -292,7 +292,7 @@ elseif game.PlaceId == 11542692507 then
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 elseif game.PlaceId == 11430505281 then
    -- Anime Weapon Simulator
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/AnimeWeaponSimulator.lua"))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub-LoadStrings/main/Anime%20Weapon%20Simulator.lua"))()
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 elseif game.PlaceId == 11700676171 then
    -- Strong Training Simulator
