@@ -326,5 +326,9 @@ elseif game.PlaceId == 12547990726 then
     -- Anime Star Simulator
     loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/AnimeStarSimulator.lua"))()
     -------------------------------------------------------------------------------------------------------------------------------------------------------------
+elseif game.PlaceId == 12574073723 then
+    -- Realm Simulator
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/RealmsSimulator.lua"))()
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------
 end
 
