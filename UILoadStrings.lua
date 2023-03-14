@@ -126,10 +126,6 @@ elseif game.PlaceId == 8579989858 then
     -- Super Clicker Simulator
     loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/Super%20Clicker%20Simulator.lua"))()
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-elseif game.PlaceId == 11162791099 then
-    -- Sandbox Hatchers X
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/Sandbox%20Hatchers%20X.lua"))()
------------------------------------------------------------------------------------------------------------------------------------------------------------------
 elseif game.PlaceId == 11040063484 then
     -- Sword Fighters Simulator!
     loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/Sword%20Fighters%20Simulator!.lua"))()
