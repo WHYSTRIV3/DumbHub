@@ -334,7 +334,7 @@ elseif game.PlaceId == 12413786484 then
     -- Anime Lost Simulator
     loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/AnimeLostSimulator.lua"))()
     -------------------------------------------------------------------------------------------------------------------------------------------------------------
-    elseif game.PlaceId == 11162791099 then
+elseif game.PlaceId == 11162791099 then
     -- Free Hatchers
     loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/FreeHatchers.lua"))()
     -------------------------------------------------------------------------------------------------------------------------------------------------------------
