@@ -191,11 +191,11 @@ function library:CreateWindow()
 	ContientContainerFadeUIGradient.Parent = ContientContainerFade
 
 	OpenButton.Parent = DumbHub
-	OpenButton.BackgroundColor3 = Color3.fromRGB(161, 0, 0)
-	OpenButton.Position = UDim2.new(0.438682556, 0, 0.00694379909, 0)
-	OpenButton.Size = UDim2.new(0, 67, 0, 19)
+	OpenButton.BackgroundColor3 = Color3.fromRGB(130, 0, 0)
+	OpenButton.Position = UDim2.new(0.303001583, 0, 0.0117700528, 0)
+	OpenButton.Size = UDim2.new(0, 892, 0, 19)
 	OpenButton.Font = Enum.Font.SourceSans
-	OpenButton.Text = "Open"
+	OpenButton.Text = "Press To Open"
 	OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	OpenButton.TextSize = 14.000
 	OpenButton.Visible = false
@@ -254,19 +254,20 @@ function library:CreateWindow()
 
 		NavigationButtonHolderTemplate.Name = TabName
 		NavigationButtonHolderTemplate.Parent = NavigationButtonHolder
-		NavigationButtonHolderTemplate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		NavigationButtonHolderTemplate.BackgroundColor3 = Color3.fromRGB(81, 81, 81)
 		NavigationButtonHolderTemplate.BackgroundTransparency = 0.900
 		NavigationButtonHolderTemplate.BorderSizePixel = 0
+		NavigationButtonHolderTemplate.Position = UDim2.new(-0.131578952, 0, -0.00829875562, 0)
 		NavigationButtonHolderTemplate.Size = UDim2.new(1, 0, 0, 24)
 		NavigationButtonHolderTemplate.Font = Enum.Font.Ubuntu
 		NavigationButtonHolderTemplate.Text = TabName
 		NavigationButtonHolderTemplate.TextColor3 = Color3.fromRGB(255, 255, 255)
-		NavigationButtonHolderTemplate.TextSize = 15.000
-		NavigationButtonHolderTemplate.TextXAlignment = Enum.TextXAlignment.Left
+		NavigationButtonHolderTemplate.TextSize = 18.000
+
 
 		NavigationButtonHolderUITemplatePadding.Name = "NavigationButtonHolderUITemplatePadding"
 		NavigationButtonHolderUITemplatePadding.Parent = NavigationButtonHolderTemplate
-		NavigationButtonHolderUITemplatePadding.PaddingLeft = UDim.new(0, 15)
+
 
 		NavigationButtonHolderTemplate.MouseButton1Click:Connect(function()
 			for _,v in pairs(ContientContainer:GetChildren()) do
@@ -725,5 +726,5 @@ Main:CreateDropdown("FUCK", {"I", "Want", "Some", "Pussy"}, function(pssy)
     SelectedFUCK = pssy
     print(SelectedFUCK)
 end)
-]]
+]]--
 return library
