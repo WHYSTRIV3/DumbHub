@@ -342,5 +342,9 @@ elseif game.PlaceId == 12422074717 then
     -- Tapping Masters
     loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/TappingMasters.lua"))()
     -------------------------------------------------------------------------------------------------------------------------------------------------------------
+elseif game.PlaceId == 12422074717 then
+    -- Tapping Masters
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/AnimeCatchingSimulator.lua"))()
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------
 end
 
