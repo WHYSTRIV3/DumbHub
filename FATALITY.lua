@@ -577,7 +577,7 @@ function library:CreateWindow()
 			local DropDownUIGridLayout = Instance.new("UIGridLayout")
 			local DropDownSearchTextBox = Instance.new("TextBox")
 			local DropDownUIPadding = Instance.new("UIPadding")
-
+			local DropDownContainerUIGridLayout = Instance.new("UIGridLayout")
 
 			DropDown.Name = "DropDown"
 			DropDown.Parent = InsideActContanierScrollingFrame
@@ -631,6 +631,12 @@ function library:CreateWindow()
 			DropDownContainer.Size = UDim2.new(0, 372, 0, 449)
 			DropDownContainer.Visible = false
 
+			DropDownContainerUIGridLayout.Name = "DropDownContainerUIGridLayout"
+			DropDownContainerUIGridLayout.Parent = DropDownContainer
+			DropDownContainerUIGridLayout.FillDirection = Enum.FillDirection.Vertical
+			DropDownContainerUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			DropDownContainerUIGridLayout.CellSize = UDim2.new(1, 40, 0, 40)
+
 			DropDownUIListLayout.Name = "DropDownUIListLayout"
 			DropDownUIListLayout.Parent = DropDownContainer
 			DropDownUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -681,10 +687,12 @@ function library:CreateWindow()
 			end
 			coroutine.wrap(DropDownSearchTextBox)()
 
+			DropDownContainer.ChildAdded:Connect(function()
+				DropDownContainer.CanvasSize = UDim2.new(0,0,0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 80)
+			end)
 
-			DropDownUIPadding.Name = "DropDownUIPadding"
-			DropDownUIPadding.Parent = DropDownTextButton
-			DropDownUIPadding.PaddingLeft = UDim.new(0, 25)
+
+
 
 			SelectedBar.Name = "SelectedBar"
 			SelectedBar.Parent = DropDownTextButton
@@ -714,6 +722,8 @@ function library:CreateWindow()
 				DropDownTextButton.TextSize = 22.000
 				DropDownTextButton.TextXAlignment = Enum.TextXAlignment.Left
 				DropDownTextButton.Text = v
+
+
 
 				DropDownTextButtonUIPadding.Parent = DropDownTextButton
 				DropDownTextButtonUIPadding.PaddingLeft = UDim.new(0, 15)
@@ -844,10 +854,9 @@ function library:CreateWindow()
 	end
 	return Category
 end
+
 --[[
 local ui = library:CreateWindow("Baseplate")
-
-
 
 
 local Info = ui:new("Info")
@@ -867,36 +876,127 @@ local T = WS.Terrain
 local LI = game:GetService("Lighting")
 local Codes = {"UPDATE1"}
 
+--Variables
+
+local Saved;
+local SelectedZones;
+local SelectedStars;
+local Star = {"Bronze Star Amulet Generator", "Silver Star Amulet Generator", "Gold Star Amulet Generator", "Diamond Star Amulet Generator", "Supreme Star Amulet Generator"}
+local SelectedField;
+
+
+
+-- Anti Afk
+
+Player.Idled:Connect(function()
+    VU:Button2Down(Vector2.new(0, 0), WS.CurrentCamera.CFrame)
+    wait(1)
+    VU:Button2Up(Vector2.new(0, 0), WS.CurrentCamera.CFrame)
+end)
+
+
+game:GetService("ReplicatedStorage").Events.ClaimHive:FireServer({[1] = 6})
 
 
 
 
 
-Misc:CreateButton("Redeem Codes", function()
-    for _,v in pairs(Codes) do
-        RS.Events.CodeEvent:FireServer(v)
+function getFields()
+    local Fields = {}
+
+    for i,v in pairs(game:GetService("Workspace").FlowerZones:GetChildren()) do
+        table.insert(Fields, v.Name)
+    end
+    return Fields
+end
+
+
+
+
+
+
+
+
+
+--Info
+
+
+
+ 
+
+
+
+
+--Farming
+
+local Activate = true
+local NearestOne = 50
+local PollenCap = Player.CoreStats.Capacity.Value
+local PollenNow = Player.CoreStats.Pollen.Value
+local Waitt = false
+local Stop = true
+
+
+Farming:CreateDropdown("Select Field", getFields(),function(Field)
+   SelectedField = Field
+end)
+
+
+
+Farming:CreateToggle("Auto Farm", true, function()
+
+    if SelectedField then
+                local CFrameEnd = WS.FlowerZones[SelectedField].CFrame * CFrame.new(0,5,0)
+                local Time = 2
+                local tween = game:GetService("TweenService"):Create(Player.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
+                tween:Play()
+                tween.Completed:Cancel()
+	end
+
+					for i,v in pairs(game:GetService("Workspace").Collectibles:GetChildren()) do
+						if v:IsA("Part") and v.Parent:IsA("Folder") and v.Transparency <= 0.6 then
+							if (v.Position - Player.Character.HumanoidRootPart.Position).Magnitude < NearestOne then
+								Player.Character.Humanoid:MoveTo(v.Position)
+							end
+						end
+					end
+	
+
+end)
+
+
+Farming:CreateToggle("Auto Plac", true, function()
+
+    if SelectedField and Stop == true then
+                local CFrameEnd = game:GetService("Workspace").NPCs["Panda Bear"].Platform.CFrame * CFrame.new(0,5,0)
+                local Time = 2
+                local tween = game:GetService("TweenService"):Create(Player.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
+                tween:Play()
+                tween.Completed:Cancel()
+				
     end
 end)
 
 
-Misc:CreateSlider("WalkSpeed", {min = 16, max = 200, default = 65}, function(state)
-    Player.Character.Humanoid.WalkSpeed = state
-end)
 
 
 
 
 
-Misc:CreateButton("Uninject", function()
-    game:GetService("CoreGui").V3DumbHub:Destroy()
-end)
+	Farming:CreateToggle("Auto Dig", true, function()
+		RS.Events.ToolCollect:FireServer()
+	end)
+	
+	
 
+	
+	
+	
+	
+	
+	
+	
+	
 
-Misc:CreateButton("Uninject and Rejoin", function()
-    game:GetService("CoreGui").V3DumbHub:Destroy()
-    TeleportService:Teleport(game.PlaceId)
-end)
-
-
---]]
+		--]]
 return library
