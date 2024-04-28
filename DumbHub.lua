@@ -10,7 +10,6 @@ local LoadingText = Instance.new("TextLabel")
 local Logo = Instance.new("ImageLabel")
 
 
-
 FatalityLoadingScreen.Name = "FatalityLoadingScreen"
 FatalityLoadingScreen.Parent = game:GetService("CoreGui")
 FatalityLoadingScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
