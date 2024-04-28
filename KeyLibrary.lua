@@ -566,7 +566,7 @@ ConfirmButton.MouseButton1Click:Connect(
 			wait(1)
 			DoneText.Visible = true
 			wait(1)
-			V4KeyLibrary:Destroy()
+			FatalityKeyLibrary:Destroy()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub/main/UILoadStrings.lua"))()
 
 		elseif TextBox.Text == ThreeDayKey then
@@ -590,7 +590,7 @@ ConfirmButton.MouseButton1Click:Connect(
 			wait(1)
 			DoneText.Visible = true
 			wait(1)
-			V4KeyLibrary:Destroy()
+			FatalityKeyLibrary:Destroy()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub/main/UILoadStrings.lua"))()
 
 		elseif TextBox.Text == WeekDayKey then
@@ -614,7 +614,7 @@ ConfirmButton.MouseButton1Click:Connect(
 			wait(1)
 			DoneText.Visible = true
 			wait(1)
-			V4KeyLibrary:Destroy()
+			FatalityKeyLibrary:Destroy()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub/main/UILoadStrings.lua"))()
 		else
 			CheckingKeyText.Visible = true
@@ -631,15 +631,15 @@ ConfirmButton.MouseButton1Click:Connect(
 	end)
 
 
-	PremiumKey.Name = "PremiumKey"
-	PremiumKey.Parent = Container
-	PremiumKey.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
-	PremiumKey.Position = UDim2.new(0.0376615115, 0, 0.847186625, 0)
-	PremiumKey.Size = UDim2.new(0, 127, 0, 30)
-	PremiumKey.Font = Enum.Font.SourceSans
-	PremiumKey.Text = "Premium Key"
-	PremiumKey.TextColor3 = Color3.fromRGB(255, 255, 255)
-	PremiumKey.TextSize = 14.000
+PremiumKey.Name = "PremiumKey"
+PremiumKey.Parent = Container
+PremiumKey.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+PremiumKey.Position = UDim2.new(0.0376615115, 0, 0.847186625, 0)
+PremiumKey.Size = UDim2.new(0, 127, 0, 30)
+PremiumKey.Font = Enum.Font.SourceSans
+PremiumKey.Text = "Premium Key"
+PremiumKey.TextColor3 = Color3.fromRGB(255, 255, 255)
+PremiumKey.TextSize = 14.000
 
 
 
@@ -666,7 +666,7 @@ PremiumKey.MouseButton1Click:Connect(
 				CheckingGameText.Text = " > Script Found"
 				DoneText.Visible = true
 				wait(1)
-				V4KeyLibrary:Destroy()
+				FatalityKeyLibrary:Destroy()
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub/main/UILoadStrings.lua"))()
 			end
 		end
