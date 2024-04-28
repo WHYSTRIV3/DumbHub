@@ -119,6 +119,8 @@ local Game = Instance.new("TextLabel")
 local HideTextButton = Instance.new("TextButton")
 local HideTextUICorner = Instance.new("UICorner")
 
+local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
 FatalityKeyLibrary.Name = "FatalityKeyLibrary"
 FatalityKeyLibrary.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 FatalityKeyLibrary.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -302,7 +304,7 @@ Game.BackgroundTransparency = 1.000
 Game.Position = UDim2.new(0.194946513, 0, 0.213489413, 0)
 Game.Size = UDim2.new(0, 185, 0, 29)
 Game.Font = Enum.Font.Gotham
-Game.Text = "Game:"
+Game.Text = "Game: "..GameName
 Game.TextColor3 = Color3.fromRGB(255, 255, 255)
 Game.TextSize = 20.000
 Game.TextXAlignment = Enum.TextXAlignment.Left
