@@ -843,8 +843,8 @@ function library:CreateWindow()
 			DividerDivider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DividerDivider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DividerDivider.BorderSizePixel = 0
-			DividerDivider.Position = UDim2.new(-0.0134408604, 0, 0.851851881, 0)
-			DividerDivider.Size = UDim2.new(0, 378,0, 38)
+			DividerDivider.Position = UDim2.new(-0.0161290318, 0, 1.12407315, 0)
+			DividerDivider.Size = UDim2.new(0, 390, 0, -3)
 
 
 
