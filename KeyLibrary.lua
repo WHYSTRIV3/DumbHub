@@ -138,13 +138,7 @@ Main.Size = UDim2.new(0, 564, 0, 579)
 MainUICorner.Name = "MainUICorner"
 MainUICorner.Parent = Main
 
-DHLogo.Name = "DHLogo"
-DHLogo.Parent = Main
-DHLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-DHLogo.BackgroundTransparency = 1.000
-DHLogo.Position = UDim2.new(0.0209360365, 0, 0.0233018454, 0)
-DHLogo.Size = UDim2.new(0, 55, 0, 40)
-DHLogo.Image = "rbxassetid://12930824081"
+
 
 MainUICorner.Name = "MainUICorner"
 MainUICorner.Parent = Main
