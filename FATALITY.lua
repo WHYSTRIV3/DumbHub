@@ -33,6 +33,13 @@ function library:CreateWindow()
 	local TabContainerUICorner = Instance.new("UICorner")
 	local TabContainer = Instance.new("ScrollingFrame")
 	local TabContainerUIListLayout = Instance.new("UIListLayout")
+	local Warning = Instance.new("Frame")
+	local WarningUICorner = Instance.new("UICorner")
+	local TextLabel = Instance.new("TextLabel")
+	local Welcome = Instance.new("TextLabel")
+	local TextLabel_2 = Instance.new("TextLabel")
+	local TextLabel_3 = Instance.new("TextLabel")
+	local TextLabel_4 = Instance.new("TextLabel")
 
 	function dragify(Frame)
 		dragToggle = nil
@@ -214,6 +221,81 @@ function library:CreateWindow()
 	ActivactionsContainerUICorner.Name = "ActivactionsContainerUICorner"
 	ActivactionsContainerUICorner.Parent = ActivactionsContainer
 
+	Warning.Name = "Warning"
+	Warning.Parent = ActivactionsContainer
+	Warning.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+	Warning.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Warning.BorderSizePixel = 0
+	Warning.Position = UDim2.new(0, 0, 0.00303951371, 0)
+	Warning.Size = UDim2.new(0, 406, 0, 329)
+	Warning.Visible = true
+
+	WarningUICorner.CornerRadius = UDim.new(0, 4)
+	WarningUICorner.Name = "ActivactionsContainerUICorner"
+	WarningUICorner.Parent = Warning
+
+	TextLabel.Parent = Warning
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.BorderColor3 = Color3.fromRGB(170, 0, 0)
+	TextLabel.BorderSizePixel = 0
+	TextLabel.Position = UDim2.new(0.024630541, 0, 0.471124619, 0)
+	TextLabel.Size = UDim2.new(0, 386, 0, 58)
+	TextLabel.Font = Enum.Font.SourceSans
+	TextLabel.Text = "Thanks for using Fatality, Enjoy!"
+	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.TextSize = 28.000
+
+	Welcome.Name = "Welcome"
+	Welcome.Parent = Warning
+	Welcome.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Welcome.BackgroundTransparency = 1.000
+	Welcome.BorderColor3 = Color3.fromRGB(170, 0, 0)
+	Welcome.BorderSizePixel = 0
+	Welcome.Position = UDim2.new(0, 0, 0.0151975686, 0)
+	Welcome.Size = UDim2.new(0, 386, 0, 58)
+	Welcome.Font = Enum.Font.SourceSans
+	Welcome.Text = "Warning!!"
+	Welcome.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Welcome.TextSize = 54.000
+
+	TextLabel_2.Parent = Warning
+	TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_2.BackgroundTransparency = 1.000
+	TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel_2.BorderSizePixel = 0
+	TextLabel_2.Position = UDim2.new(0.253694594, 0, 0.212765962, 0)
+	TextLabel_2.Size = UDim2.new(0, 200, 0, 50)
+	TextLabel_2.Font = Enum.Font.SourceSans
+	TextLabel_2.Text = "I'm not reliable for any bans"
+	TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_2.TextSize = 26.000
+
+	TextLabel_3.Parent = Warning
+	TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_3.BackgroundTransparency = 1.000
+	TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel_3.BorderSizePixel = 0
+	TextLabel_3.Position = UDim2.new(0.155172408, 0, 0.331306994, 0)
+	TextLabel_3.Size = UDim2.new(0, 259, 0, 50)
+	TextLabel_3.Font = Enum.Font.SourceSans
+	TextLabel_3.Text = "Use a private server"
+	TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_3.TextSize = 26.000
+
+	TextLabel_4.Parent = Warning
+	TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_4.BackgroundTransparency = 1.000
+	TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel_4.BorderSizePixel = 0
+	TextLabel_4.Position = UDim2.new(-0.0172413792, 0, 0.848024309, 0)
+	TextLabel_4.Size = UDim2.new(0, 259, 0, 50)
+	TextLabel_4.Font = Enum.Font.SourceSans
+	TextLabel_4.Text = "<-- Click a tab to get started"
+	TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_4.TextSize = 22.000
+
+
 
 	GameTitle.Name = "GameTitle"
 	GameTitle.Parent = BeforeTabContanier
@@ -276,6 +358,8 @@ function library:CreateWindow()
 
 
 
+
+
 		Tab.Name = "Tab"
 		Tab.Parent = TabContainer
 		Tab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -310,6 +394,7 @@ function library:CreateWindow()
 			for _,v in pairs(ActivactionsContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
 					v.Visible = false
+					Warning.Visible = false
 				end
 			end
 			InsideActContanierScrollingFrame.Visible = true
@@ -895,20 +980,9 @@ Player.Idled:Connect(function()
 end)
 
 
-game:GetService("ReplicatedStorage").Events.ClaimHive:FireServer({[1] = 6})
 
 
 
-
-
-function getFields()
-    local Fields = {}
-
-    for i,v in pairs(game:GetService("Workspace").FlowerZones:GetChildren()) do
-        table.insert(Fields, v.Name)
-    end
-    return Fields
-end
 
 
 
@@ -927,39 +1001,11 @@ end
 
 
 
---Farming
-
-local Activate = true
-local NearestOne = 50
-local PollenCap = Player.CoreStats.Capacity.Value
-local PollenNow = Player.CoreStats.Pollen.Value
-local Waitt = false
-local Stop = true
-
-
-Farming:CreateDropdown("Select Field", getFields(),function(Field)
-   SelectedField = Field
-end)
-
 
 
 Farming:CreateToggle("Auto Farm", true, function()
 
-    if SelectedField then
-                local CFrameEnd = WS.FlowerZones[SelectedField].CFrame * CFrame.new(0,5,0)
-                local Time = 2
-                local tween = game:GetService("TweenService"):Create(Player.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
-                tween:Play()
-                tween.Completed:Cancel()
-	end
 
-					for i,v in pairs(game:GetService("Workspace").Collectibles:GetChildren()) do
-						if v:IsA("Part") and v.Parent:IsA("Folder") and v.Transparency <= 0.6 then
-							if (v.Position - Player.Character.HumanoidRootPart.Position).Magnitude < NearestOne then
-								Player.Character.Humanoid:MoveTo(v.Position)
-							end
-						end
-					end
 	
 
 end)
@@ -967,14 +1013,7 @@ end)
 
 Farming:CreateToggle("Auto Plac", true, function()
 
-    if SelectedField and Stop == true then
-                local CFrameEnd = game:GetService("Workspace").NPCs["Panda Bear"].Platform.CFrame * CFrame.new(0,5,0)
-                local Time = 2
-                local tween = game:GetService("TweenService"):Create(Player.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
-                tween:Play()
-                tween.Completed:Cancel()
-				
-    end
+ 
 end)
 
 
