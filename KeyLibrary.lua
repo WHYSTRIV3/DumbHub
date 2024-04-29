@@ -1,70 +1,31 @@
 --Everyday at 12
 local TwoFourHourKey = "PumpkinPie"
 
---last time change 3/18/23
-local ThreeDayKey = "Lambo"
 
---last time change 3/18/23
-local WeekDayKey = "BurgerKingHat"
 
 local ID = {
-	-- DoNtHiDeLoL1#2027
-	3446748133,
-	-- DoNtHiDeLoL1#2027 acc 2  
-	683690150,
-	-- DoNtHiDeLoL1#2027 acc 3  	
-	4282652273,
+	
 	-- DumbHubOwner 
 	4041931572,
 	-- My Main  
 	2958606564, 
-	-- ZxStikexZ#4854
-	495474709,  
-	-- Toaster#5214  
-	1446941227,
-	-- Mew#7438
-	35086936,
-	-- Heni$#2778
-	2498518351,
-	-- AttQ#5991
-	694650137,
-	-- Low Vision#0147
-	93449758,
-	-- dracofr#3870
-	846097801,
-	-- Parralax#5371
-	4345308451,
-	-- Levi-
-	206105342,
-	--Mavbang#6666
-	4422904149,
-	--oakwhistle#5359
-	334459154,
-	--Nightmares#5598
-	826557147,
-	--Huffy#1639
-	53728607,
+
+
+
+
+	------------------------------Buyers-------------------------
+
+
+
+
+
 	------------------------------Boosters------------------------
 
-	-- ImagineShush#1406
-	2685073519,
-	-- quickscoped#0001	
-	3447975015,
-	--Locutor#0171
-	484793934,
-	-- Bacaninha Games#2277
-	81654360,
-	-- Koiju#1025
-	2611397918,
-	-- static.#9999
-	2611397918,
-	-- RAFA#1342
-	462532097,
-	-- Sins#1984
-	22953629,
-	--Kens#2426
-	4274648202,
-	------------------------------Creator Role----------------------
+
+
+
+
+	------------------------------Youtuber Role---------------------
 
 	-- Qrto#9387
 	3512195573
@@ -514,16 +475,13 @@ GetKey.TextColor3 = Color3.fromRGB(255, 255, 255)
 GetKey.TextSize = 14.000
 
 GetKey.MouseButton1Click:Connect(function()
-	setclipboard("https://discord.gg/qK8hJdWWtU")
-	Alert.Position = UDim2.new(0.999182508, 0, 0.860810995, 0)
-	if Alert.Visible == false then
-		Alert.Visible = true
-		Alert:TweenPosition(UDim2.new(0.862182508, 0, 0.860810995, 0), "Out", "Quint", 1, true)
-		wait(3)
-		Alert:TweenPosition(UDim2.new(0.999182508, 0, 0.860810995, 0), "Out", "Quint", 1, true)
-		wait(1)
-		Alert.Visible = false
-	end
+	setclipboard("https://discord.gg/JmAku377Ge")
+		game.StarterGui:SetCore("SendNotification", {
+			Title = "FATALITY ";
+			Text = "Key Copied To ClipBoard"; 
+			Icon = "rbxassetid://17308281713";
+			Duration = 5;
+		})
 end)
 
 
@@ -702,7 +660,7 @@ local function TwoFourHourKeyTime() -- _24HTime.24HourKeyCode
 
 	while true do Wait(1) 
 		wait()
-		local Time = 1680880500 - Tick() --Put Unix time here
+		local Time = 1714428060 - Tick() --Put Unix time here
 		local Days = mFloor((Time / 60 / 60 / 24) % (365 + 0.2425)) 
 		local Hours = mFloor((Time / 60 / 60) % 24) 
 		local Minutes = mFloor((Time / 60) % 60) 
