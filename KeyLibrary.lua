@@ -378,7 +378,7 @@ DiscordLabel.BackgroundTransparency = 1.000
 DiscordLabel.Position = UDim2.new(0.0551601425, 0, 1, 0)
 DiscordLabel.Size = UDim2.new(0, 153, 0, 32)
 DiscordLabel.Font = Enum.Font.SourceSans
-DiscordLabel.Text = "Discord.gg/ups8GeuYAD"
+DiscordLabel.Text = "https://discord.gg/sSffxajvYe"
 DiscordLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 DiscordLabel.TextSize = 17.000
 
@@ -389,7 +389,7 @@ YTLabel.BackgroundTransparency = 1.000
 YTLabel.Position = UDim2.new(0.402135223, 0, 1, 0)
 YTLabel.Size = UDim2.new(0, 139, 0, 32)
 YTLabel.Font = Enum.Font.SourceSans
-YTLabel.Text = "Youtube: DumbHub2.0"
+YTLabel.Text = "Youtube: FATALITY"
 YTLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 YTLabel.TextSize = 17.000
 
