@@ -174,4 +174,3 @@ local function TextTwenn()
 end
 coroutine.wrap(TextTwenn)()
 
-
