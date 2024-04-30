@@ -406,47 +406,6 @@ TwitterLabel.TextSize = 17.000
 
 
 
----------------Alert message-----------------
-
-Alert.Name = "Alert"
-Alert.Parent = V4KeyLibrary
-Alert.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
-Alert.BorderSizePixel = 0
-Alert.Position = UDim2.new(0.862182508, 0, 0.860810995, 0)
-Alert.Size = UDim2.new(0, 314, 0, 136)
-Alert.Visible = false
-
-AlertText.Name = "AlertText"
-AlertText.Parent = Alert
-AlertText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-AlertText.BackgroundTransparency = 1.000
-AlertText.Position = UDim2.new(0.152866244, 0, 0.264705896, 0)
-AlertText.Size = UDim2.new(0, 218, 0, 80)
-AlertText.Font = Enum.Font.SourceSans
-AlertText.Text = "Key link has been copied to your clipboard"
-AlertText.TextColor3 = Color3.fromRGB(255, 255, 255)
-AlertText.TextScaled = true
-AlertText.TextSize = 18.000
-AlertText.TextWrapped = true
-
-AlertTitle.Name = "AlertTitle"
-AlertTitle.Parent = Alert
-AlertTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-AlertTitle.BackgroundTransparency = 1.000
-AlertTitle.Position = UDim2.new(0.181528658, 0, -0.0514705889, 0)
-AlertTitle.Size = UDim2.new(0, 200, 0, 50)
-AlertTitle.Font = Enum.Font.SourceSans
-AlertTitle.Text = "DumbHub Alert"
-AlertTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-AlertTitle.TextSize = 28.000
-
-AlertDivider.Name = "AlertDivider"
-AlertDivider.Parent = Alert
-AlertDivider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-AlertDivider.BorderColor3 = Color3.fromRGB(255, 255, 255)
-AlertDivider.Position = UDim2.new(0, 0, 0.242647052, 0)
-AlertDivider.Size = UDim2.new(0, 314, 0, 3)
-
 -------------Confirm/Cancel/Premium/GetKey Buttons------------------------
 
 CancelButton.Name = "CancelButton"
