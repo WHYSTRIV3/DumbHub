@@ -97,7 +97,7 @@ LoadingText.BorderSizePixel = 0
 LoadingText.Position = UDim2.new(0.38142857, 0, 0.701298714, 0)
 LoadingText.Size = UDim2.new(0, 123, 0, 40)
 LoadingText.Font = Enum.Font.SourceSans
-LoadingText.Text = "Loading Fatlaity"
+LoadingText.Text = "Loading Fatality"
 LoadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
 LoadingText.TextSize = 23.000
 
