@@ -346,5 +346,9 @@ elseif game.PlaceId == 16733754732 then
 	-- Anime Islands
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/AnimeIslands.lua"))()
 	-------------------------------------------------------------------------------------------------------------------------------------------------------------
+elseif game.PlaceId == 16778527574 then
+	-- Anime Rarity
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/AnimeRarity.lua"))()
+	-------------------------------------------------------------------------------------------------------------------------------------------------------------
 end
 
