@@ -861,7 +861,7 @@ function library:CreateWindow()
 			local LabelTitle = Instance.new("TextLabel")
 			local LabelUIPadding = Instance.new("UIPadding")
 
-			Label.Name = "Label"
+			Label.Name = LabelName
 			Label.Parent = InsideActContanierScrollingFrame
 			Label.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 			Label.BackgroundTransparency = 1.000
