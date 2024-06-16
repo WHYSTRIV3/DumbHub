@@ -623,24 +623,19 @@ function library:CreateWindow()
 			Hb:Connect(function()
 				if mousedown then
 					local mouse = game:GetService("UserInputService"):GetMouseLocation()
-					local percent = (mouse.X - SliderBack.AbsolutePosition.X) / (SliderBack.AbsoluteSize.X + 35)
-					percent = math.clamp(percent, 0, 1)
+					local percent = math.clamp((mouse.X - SliderBack.AbsolutePosition.X) / (SliderBack.AbsoluteSize.X), 0, 1)
 					local Value = Options.min + (Options.max - Options.min) * percent
+					Value = math.floor(Value)
+					SliderTitle.Text = SliderName..": "..Value
 
-					if Options.floor then
-						Value = math.floor(Value)
-					end
+					MainSlider:TweenSize(UDim2.new(percent,0), "Out", "Quad", 0.02, true)
 
-					MainSlider:TweenSize(UDim2.new(percent, 0, 1 ,0), "Out", "Quad", 0.02, true)
-					Value = tonumber(string.format("%.2f", Value))
-					SliderTitle.Text = ("%s: %s"):format(SliderName, Value)
 
 					library.flags[SliderName] = Value
 					CallBack(Value)
 				end
 			end)
 		end
-
 
 
 
@@ -922,6 +917,7 @@ function library:CreateWindow()
 			Divider.Text = DividerText
 			Divider.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Divider.TextSize = 25.000
+			Divider.Visible = true
 
 			DividerDivider.Name = "DividerDivider"
 			DividerDivider.Parent = Divider
@@ -930,7 +926,8 @@ function library:CreateWindow()
 			DividerDivider.BorderSizePixel = 0
 			DividerDivider.Position = UDim2.new(-0.0161290318, 0, 1.12407315, 0)
 			DividerDivider.Size = UDim2.new(0, 390, 0, -3)
-
+			DividerDivider.Visible = true
+			
 
 
 		end
@@ -982,49 +979,6 @@ end)
 
 
 
-function getMobs()
-	local Mobs = {}
-
-	for i,v in pairs(game:GetService("ReplicatedStorage").Mobs:GetChildren()) do
-		if v:IsA("Model") then
-			table.insert(Mobs, v.Name)
-		end
-	end
-	return Mobs
-end
-
-function getIsland()
-	local Island = {}
-
-	for i,v in pairs(game:GetService("Workspace").Mobs:GetChildren()) do
-		if v:IsA("Folder") then
-			table.insert(Island, v.Name)
-		end
-	end
-	return Island
-end
-
-
-function getTP()
-	local TP = {}
-
-	for i,v in pairs(game:GetService("Workspace").Interact:GetChildren()) do
-		if v:IsA("Folder") then
-			table.insert(TP, v.Name)
-		end
-	end
-	return TP
-end
-
-
-function getUpgrades()
-	local Upgrades = {}
-
-	for i,v in pairs(Upgradess) do
-			table.insert(Upgrades, v.Name)
-	end
-	return Upgrades
-end
 
 
 
@@ -1041,95 +995,16 @@ Main:CreateDropdown("Selected Farm", Farm, function(Farms)
 	_G.SelectedFarm = Farms
 end)
 
-
-Main:CreateDropdown("Selected Mob", getMobs(), function(Mobs)
-	_G.SelectedMobs = Mobs
-end)
-
+Main:CreateDivider("Auto Farms")
 
 Main:CreateToggle("Auto Farm", true, function()
-    if _G.SelectedFarm == "TeleportToSelectedMob" then
-
-        local nearest
-        local NearestOne = 1000
-                for i,v in pairs(game:GetService("Workspace").Client.Mobs:GetDescendants()) do
-                        if v:IsA("Model") and v.Name == _G.SelectedMobs then
-                            if (v.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude < NearestOne then
-                                nearest = v
-                                NearestOne = (v.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude
-                        
-                        end
-                    end
-                end
-                if Teleport then
-                    Player.Character.HumanoidRootPart.CFrame = nearest.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
-                end
-        elseif _G.SelectedFarm == "AllMobs" then
-        
-        local nearest
-        local NearestOne = 1000
-                for i,v in pairs(game:GetService("Workspace").Client.Mobs:GetDescendants()) do
-                        if v:IsA("Model")  then
-                            if (v.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude < NearestOne then
-                            nearest = v
-                            NearestOne = (v.HumanoidRootPart.Position - Player.Character.HumanoidRootPart.Position).Magnitude
-                        end
-                    end
-                end
-        if Teleport then
-            Player.Character.HumanoidRootPart.CFrame = nearest.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
-        end
-    end
+  
 end)
 
-
-Main:CreateToggle("Auto Attack/Click", true, function()
-    local args = {
-        [1] = "Combat",
-        [2] = {
-            [1] = "Attack"
-        }
-    }
-    
-    game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
-end)
-
-
-Main:CreateToggle("Auto Collect", true, function()
-    for i, v in pairs(game:GetService("Workspace").Drops:GetDescendants()) do
-        if v:FindFirstChild("TouchInterest") then
-            firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
-            firetouchinterest(v, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
-         end
-     end
-end)
 
 
 
 --Upgrades
-
-Upgrade:CreateDivider("Upgrades")
-
-
-Upgrade:CreateDropdown("Selected Upgrade", Upgradess, function(Upgrade)
-    SelectedUpgrade = Upgrade
-end)    
-
-
-Upgrade:CreateButton("Auto Upgrade", function()
-    if SelectedUpgrade then
-        local args = {
-            [1] = "Upgrade",
-            [2] = {
-                [1] = "Upgrade",
-                [2] = tostring(SelectedUpgrade)
-            }
-        }
-
-        game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
-    end
-end)
-
 
 
 -- Misc
