@@ -628,7 +628,7 @@ function library:CreateWindow()
 					Value = math.floor(Value)
 					SliderTitle.Text = SliderName..": "..Value
 
-					MainSlider:TweenSize(UDim2.new(percent,0), "Out", "Quad", 0.02, true)
+					MainSlider:TweenSize(UDim2.new(percent, 0), "Out", "Quad", 0.02, true)
 
 
 					library.flags[SliderName] = Value
@@ -638,7 +638,165 @@ function library:CreateWindow()
 		end
 
 
-
+		function Module:CreateMultiDropdown(DropDownName, ItemList, CallBack)
+			assert(type(DropDownName) == "string", "Specify type string for DropDownName")
+			assert(type(ItemList) == "table", "Specify type table for ItemList")
+			assert(type(CallBack) == "function", "Specify type function for CallBack")
+		
+			local MultiSelectedItems = {}  -- Table to store selected items
+		
+			local DropDown = Instance.new("Frame")
+			DropDown.Name = "DropDown"
+			DropDown.Parent = InsideActContanierScrollingFrame
+			DropDown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+			DropDown.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			DropDown.BorderSizePixel = 0
+			DropDown.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
+			DropDown.Size = UDim2.new(0, 378, 0, 38)
+		
+			local DropDownUICorner = Instance.new("UICorner")
+			DropDownUICorner.CornerRadius = UDim.new(0, 3)
+			DropDownUICorner.Parent = DropDown
+		
+			local DropDownTitle = Instance.new("TextLabel")
+			DropDownTitle.Name = "DropDownTitle"
+			DropDownTitle.Parent = DropDown
+			DropDownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownTitle.BackgroundTransparency = 1
+			DropDownTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			DropDownTitle.BorderSizePixel = 0
+			DropDownTitle.Size = UDim2.new(0, 378, 0, 38)
+			DropDownTitle.Font = Enum.Font.SourceSans
+			DropDownTitle.Text = DropDownName.. ": None"
+			DropDownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownTitle.TextSize = 20
+			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
+		
+			local DropDownTitlePadding = Instance.new("UIPadding")
+			DropDownTitlePadding.Name = "ToggleUIPadding"
+			DropDownTitlePadding.Parent = DropDownTitle
+			DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
+		
+			local DropDownButton = Instance.new("TextButton")
+			DropDownButton.Name = "DropDownButton"
+			DropDownButton.Parent = DropDown
+			DropDownButton.Active = false
+			DropDownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownButton.BackgroundTransparency = 1
+			DropDownButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			DropDownButton.BorderSizePixel = 0
+			DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)
+			DropDownButton.Size = UDim2.new(0, 48, 0, 38)
+			DropDownButton.Font = Enum.Font.SourceSans
+			DropDownButton.Text = "+"
+			DropDownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownButton.TextSize = 44
+		
+			local DropDownContainer = Instance.new("ScrollingFrame")
+			DropDownContainer.Name = "DropDownContainer"
+			DropDownContainer.Parent = DropDown
+			DropDownContainer.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
+			DropDownContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			DropDownContainer.BorderSizePixel = 0
+			DropDownContainer.Position = UDim2.new(0, 0, 0.973684192, 0)
+			DropDownContainer.Size = UDim2.new(0, 372, 0, 449)
+			DropDownContainer.Visible = false
+		
+			local DropDownContainerUIGridLayout = Instance.new("UIGridLayout")
+			DropDownContainerUIGridLayout.Name = "DropDownContainerUIGridLayout"
+			DropDownContainerUIGridLayout.Parent = DropDownContainer
+			DropDownContainerUIGridLayout.FillDirection = Enum.FillDirection.Vertical
+			DropDownContainerUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			DropDownContainerUIGridLayout.CellSize = UDim2.new(1, 40, 0, 40)
+		
+			local DropDownSearchTextBox = Instance.new("TextBox")
+			DropDownSearchTextBox.Name = "DropDownSearchTextBox"
+			DropDownSearchTextBox.Parent = DropDownContainer
+			DropDownSearchTextBox.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+			DropDownSearchTextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			DropDownSearchTextBox.BorderSizePixel = 0
+			DropDownSearchTextBox.Size = UDim2.new(0, 372, 0, 38)
+			DropDownSearchTextBox.Font = Enum.Font.SourceSans
+			DropDownSearchTextBox.PlaceholderText = "Search..."
+			DropDownSearchTextBox.Text = ""
+			DropDownSearchTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownSearchTextBox.TextSize = 21
+		
+			local function UpdateTitleText()
+				if #MultiSelectedItems == 0 then
+					DropDownTitle.Text = DropDownName.. ": None"
+				elseif #MultiSelectedItems == 1 then
+					DropDownTitle.Text = DropDownName.. ": ".. MultiSelectedItems[1]
+				else
+					local selectedText = table.concat(MultiSelectedItems, ", ")
+					DropDownTitle.Text = DropDownName.. ": ".. selectedText
+				end
+			end
+		
+			local function ToggleItemSelection(item)
+				for i, selected in ipairs(MultiSelectedItems) do
+					if selected == item then
+						table.remove(MultiSelectedItems, i)
+						return
+					end
+				end
+				table.insert(MultiSelectedItems, item)
+			end
+		
+			local function CreateDropDownItem(itemName)
+				local DropDownTextButton = Instance.new("TextButton")
+				DropDownTextButton.Name = "DropDownTextButton"
+				DropDownTextButton.Parent = DropDownContainer
+				DropDownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				DropDownTextButton.BackgroundTransparency = 1
+				DropDownTextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				DropDownTextButton.BorderSizePixel = 0
+				DropDownTextButton.Size = UDim2.new(0, 370, 0, 38)
+				DropDownTextButton.Font = Enum.Font.SourceSans
+				DropDownTextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+				DropDownTextButton.TextSize = 22
+				DropDownTextButton.TextXAlignment = Enum.TextXAlignment.Left
+				DropDownTextButton.Text = itemName
+		
+				DropDownTextButton.MouseButton1Click:Connect(function()
+					ToggleItemSelection(itemName)
+					UpdateTitleText()
+					CallBack(MultiSelectedItems)
+				end)
+			end
+		
+			for _, itemName in ipairs(ItemList) do
+				CreateDropDownItem(itemName)
+			end
+		
+			DropDownButton.MouseButton1Click:Connect(function()
+				DropDownContainer.Visible = not DropDownContainer.Visible
+		
+				if DropDownContainer.Visible then
+					-- Hide other elements in InsideActContanierScrollingFrame
+					for _, v in ipairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v ~= DropDown and v:IsA("Frame") or v:IsA("TextButton") then
+							v.Visible = false
+						end
+					end
+				else
+					-- Show all elements in InsideActContanierScrollingFrame
+					for _, v in ipairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v:IsA("Frame") or v:IsA("TextButton") then
+							v.Visible = true
+						end
+					end
+				end
+			end)
+		
+			DropDownContainer.ChildAdded:Connect(function()
+				DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 80)
+			end)
+		
+			-- Initial title update
+			UpdateTitleText()
+		end
+		
 
 
 		function Module:CreateDropdown(DropDownName, ItemList, CallBack)
@@ -991,7 +1149,11 @@ local Teleport = true
 Main:CreateDivider("Auto Farms")
 
 
-Main:CreateDropdown("Selected Farm", Farm, function(Farms)
+Main:CreateDropdown("Selected Farm", Codes, function(Farms)
+	_G.SelectedFarm = Farms
+end)
+
+Main:CreateMultiDropdown("Selected Farm", Codes, function(Farms)
 	_G.SelectedFarm = Farms
 end)
 
