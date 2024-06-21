@@ -351,7 +351,7 @@ elseif game.PlaceId == 16778527574 then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/AnimeRarity.lua"))()
 	-------------------------------------------------------------------------------------------------------------------------------------------------------------
 elseif game.PlaceId == 1537690962 then
-	-- Anime Rarity
+	-- Bee Swarm Simulator
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/BeeSwarmSimulator.lua"))()
 	-------------------------------------------------------------------------------------------------------------------------------------------------------------
 end
