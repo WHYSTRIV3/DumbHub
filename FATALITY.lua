@@ -533,35 +533,120 @@ function library:CreateWindow()
 			end)
 		end
 
+		function Module:CreateActiveToggle(ToggleName, Repeat, CallBack)
+			assert(type(ToggleName) == "string", "Specify type string for CreateToggle() function")
+		
+			local Toggle = Instance.new("Frame")
+			local ToggleUICorner = Instance.new("UICorner")
+			local ToggleTitle = Instance.new("TextLabel")
+			local ToggleUIPadding = Instance.new("UIPadding")
+			local ToggleButton = Instance.new("TextButton")
+			local ToggledImage = Instance.new("ImageLabel")
+		
+			Toggle.Name = "Toggle"
+			Toggle.Parent = InsideActContanierScrollingFrame  -- Adjust to your specific parent frame
+			Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+			Toggle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			Toggle.BorderSizePixel = 0
+			Toggle.Size = UDim2.new(0, 378, 0, 38)
+		
+			ToggleUICorner.CornerRadius = UDim.new(0, 3)
+			ToggleUICorner.Name = "ToggleUICorner"
+			ToggleUICorner.Parent = Toggle
+		
+			ToggleTitle.Name = "ToggleTitle"
+			ToggleTitle.Parent = Toggle
+			ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ToggleTitle.BackgroundTransparency = 1.000
+			ToggleTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			ToggleTitle.BorderSizePixel = 0
+			ToggleTitle.Size = UDim2.new(0, 378, 0, 38)
+			ToggleTitle.Font = Enum.Font.SourceSans
+			ToggleTitle.Text = ToggleName
+			ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+			ToggleTitle.TextSize = 20.000
+			ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
+		
+			ToggleUIPadding.Name = "ToggleUIPadding"
+			ToggleUIPadding.Parent = ToggleTitle
+			ToggleUIPadding.PaddingLeft = UDim.new(0, 6)
+		
+			ToggleButton.Name = "ToggleButton"
+			ToggleButton.Parent = Toggle
+			ToggleButton.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+			ToggleButton.BorderColor3 = Color3.fromRGB(243, 243, 243)
+			ToggleButton.Position = UDim2.new(0.917999983, 0, 0.254999995, 0)
+			ToggleButton.Size = UDim2.new(0, 20, 0, 20)
+			ToggleButton.Text = ""
+		
+			ToggledImage.Name = "ToggledImage"
+			ToggledImage.Parent = ToggleButton
+			ToggledImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ToggledImage.BackgroundTransparency = 1.000
+			ToggledImage.Position = UDim2.new(0, -3, -0.0669998154, 0)
+			ToggledImage.Size = UDim2.new(0, 26, 0, 20)
+			ToggledImage.Image = "rbxassetid://2790552399"
+			ToggledImage.Visible = true  -- Initially visible since toggle is active
+		
+			local toggling = true  -- Start with toggle active
+			local togCon = nil
+		
+			ToggleButton.MouseButton1Click:Connect(function()
+				toggling = not toggling
+				library.flags[ToggleName] = toggling
+		
+				if Repeat then
+					if toggling then
+						togCon = RunService.RenderStepped:Connect(CallBack)
+						ToggledImage.Visible = true
+					else
+						togCon:Disconnect()
+						ToggledImage.Visible = false
+					end
+				else
+					if toggling then
+						CallBack(toggling)
+						ToggledImage.Visible = true
+					else
+						CallBack(toggling)
+						ToggledImage.Visible = false
+					end
+				end
+			end)
+		
+			-- Initially start the toggle callback if Repeat is true
+			if Repeat then
+				togCon = RunService.RenderStepped:Connect(CallBack)
+			end
+		end
+
 
 		function Module:CreateSlider(SliderName, Options, CallBack)
-			assert(type(SliderName) == "string", "specify type string for CreateSlider() function")
-			assert(type(Options) == "table", "specify type table for CreateSlider() function Example: {default = 1, min = 1, max = 16}")
-			assert(type(CallBack) == "function", "specify type function for CreateSlider()")
-
-
+			assert(type(SliderName) == "string", "Specify type string for CreateSlider() function")
+			assert(type(Options) == "table", "Options must be a table")
+		
 			local Slider = Instance.new("Frame")
 			local SliderUICorner = Instance.new("UICorner")
 			local SliderTitle = Instance.new("TextLabel")
 			local UIPadding = Instance.new("UIPadding")
 			local SliderUIPadding = Instance.new("UIPadding")
 			local SliderBack = Instance.new("TextButton")
-			local SliderBcakUICorner = Instance.new("UICorner")
+			local SliderBackUICorner = Instance.new("UICorner")
 			local MainSlider = Instance.new("Frame")
 			local MainSliderUICorner = Instance.new("UICorner")
-
+		
 			Slider.Name = "Slider"
-			Slider.Parent = InsideActContanierScrollingFrame
+			Slider.Parent = InsideActContanierScrollingFrame  -- Adjust to your specific parent frame
 			Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 			Slider.BorderColor3 = Color3.fromRGB(31, 31, 31)
 			Slider.BorderSizePixel = 0
 			Slider.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
-			Slider.Size = UDim2.new(0, 378,0, 38)
-
+			Slider.Size = UDim2.new(0, 378, 0, 38)
+		
 			SliderUICorner.CornerRadius = UDim.new(0, 3)
 			SliderUICorner.Name = "SliderUICorner"
 			SliderUICorner.Parent = Slider
-
+		
 			SliderTitle.Name = "SliderTitle"
 			SliderTitle.Parent = Slider
 			SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -570,17 +655,17 @@ function library:CreateWindow()
 			SliderTitle.BorderSizePixel = 0
 			SliderTitle.Size = UDim2.new(0, 136, 0, 38)
 			SliderTitle.Font = Enum.Font.SourceSans
-			SliderTitle.Text = SliderName
+			SliderTitle.Text = SliderName .. ": " .. Options.default
 			SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderTitle.TextSize = 20.000
 			SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
-
+		
 			UIPadding.Parent = SliderTitle
-
+		
 			SliderUIPadding.Name = "SliderUIPadding"
 			SliderUIPadding.Parent = Slider
 			SliderUIPadding.PaddingLeft = UDim.new(0, 6)
-
+		
 			SliderBack.Name = "SliderBack"
 			SliderBack.Parent = Slider
 			SliderBack.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -589,53 +674,57 @@ function library:CreateWindow()
 			SliderBack.Position = UDim2.new(0.438395411, 0, 0.349638283, 0)
 			SliderBack.Size = UDim2.new(0, 178, 0, 14)
 			SliderBack.Text = ""
-
-			SliderBcakUICorner.CornerRadius = UDim.new(0, 6)
-			SliderBcakUICorner.Name = "SliderBcakUICorner"
-			SliderBcakUICorner.Parent = SliderBack
-
+		
+			SliderBackUICorner.CornerRadius = UDim.new(0, 6)
+			SliderBackUICorner.Name = "SliderBackUICorner"
+			SliderBackUICorner.Parent = SliderBack
+		
 			MainSlider.Name = "MainSlider"
 			MainSlider.Parent = SliderBack
 			MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			MainSlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			MainSlider.BorderSizePixel = 0
-			MainSlider.Size = UDim2.new(0, 85, 0, 14)
-
+			MainSlider.Size = UDim2.new((Options.default - Options.min) / (Options.max - Options.min), 0, 0, 14)
+		
 			MainSliderUICorner.CornerRadius = UDim.new(0, 6)
 			MainSliderUICorner.Name = "MainSliderUICorner"
 			MainSliderUICorner.Parent = MainSlider
-
-
+		
 			local mousedown = false
-
+		
 			UIS.InputEnded:Connect(function(input)
 				if input.UserInputType == Enum.UserInputType.MouseButton1 then
 					mousedown = false
 				end
 			end)
+		
 			SliderBack.MouseButton1Down:Connect(function()
 				mousedown = true
 			end)
+		
 			SliderBack.MouseButton1Up:Connect(function()
 				mousedown = false
 			end)
-
-			Hb:Connect(function()
-				if mousedown then
-					local mouse = game:GetService("UserInputService"):GetMouseLocation()
-					local percent = math.clamp((mouse.X - SliderBack.AbsolutePosition.X) / (SliderBack.AbsoluteSize.X), 0, 1)
-					local Value = Options.min + (Options.max - Options.min) * percent
-					Value = math.floor(Value)
-					SliderTitle.Text = SliderName..": "..Value
-
-					MainSlider:TweenSize(UDim2.new(percent, 0), "Out", "Quad", 0.02, true)
-
-
-					library.flags[SliderName] = Value
-					CallBack(Value)
+		
+			UIS.InputChanged:Connect(function(input)
+				if mousedown and input.UserInputType == Enum.UserInputType.MouseMovement then
+					local mousePos = input.Position
+					local sliderPos = SliderBack.AbsolutePosition
+					local sliderSize = SliderBack.AbsoluteSize
+		
+					local percent = math.clamp((mousePos.X - sliderPos.X) / sliderSize.X, 0, 1)
+					local newValue = Options.min + percent * (Options.max - Options.min)
+					newValue = math.floor(newValue)
+					
+					SliderTitle.Text = SliderName .. ": " .. newValue
+					MainSlider.Size = UDim2.new(percent, 0, 0, 14)
+		
+					library.flags[SliderName] = newValue
+					CallBack(newValue)
 				end
 			end)
 		end
+		
 
 
 		function Module:CreateMultiDropdown(DropDownName, ItemList, CallBack)
