@@ -1419,7 +1419,7 @@ Info:CreateLabel("Spider", "Spider Crab Timer: 0?")
 
 Info:CreateLabel("WereWolf", "WereWolf Crab Timer: 0?")
 
---]]
+
 local BeforeHoney = Player.CoreStats.Honey.Value
 local StartTime = os.time()  
 
