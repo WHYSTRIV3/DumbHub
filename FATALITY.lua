@@ -443,7 +443,7 @@ function library:CreateWindow()
 		end
 
 
-		function Module:CreateToggle(ToggleName, Repeat, CallBack)
+		function Module:CreateToggle(ToggleName, Repeatt, CallBackk)
 			assert(type(ToggleName) == "string", "specify type string for CreateToggle() function")
 
 
@@ -504,56 +504,71 @@ function library:CreateWindow()
 
 
 
-			local toggling = false
-			local togCon = nil
+			local togglingg = false
+			local togConn = nil
 
 			ToggleButton.MouseButton1Click:Connect(function()
-				toggling = not toggling
+				togglingg = not togglingg
 
-				library.flags[ToggleName] = toggling
+				library.flags[ToggleName] = togglingg
 
-				if Repeat then
-					if toggling then
-						togCon = RunService.RenderStepped:Connect(CallBack)
+				if Repeatt then
+					if togglingg then
+						togConn = RunService.RenderStepped:Connect(CallBackk)
 						ToggledImage.Visible = true
 					else
-						togCon:Disconnect()
+						if togConn then
+							togConn:Disconnect()
+						end
 						ToggledImage.Visible = false
 					end
 				else
-					if toggling then
-						CallBack(toggling)
+					if togglingg then
+						CallBackk(togglingg)
 						ToggledImage.Visible = true
 					else
-						CallBack(toggling)
+						CallBackk(togglingg)
 						ToggledImage.Visible = false
 					end
-					--CallBack(toggling)
 				end
+			end)
+
+			XButton.MouseButton1Click:Connect(function()
+				if togglingg then
+					if togConn then
+						togConn:Disconnect()  -- Disconnect the toggle connection if it exists
+					end
+					togglingg = false
+					-- Optionally wait for any ongoing processes to complete
+					wait(0.5)
+				end
+
+				-- Destroy the UI
+				FATALITY:Destroy()
 			end)
 		end
 
 		function Module:CreateActiveToggle(ToggleName, Repeat, CallBack)
 			assert(type(ToggleName) == "string", "Specify type string for CreateToggle() function")
-		
+
 			local Toggle = Instance.new("Frame")
 			local ToggleUICorner = Instance.new("UICorner")
 			local ToggleTitle = Instance.new("TextLabel")
 			local ToggleUIPadding = Instance.new("UIPadding")
 			local ToggleButton = Instance.new("TextButton")
 			local ToggledImage = Instance.new("ImageLabel")
-		
+
 			Toggle.Name = "Toggle"
 			Toggle.Parent = InsideActContanierScrollingFrame  -- Adjust to your specific parent frame
 			Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 			Toggle.BorderColor3 = Color3.fromRGB(31, 31, 31)
 			Toggle.BorderSizePixel = 0
 			Toggle.Size = UDim2.new(0, 378, 0, 38)
-		
+
 			ToggleUICorner.CornerRadius = UDim.new(0, 3)
 			ToggleUICorner.Name = "ToggleUICorner"
 			ToggleUICorner.Parent = Toggle
-		
+
 			ToggleTitle.Name = "ToggleTitle"
 			ToggleTitle.Parent = Toggle
 			ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -566,11 +581,11 @@ function library:CreateWindow()
 			ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			ToggleTitle.TextSize = 20.000
 			ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
-		
+
 			ToggleUIPadding.Name = "ToggleUIPadding"
 			ToggleUIPadding.Parent = ToggleTitle
 			ToggleUIPadding.PaddingLeft = UDim.new(0, 6)
-		
+
 			ToggleButton.Name = "ToggleButton"
 			ToggleButton.Parent = Toggle
 			ToggleButton.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
@@ -578,7 +593,7 @@ function library:CreateWindow()
 			ToggleButton.Position = UDim2.new(0.917999983, 0, 0.254999995, 0)
 			ToggleButton.Size = UDim2.new(0, 20, 0, 20)
 			ToggleButton.Text = ""
-		
+
 			ToggledImage.Name = "ToggledImage"
 			ToggledImage.Parent = ToggleButton
 			ToggledImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -587,14 +602,14 @@ function library:CreateWindow()
 			ToggledImage.Size = UDim2.new(0, 26, 0, 20)
 			ToggledImage.Image = "rbxassetid://2790552399"
 			ToggledImage.Visible = true  -- Initially visible since toggle is active
-		
+
 			local toggling = true  -- Start with toggle active
 			local togCon = nil
-		
+
 			ToggleButton.MouseButton1Click:Connect(function()
 				toggling = not toggling
 				library.flags[ToggleName] = toggling
-		
+
 				if Repeat then
 					if toggling then
 						togCon = RunService.RenderStepped:Connect(CallBack)
@@ -613,7 +628,19 @@ function library:CreateWindow()
 					end
 				end
 			end)
-		
+
+
+			XButton.MouseButton1Click:Connect(function()
+				if toggling then
+					if togCon then
+						togCon:Disconnect()  -- Disconnect the first toggle connection if it exists
+					end
+					toggling = false
+					wait(0.5)
+				end
+				FATALITY:Destroy()
+			end)
+
 			-- Initially start the toggle callback if Repeat is true
 			if Repeat then
 				togCon = RunService.RenderStepped:Connect(CallBack)
@@ -621,10 +648,12 @@ function library:CreateWindow()
 		end
 
 
+
+
 		function Module:CreateSlider(SliderName, Options, CallBack)
 			assert(type(SliderName) == "string", "Specify type string for CreateSlider() function")
 			assert(type(Options) == "table", "Options must be a table")
-		
+
 			local Slider = Instance.new("Frame")
 			local SliderUICorner = Instance.new("UICorner")
 			local SliderTitle = Instance.new("TextLabel")
@@ -634,7 +663,7 @@ function library:CreateWindow()
 			local SliderBackUICorner = Instance.new("UICorner")
 			local MainSlider = Instance.new("Frame")
 			local MainSliderUICorner = Instance.new("UICorner")
-		
+
 			Slider.Name = "Slider"
 			Slider.Parent = InsideActContanierScrollingFrame  -- Adjust to your specific parent frame
 			Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
@@ -642,11 +671,11 @@ function library:CreateWindow()
 			Slider.BorderSizePixel = 0
 			Slider.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
 			Slider.Size = UDim2.new(0, 378, 0, 38)
-		
+
 			SliderUICorner.CornerRadius = UDim.new(0, 3)
 			SliderUICorner.Name = "SliderUICorner"
 			SliderUICorner.Parent = Slider
-		
+
 			SliderTitle.Name = "SliderTitle"
 			SliderTitle.Parent = Slider
 			SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -659,13 +688,13 @@ function library:CreateWindow()
 			SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderTitle.TextSize = 20.000
 			SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
-		
+
 			UIPadding.Parent = SliderTitle
-		
+
 			SliderUIPadding.Name = "SliderUIPadding"
 			SliderUIPadding.Parent = Slider
 			SliderUIPadding.PaddingLeft = UDim.new(0, 6)
-		
+
 			SliderBack.Name = "SliderBack"
 			SliderBack.Parent = Slider
 			SliderBack.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -674,104 +703,115 @@ function library:CreateWindow()
 			SliderBack.Position = UDim2.new(0.438395411, 0, 0.349638283, 0)
 			SliderBack.Size = UDim2.new(0, 178, 0, 14)
 			SliderBack.Text = ""
-		
+
 			SliderBackUICorner.CornerRadius = UDim.new(0, 6)
 			SliderBackUICorner.Name = "SliderBackUICorner"
 			SliderBackUICorner.Parent = SliderBack
-		
+
 			MainSlider.Name = "MainSlider"
 			MainSlider.Parent = SliderBack
 			MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			MainSlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			MainSlider.BorderSizePixel = 0
 			MainSlider.Size = UDim2.new((Options.default - Options.min) / (Options.max - Options.min), 0, 0, 14)
-		
+
 			MainSliderUICorner.CornerRadius = UDim.new(0, 6)
 			MainSliderUICorner.Name = "MainSliderUICorner"
 			MainSliderUICorner.Parent = MainSlider
-		
+
 			local mousedown = false
-		
+
 			UIS.InputEnded:Connect(function(input)
 				if input.UserInputType == Enum.UserInputType.MouseButton1 then
 					mousedown = false
 				end
 			end)
-		
+
 			SliderBack.MouseButton1Down:Connect(function()
 				mousedown = true
 			end)
-		
+
 			SliderBack.MouseButton1Up:Connect(function()
 				mousedown = false
 			end)
-		
+
 			UIS.InputChanged:Connect(function(input)
 				if mousedown and input.UserInputType == Enum.UserInputType.MouseMovement then
 					local mousePos = input.Position
 					local sliderPos = SliderBack.AbsolutePosition
 					local sliderSize = SliderBack.AbsoluteSize
-		
+
 					local percent = math.clamp((mousePos.X - sliderPos.X) / sliderSize.X, 0, 1)
 					local newValue = Options.min + percent * (Options.max - Options.min)
 					newValue = math.floor(newValue)
-					
+
 					SliderTitle.Text = SliderName .. ": " .. newValue
 					MainSlider.Size = UDim2.new(percent, 0, 0, 14)
-		
+
 					library.flags[SliderName] = newValue
 					CallBack(newValue)
 				end
 			end)
 		end
-		
+
+
+
 
 
 		function Module:CreateMultiDropdown(DropDownName, ItemList, CallBack)
 			assert(type(DropDownName) == "string", "Specify type string for DropDownName")
 			assert(type(ItemList) == "table", "Specify type table for ItemList")
 			assert(type(CallBack) == "function", "Specify type function for CallBack")
-		
+
 			local MultiSelectedItems = {}  -- Table to store selected items
-		
+			local SelectedItemButtons = {}  -- Table to store item buttons
+
 			local DropDown = Instance.new("Frame")
+			local DropDownUICorner = Instance.new("UICorner")
+			local DropDownTitle = Instance.new("TextLabel")
+			local DropDownTitlePadding = Instance.new("UIPadding")
+			local DropDownButton = Instance.new("TextButton")
+			local DropDownContainer = Instance.new("ScrollingFrame")
+			local DropDownUIListLayout = Instance.new("UIListLayout")
+			local DropDownUIGridLayout = Instance.new("UIGridLayout")
+			local DropDownSearchTextBox = Instance.new("TextBox")
+			local DropDownUIPadding = Instance.new("UIPadding")
+			local DropDownContainerUIGridLayout = Instance.new("UIGridLayout")
+
 			DropDown.Name = "DropDown"
 			DropDown.Parent = InsideActContanierScrollingFrame
 			DropDown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 			DropDown.BorderColor3 = Color3.fromRGB(31, 31, 31)
 			DropDown.BorderSizePixel = 0
 			DropDown.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
-			DropDown.Size = UDim2.new(0, 378, 0, 38)
-		
-			local DropDownUICorner = Instance.new("UICorner")
+			DropDown.Size = UDim2.new(0, 378,0, 38)
+
 			DropDownUICorner.CornerRadius = UDim.new(0, 3)
+			DropDownUICorner.Name = "DropDownUICorner"
 			DropDownUICorner.Parent = DropDown
-		
-			local DropDownTitle = Instance.new("TextLabel")
+
 			DropDownTitle.Name = "DropDownTitle"
 			DropDownTitle.Parent = DropDown
 			DropDownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			DropDownTitle.BackgroundTransparency = 1
+			DropDownTitle.BackgroundTransparency = 1.000
 			DropDownTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
 			DropDownTitle.BorderSizePixel = 0
-			DropDownTitle.Size = UDim2.new(0, 378, 0, 38)
+			DropDownTitle.Size = UDim2.new(0, 378,0, 38)
 			DropDownTitle.Font = Enum.Font.SourceSans
 			DropDownTitle.Text = DropDownName.. ": None"
 			DropDownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-			DropDownTitle.TextSize = 20
+			DropDownTitle.TextSize = 20.000
 			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
-		
-			local DropDownTitlePadding = Instance.new("UIPadding")
+
 			DropDownTitlePadding.Name = "ToggleUIPadding"
 			DropDownTitlePadding.Parent = DropDownTitle
 			DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
-		
-			local DropDownButton = Instance.new("TextButton")
+
 			DropDownButton.Name = "DropDownButton"
 			DropDownButton.Parent = DropDown
 			DropDownButton.Active = false
 			DropDownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			DropDownButton.BackgroundTransparency = 1
+			DropDownButton.BackgroundTransparency = 1.000
 			DropDownButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropDownButton.BorderSizePixel = 0
 			DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)
@@ -779,9 +819,8 @@ function library:CreateWindow()
 			DropDownButton.Font = Enum.Font.SourceSans
 			DropDownButton.Text = "+"
 			DropDownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-			DropDownButton.TextSize = 44
-		
-			local DropDownContainer = Instance.new("ScrollingFrame")
+			DropDownButton.TextSize = 44.000
+
 			DropDownContainer.Name = "DropDownContainer"
 			DropDownContainer.Parent = DropDown
 			DropDownContainer.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
@@ -790,15 +829,22 @@ function library:CreateWindow()
 			DropDownContainer.Position = UDim2.new(0, 0, 0.973684192, 0)
 			DropDownContainer.Size = UDim2.new(0, 372, 0, 449)
 			DropDownContainer.Visible = false
-		
-			local DropDownContainerUIGridLayout = Instance.new("UIGridLayout")
+
 			DropDownContainerUIGridLayout.Name = "DropDownContainerUIGridLayout"
 			DropDownContainerUIGridLayout.Parent = DropDownContainer
 			DropDownContainerUIGridLayout.FillDirection = Enum.FillDirection.Vertical
 			DropDownContainerUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			DropDownContainerUIGridLayout.CellSize = UDim2.new(1, 40, 0, 40)
-		
-			local DropDownSearchTextBox = Instance.new("TextBox")
+
+			DropDownUIListLayout.Name = "DropDownUIListLayout"
+			DropDownUIListLayout.Parent = DropDownContainer
+			DropDownUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			DropDownUIListLayout.Padding = UDim.new(0, 3)
+
+			DropDownUIGridLayout.Name = "DropDownUIGridLayout"
+			DropDownUIGridLayout.Parent = DropDownContainer
+			DropDownUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
 			DropDownSearchTextBox.Name = "DropDownSearchTextBox"
 			DropDownSearchTextBox.Parent = DropDownContainer
 			DropDownSearchTextBox.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
@@ -809,8 +855,41 @@ function library:CreateWindow()
 			DropDownSearchTextBox.PlaceholderText = "Search..."
 			DropDownSearchTextBox.Text = ""
 			DropDownSearchTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-			DropDownSearchTextBox.TextSize = 21
-		
+			DropDownSearchTextBox.TextSize = 21.000
+
+			local function DropDownSearchTextBox() -- DropdownOptionsHolder.LocalScript 
+				local script = Instance.new('LocalScript', DropDownContainer)
+
+				local SearchBar = script.Parent.DropDownSearchTextBox
+
+				local Items = script.Parent
+
+				function UpdateResults()
+					local Search = string.lower(SearchBar.Text)
+					for i,v in pairs(Items:GetChildren()) do
+						if v:IsA("TextButton") then
+							if Search ~= "" then
+								local Item = string.lower(v.Text)
+								if string.find(Item, Search) then
+									v.Visible = true
+								else
+									v.Visible = false
+								end
+							else
+								v.Visible = true
+							end
+						end
+					end
+				end
+
+				SearchBar.Changed:Connect(UpdateResults)
+			end
+			coroutine.wrap(DropDownSearchTextBox)()
+
+			DropDownContainer.ChildAdded:Connect(function()
+				DropDownContainer.CanvasSize = UDim2.new(0,0,0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 80)
+			end)
+
 			local function UpdateTitleText()
 				if #MultiSelectedItems == 0 then
 					DropDownTitle.Text = DropDownName.. ": None"
@@ -821,17 +900,26 @@ function library:CreateWindow()
 					DropDownTitle.Text = DropDownName.. ": ".. selectedText
 				end
 			end
-		
-			local function ToggleItemSelection(item)
-				for i, selected in ipairs(MultiSelectedItems) do
-					if selected == item then
+
+			local function ToggleItemSelection(item, button)
+				local selected = false
+				for i, selectedItem in ipairs(MultiSelectedItems) do
+					if selectedItem == item then
 						table.remove(MultiSelectedItems, i)
-						return
+						button.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Reset background color
+						button.BackgroundTransparency = 1
+						selected = true
+						break
 					end
 				end
-				table.insert(MultiSelectedItems, item)
+				if not selected then
+					table.insert(MultiSelectedItems, item)
+					button.BackgroundColor3 = Color3.fromRGB(40, 40, 40) -- Darker highlight for selected item
+					button.BackgroundTransparency = 0
+				end
 			end
-		
+
+
 			local function CreateDropDownItem(itemName)
 				local DropDownTextButton = Instance.new("TextButton")
 				DropDownTextButton.Name = "DropDownTextButton"
@@ -846,46 +934,60 @@ function library:CreateWindow()
 				DropDownTextButton.TextSize = 22
 				DropDownTextButton.TextXAlignment = Enum.TextXAlignment.Left
 				DropDownTextButton.Text = itemName
-		
+
 				DropDownTextButton.MouseButton1Click:Connect(function()
-					ToggleItemSelection(itemName)
+					ToggleItemSelection(itemName, DropDownTextButton)
 					UpdateTitleText()
 					CallBack(MultiSelectedItems)
 				end)
+
+				-- Store the button for later use
+				SelectedItemButtons[itemName] = DropDownTextButton
 			end
-		
+
 			for _, itemName in ipairs(ItemList) do
 				CreateDropDownItem(itemName)
 			end
-		
-			DropDownButton.MouseButton1Click:Connect(function()
-				DropDownContainer.Visible = not DropDownContainer.Visible
-		
+
+			local BeforeOpenn = nil
+
+			local function ToggleDropDown()
 				if DropDownContainer.Visible then
-					-- Hide other elements in InsideActContanierScrollingFrame
-					for _, v in ipairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v ~= DropDown and v:IsA("Frame") or v:IsA("TextButton") then
-							v.Visible = false
-						end
-					end
-				else
-					-- Show all elements in InsideActContanierScrollingFrame
-					for _, v in ipairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("Frame") or v:IsA("TextButton") then
+					-- If the dropdown is visible, hide it and make elements visible again
+					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") then
 							v.Visible = true
 						end
 					end
+					InsideActContanierScrollingFrame.CanvasSize = BeforeOpenn
+					DropDownContainer.Visible = false
+				else
+					-- If the dropdown is not visible, hide elements and show the dropdown
+					BeforeOpenn = InsideActContanierScrollingFrame.CanvasSize
+					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") then
+							v.Visible = false
+						end
+					end
+					DropDownContainer.Visible = true
+					DropDownContainer.Parent.Visible = true
 				end
-			end)
-		
+			end
+
+			DropDownButton.MouseButton1Click:Connect(ToggleDropDown)
+
 			DropDownContainer.ChildAdded:Connect(function()
-				DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 80)
+				DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, DropDownContainerUIListLayout.AbsoluteContentSize.Y + 4)
 			end)
-		
+
 			-- Initial title update
 			UpdateTitleText()
 		end
-		
+
+
+
+
+
 
 
 		function Module:CreateDropdown(DropDownName, ItemList, CallBack)
@@ -1068,28 +1170,83 @@ function library:CreateWindow()
 				end)
 			end
 
+
+
+			local BeforeOpen = nil
+
+
 			DropDownButton.MouseButton1Click:Connect(function()
-				if DropDownContainer.Visible == true then
-					for _,v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("TextButton") or v:IsA("TextBox") then
+				if DropDownContainer.Visible then
+					-- If the dropdown is visible, hide it and make elements visible again
+					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") then
 							v.Visible = true
 						end
 					end
 					InsideActContanierScrollingFrame.CanvasSize = BeforeOpen
 					DropDownContainer.Visible = false
 				else
-
-					for _,v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("Frame") or v:IsA("TextButton") then
+					-- If the dropdown is not visible, hide elements and show the dropdown
+					BeforeOpen = InsideActContanierScrollingFrame.CanvasSize
+					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") then
 							v.Visible = false
 						end
 					end
-					BeforeOpen = InsideActContanierScrollingFrame.CanvasSize
 					DropDownContainer.Visible = true
 					DropDownContainer.Parent.Visible = true
 				end
 			end)
 
+
+			for _, DropDownTextButton in pairs(DropDownContainer:GetChildren()) do
+				if DropDownTextButton:IsA("TextButton") then
+					DropDownTextButton.MouseButton1Click:Connect(function()
+						local v = DropDownTextButton.Text -- Assuming the text button's text is the value
+						DropDownTitle.Text = DropDownName .. ": " .. v
+						pcall(CallBack, v)
+						for _, d in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+							if d:IsA("Frame") or d:IsA("TextButton") then
+								d.Visible = true
+							end
+						end
+						InsideActContanierScrollingFrame.CanvasSize = BeforeOpen
+						DropDownContainer.Visible = false
+					end)
+				end
+			end
+
+		end
+
+
+
+		function Module:CreateDivider(DividerText)
+			assert(type(DividerText) == "string", "specify type string for EditLabel() function")
+
+			local Divider = Instance.new("TextLabel")
+			local DividerDivider = Instance.new("Frame")
+
+			Divider.Name = "Divider"
+			Divider.Parent = InsideActContanierScrollingFrame
+			Divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Divider.BackgroundTransparency = 1.000
+			Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Divider.BorderSizePixel = 0
+			Divider.Size = UDim2.new(0, 378, 0, 38)
+			Divider.Font = Enum.Font.Bangers
+			Divider.Text = DividerText
+			Divider.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Divider.TextSize = 25.000
+			Divider.Visible = true
+
+			DividerDivider.Name = "DividerDivider"
+			DividerDivider.Parent = Divider
+			DividerDivider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			DividerDivider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			DividerDivider.BorderSizePixel = 0
+			DividerDivider.Position = UDim2.new(-0.0161290318, 0, 1.12407315, 0)
+			DividerDivider.Size = UDim2.new(0, 390, 0, -3)
+			DividerDivider.Visible = true
 		end
 
 
@@ -1174,7 +1331,7 @@ function library:CreateWindow()
 			DividerDivider.Position = UDim2.new(-0.0161290318, 0, 1.12407315, 0)
 			DividerDivider.Size = UDim2.new(0, 390, 0, -3)
 			DividerDivider.Visible = true
-			
+
 
 
 		end
@@ -1249,11 +1406,13 @@ end)
 Main:CreateDivider("Auto Farms")
 
 Main:CreateToggle("Auto Farm", true, function()
-  
+	game.Players.LocalPlayer.Character.Humanoid.Jump = true
 end)
 
 
-
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = true
+end)
 
 --Upgrades
 
@@ -1347,15 +1506,15 @@ end)
 
 Misc:CreateButton("Redeem Codes", function()
 	for i,v in pairs(Codes) do
-        local args = {
-            [1] = "Shop",
-            [2] = {
-                [1] = "UseCode",
-                [2] = v
-            }
-        }
+		local args = {
+			[1] = "Shop",
+			[2] = {
+				[1] = "UseCode",
+				[2] = v
+			}
+		}
 
-        game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
+		game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
 	end
 end)
 
@@ -1390,9 +1549,9 @@ Misc:CreateButton("Uninject and Rejoin", function()
 	game:GetService("CoreGui").FATALITY:Destroy()
 	TeleportService:Teleport(game.PlaceId)
 end)
-	
-	
-	
-	--]]
-		
+
+
+
+--]]
+
 return library
