@@ -541,10 +541,11 @@ function library:CreateWindow()
 					togglingg = false
 					-- Optionally wait for any ongoing processes to complete
 					wait(0.5)
-				end
+				
 
 				-- Destroy the UI
 				FATALITY:Destroy()
+				end
 			end)
 		end
 
@@ -637,8 +638,8 @@ function library:CreateWindow()
 					end
 					toggling = false
 					wait(0.5)
-				end
 				FATALITY:Destroy()
+			end
 			end)
 
 			-- Initially start the toggle callback if Repeat is true
@@ -1346,7 +1347,7 @@ local ui = library:CreateWindow("Baseplate")
 
 
 local Main = ui:new("Main")
-local Upgrade = ui:new("Upgrades")
+local Info = ui:new("Upgrades")
 local Egg = ui:new("Pets")
 local tp = ui:new("Teleport")
 local Misc = ui:new("Misc")
@@ -1383,7 +1384,127 @@ end)
 
 
 
+-- Labels
 
+Info:CreateDivider("Hive Stats")
+
+
+Info:CreateLabel("HoneyMade", "Honey Made: 0?")
+
+Info:CreateLabel("Estimated Honey", "Estimated Honey Gain In A Hour: 0?")
+
+Info:CreateLabel("Estimated Day Honey", "Estimated Honey Gain In A Day: 0?")
+
+
+Info:CreateDivider("Balloon Info")
+
+
+Info:CreateLabel("BalloonBlessing", "Your Balloon Blessing is at: Waiting For Balloon")
+
+
+Info:CreateLabel("Balloon", "Your Balloon Pollen is at: Waiting For Balloon")
+
+
+--[[
+
+Info:CreateDivider("Mob Timers")
+
+
+Info:CreateLabel("Mondo", "Mondo Chick Timer: 0?")
+
+
+
+Info:CreateLabel("Spider", "Spider Crab Timer: 0?")
+
+
+Info:CreateLabel("WereWolf", "WereWolf Crab Timer: 0?")
+
+--]]
+local BeforeHoney = Player.CoreStats.Honey.Value
+local StartTime = os.time()  
+
+local function formatNumberWithCommas(number)
+
+	local formatted = tostring(number)
+
+
+	formatted = string.reverse(formatted)
+	formatted = string.gsub(formatted, "(%d%d%d)", "%1,")
+
+
+	formatted = string.gsub(formatted, ",$", "")
+	formatted = string.reverse(formatted)
+
+	return formatted
+end
+
+
+
+-- Function to format large numbers with abbreviations
+local function formatNumberWithAbbreviation(number)
+	local suffixes = {"", "K", "M", "B", "T", "Qd"}  -- Suffixes for thousand, million, billion, trillion
+
+	local formattedNumber = tonumber(number)
+	local suffixIndex = 1
+
+	while formattedNumber >= 1000 and suffixIndex < #suffixes do
+		formattedNumber = formattedNumber / 1000
+		suffixIndex = suffixIndex + 1
+	end
+
+	return string.format("%.1f%s", formattedNumber, suffixes[suffixIndex])
+end
+
+
+
+
+
+Info:CreateActiveToggle("Activate List", true, function()
+	local Current = Player.CoreStats.Honey.Value
+	local UpdatedHoney = Current - BeforeHoney
+	local formattedHoney = formatNumberWithAbbreviation(UpdatedHoney)
+
+	Info:EditLabel("HoneyMade", "Honey Made: " .. formattedHoney)
+
+
+
+	local Current = Player.CoreStats.Honey.Value
+	local ElapsedTime = os.time() - StartTime 
+	local HoneyGainedInHour = (Current - BeforeHoney) / ElapsedTime * 3600
+	local formattedHoneyGained = formatNumberWithAbbreviation(HoneyGainedInHour)
+
+	Info:EditLabel("Estimated Honey", "Estimated Honey Gain In A Hour: ".. formattedHoneyGained)
+
+
+
+	local Currentt = Player.CoreStats.Honey.Value
+	local ElapsedTimee = os.time() - StartTime  
+	local HoneyGainedInHourr = (Currentt - BeforeHoney) / ElapsedTimee * 86400  
+	local formattedHoneyGainedd = formatNumberWithAbbreviation(HoneyGainedInHourr)
+
+	Info:EditLabel("Estimated Day Honey", "Estimated Honey Gain In A Day: ".. formattedHoneyGainedd)
+
+
+
+
+	if WS.Balloons.HiveBalloons:FindFirstChild("HiveBalloonInstance") == nil then
+		repeat
+			task.wait()
+		until WS.Balloons.HiveBalloons:FindFirstChild("HiveBalloonInstance")
+	else
+
+
+		local BalloonPollen = WS.Balloons.HiveBalloons.HiveBalloonInstance.BalloonBody.GuiAttach.Gui.Bar.TextLabel.Text
+
+		Info:EditLabel("Balloon", "Your Balloon Pollen is at: "..BalloonPollen)
+
+
+		local BalloonBlessing = WS.Balloons.HiveBalloons.HiveBalloonInstance.BalloonBody.GuiAttach.Gui.BlessingBar.TextLabel.Text
+
+		Info:EditLabel("BalloonBlessing", "Your Balloon Blessing is at: "..BalloonBlessing)
+
+	end
+end)
 
 
 --Main
