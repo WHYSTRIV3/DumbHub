@@ -230,70 +230,7 @@ function library:CreateWindow()
 	Warning.Size = UDim2.new(0, 406, 0, 329)
 	Warning.Visible = true
 
-	WarningUICorner.CornerRadius = UDim.new(0, 4)
-	WarningUICorner.Name = "ActivactionsContainerUICorner"
-	WarningUICorner.Parent = Warning
 
-	TextLabel.Parent = Warning
-	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel.BackgroundTransparency = 1.000
-	TextLabel.BorderColor3 = Color3.fromRGB(170, 0, 0)
-	TextLabel.BorderSizePixel = 0
-	TextLabel.Position = UDim2.new(0.024630541, 0, 0.471124619, 0)
-	TextLabel.Size = UDim2.new(0, 386, 0, 58)
-	TextLabel.Font = Enum.Font.SourceSans
-	TextLabel.Text = "Thanks for using Fatality, Enjoy!"
-	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel.TextSize = 28.000
-
-	Welcome.Name = "Welcome"
-	Welcome.Parent = Warning
-	Welcome.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Welcome.BackgroundTransparency = 1.000
-	Welcome.BorderColor3 = Color3.fromRGB(170, 0, 0)
-	Welcome.BorderSizePixel = 0
-	Welcome.Position = UDim2.new(0, 0, 0.0151975686, 0)
-	Welcome.Size = UDim2.new(0, 386, 0, 58)
-	Welcome.Font = Enum.Font.SourceSans
-	Welcome.Text = "Warning!!"
-	Welcome.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Welcome.TextSize = 54.000
-
-	TextLabel_2.Parent = Warning
-	TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel_2.BackgroundTransparency = 1.000
-	TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	TextLabel_2.BorderSizePixel = 0
-	TextLabel_2.Position = UDim2.new(0.253694594, 0, 0.212765962, 0)
-	TextLabel_2.Size = UDim2.new(0, 200, 0, 50)
-	TextLabel_2.Font = Enum.Font.SourceSans
-	TextLabel_2.Text = "I'm not reliable for any bans"
-	TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel_2.TextSize = 26.000
-
-	TextLabel_3.Parent = Warning
-	TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel_3.BackgroundTransparency = 1.000
-	TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	TextLabel_3.BorderSizePixel = 0
-	TextLabel_3.Position = UDim2.new(0.155172408, 0, 0.331306994, 0)
-	TextLabel_3.Size = UDim2.new(0, 259, 0, 50)
-	TextLabel_3.Font = Enum.Font.SourceSans
-	TextLabel_3.Text = "Use a private server"
-	TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel_3.TextSize = 26.000
-
-	TextLabel_4.Parent = Warning
-	TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel_4.BackgroundTransparency = 1.000
-	TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	TextLabel_4.BorderSizePixel = 0
-	TextLabel_4.Position = UDim2.new(-0.0172413792, 0, 0.848024309, 0)
-	TextLabel_4.Size = UDim2.new(0, 259, 0, 50)
-	TextLabel_4.Font = Enum.Font.SourceSans
-	TextLabel_4.Text = "<-- Click a tab to get started"
-	TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel_4.TextSize = 22.000
 
 
 
@@ -322,18 +259,18 @@ function library:CreateWindow()
 
 
 	local Category = {}
+
+	local firstTabCreated = false -- Flag to check if the first tab is created
+	
 	function Category:new(TabName)
 		assert(typeof(TabName) == "string", "specify type string for CreateNew function")
-
+	
 		local Tab = Instance.new("TextButton")
-
+	
 		local InsideActContanierScrollingFrame = Instance.new("ScrollingFrame")
 		local InsideActContanierScrollingFrameUIPadding = Instance.new("UIPadding")
 		local InsideActContanierScrollingFrameUIListLayout = Instance.new("UIListLayout")
-
-
-
-
+	
 		InsideActContanierScrollingFrame.Name = "InsideActContanierScrollingFrame"
 		InsideActContanierScrollingFrame.Parent = ActivactionsContainer
 		InsideActContanierScrollingFrame.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
@@ -342,24 +279,25 @@ function library:CreateWindow()
 		InsideActContanierScrollingFrame.Position = UDim2.new(0.0147783253, 0, 0.110889658, 0)
 		InsideActContanierScrollingFrame.Size = UDim2.new(0, 394, 0, 292)
 		InsideActContanierScrollingFrame.ScrollBarThickness = 4
-		InsideActContanierScrollingFrame.Visible = false
-
-
-
+	
+		if not firstTabCreated then
+			InsideActContanierScrollingFrame.Visible = true
+			SelectedTab.Text = TabName .. " Tab"
+			firstTabCreated = true
+		else
+			InsideActContanierScrollingFrame.Visible = false
+		end
+	
 		InsideActContanierScrollingFrameUIListLayout.Name = "InsideActContanierScrollingFrameUIListLayout"
 		InsideActContanierScrollingFrameUIListLayout.Parent = InsideActContanierScrollingFrame
 		InsideActContanierScrollingFrameUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		InsideActContanierScrollingFrameUIListLayout.Padding = UDim.new(0, 5)
-
+	
 		InsideActContanierScrollingFrameUIPadding.Name = "InsideActContanierScrollingFrameUIPadding"
 		InsideActContanierScrollingFrameUIPadding.Parent = InsideActContanierScrollingFrame
 		InsideActContanierScrollingFrameUIPadding.PaddingLeft = UDim.new(0, 6)
 		InsideActContanierScrollingFrameUIPadding.PaddingTop = UDim.new(0, 5)
-
-
-
-
-
+	
 		Tab.Name = "Tab"
 		Tab.Parent = TabContainer
 		Tab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -373,8 +311,7 @@ function library:CreateWindow()
 		Tab.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Tab.TextSize = 20.000
 		Tab.TextXAlignment = Enum.TextXAlignment.Left
-
-
+	
 		SelectedTab.Name = "SelectedTab"
 		SelectedTab.Parent = ActivactionsContainer
 		SelectedTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -384,23 +321,25 @@ function library:CreateWindow()
 		SelectedTab.Position = UDim2.new(0.0295566507, 0, 0.0182370823, 0)
 		SelectedTab.Size = UDim2.new(0, 188, 0, 27)
 		SelectedTab.Font = Enum.Font.Bangers
-		SelectedTab.Text = " "
+		SelectedTab.Text = firstTabCreated and SelectedTab.Text or (TabName .. " Tab")
 		SelectedTab.TextColor3 = Color3.fromRGB(255, 255, 255)
 		SelectedTab.TextSize = 20.000
 		SelectedTab.TextXAlignment = Enum.TextXAlignment.Left
-
-
+	
 		Tab.MouseButton1Click:Connect(function()
-			for _,v in pairs(ActivactionsContainer:GetChildren()) do
+			for _, v in pairs(ActivactionsContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
 					v.Visible = false
 					Warning.Visible = false
 				end
 			end
 			InsideActContanierScrollingFrame.Visible = true
-			SelectedTab.Text = TabName.. " Tab"
+			SelectedTab.Text = TabName .. " Tab"
 		end)
 
+	
+
+	
 
 		local Module = {}
 
@@ -1527,12 +1466,12 @@ end)
 Main:CreateDivider("Auto Farms")
 
 Main:CreateToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = true
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
 end)
 
 
 Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = true
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
 end)
 
 --Upgrades
