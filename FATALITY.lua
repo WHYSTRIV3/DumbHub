@@ -104,10 +104,6 @@ function library:CreateWindow()
 	FatalityLogo.Image = "rbxassetid://17308281713"
 
 
-
-
-
-
 	FatalityTitle.Name = "FatalityTitle"
 	FatalityTitle.Parent = Main
 	FatalityTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -271,7 +267,7 @@ function library:CreateWindow()
 		local InsideActContanierScrollingFrame = Instance.new("ScrollingFrame")
 		local InsideActContanierScrollingFrameUIPadding = Instance.new("UIPadding")
 		local InsideActContanierScrollingFrameUIListLayout = Instance.new("UIListLayout")
-	
+		
 		InsideActContanierScrollingFrame.Name = "InsideActContanierScrollingFrame"
 		InsideActContanierScrollingFrame.Parent = ActivactionsContainer
 		InsideActContanierScrollingFrame.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
@@ -280,13 +276,17 @@ function library:CreateWindow()
 		InsideActContanierScrollingFrame.Position = UDim2.new(0.0147783253, 0, 0.110889658, 0)
 		InsideActContanierScrollingFrame.Size = UDim2.new(0, 394, 0, 292)
 		InsideActContanierScrollingFrame.ScrollBarThickness = 4
-
-	
+		InsideActContanierScrollingFrame.CanvasSize = UDim2.new(0,0,0,0)
+		
 		InsideActContanierScrollingFrameUIListLayout.Name = "InsideActContanierScrollingFrameUIListLayout"
 		InsideActContanierScrollingFrameUIListLayout.Parent = InsideActContanierScrollingFrame
 		InsideActContanierScrollingFrameUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		InsideActContanierScrollingFrameUIListLayout.Padding = UDim.new(0, 5)
-	
+		
+		InsideActContanierScrollingFrame.ChildAdded:Connect(function(child)
+			InsideActContanierScrollingFrame.CanvasSize = UDim2.new(0,0,0,InsideActContanierScrollingFrameUIListLayout.AbsoluteContentSize.Y + 70) -- Change 70 to your choosing.
+		end)
+		
 		InsideActContanierScrollingFrameUIPadding.Name = "InsideActContanierScrollingFrameUIPadding"
 		InsideActContanierScrollingFrameUIPadding.Parent = InsideActContanierScrollingFrame
 		InsideActContanierScrollingFrameUIPadding.PaddingLeft = UDim.new(0, 6)
@@ -305,6 +305,20 @@ function library:CreateWindow()
 		Tab.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Tab.TextSize = 20.000
 		Tab.TextXAlignment = Enum.TextXAlignment.Left
+
+		SelectedTab.Name = "SelectedTab"
+		SelectedTab.Parent = ActivactionsContainer
+		SelectedTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		SelectedTab.BackgroundTransparency = 1.000
+		SelectedTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		SelectedTab.BorderSizePixel = 0
+		SelectedTab.Position = UDim2.new(0.0295566507, 0, 0.0182370823, 0)
+		SelectedTab.Size = UDim2.new(0, 188, 0, 27)
+		SelectedTab.Font = Enum.Font.Bangers
+		SelectedTab.Text = " "
+		SelectedTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+		SelectedTab.TextSize = 20.000
+		SelectedTab.TextXAlignment = Enum.TextXAlignment.Left
 
 
 		if not firstTabCreated then
@@ -1472,6 +1486,96 @@ end)
 Main:CreateActiveToggle("Auto Farm", true, function()
 	game.Players.LocalPlayer.Character.Humanoid.Jump = false
 end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+Main:CreateActiveToggle("Auto Farm", true, function()
+	game.Players.LocalPlayer.Character.Humanoid.Jump = false
+end)
+
+
 
 --Upgrades
 
