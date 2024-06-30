@@ -1114,7 +1114,7 @@ function library:CreateWindow()
 					DropDownTitle.Text = DropDownName .. ": " .. v
 					pcall(CallBack, v)
 					for _, d in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if d:IsA("Frame") or d:IsA("TextButton") then
+						if d:IsA("Frame") or d:IsA("TextButton") or d:IsA("TextLabel") then
 							d.Visible = true
 						end
 					end
