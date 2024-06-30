@@ -1169,6 +1169,10 @@ function library:CreateWindow()
 					DropDownButton.Position = UDim2.new(0.878873229, 0, -0.1, 0)  -- Adjust position
 				end
 			end)
+			if defaultValue then
+				DropDownTitle.Text = DropDownName .. ": " .. defaultValue
+				pcall(CallBack, defaultValue)
+			end
 		end
 		
 		
@@ -1462,42 +1466,128 @@ end)
 
 
 --Main
+getgenv().ToggleTable = { 
+	Toggles = {
+		AutoFarm = false,
+		AutoDig = false,
+		AutoCollect = false,
+		IgnoreHoneyCollect = false,
+		ConvertBalloon = false,
+		FarmFuzzyBombs = false,
+		FarmBubbleBloat = false,
+		FarmBalloon = false,
+		AutoSticker = false,
+		FarmingField = false,
+		FarmFlames = false,
+		farmflower = false,
+		AutoHoneyMaskEquip = false,
 
-local Teleport = true
+	}
+}
 
-local GetMethods = {"Default", "Micro-Converters", "Instant Converters"}
+local Feilds = {
+	"Mushroom Field", 
+	"Strawberry Field", 
+	"Sunflower Field", 
+	"Blue Flower Field", 
+	"Spider Field", 
+	"Pumpkin Patch", 
+	"Mountain Top Field", 
+	"Bamboo Field", 
+	"Pine Tree Forest", 
+	"Rose Field", 
+	"Cactus Field", 
+	"Stump Field", 
+	"Clover Field", 
+	"Coconut Field", 
+	"Pepper Patch",
+	"Pineapple Patch", 
+	"Dandelion Field"
+}
 
-Main:CreateDropdown("Select Converting Method", GetMethods, function(selected)
-    SelectedConvertingMethod = selected
-end, "Default Converting")
-
-Main:CreateDivider("Auto Farms")
 
 
 
+local SelectedField;
 
-Main:CreateDropdown("Selected Farm", Codes,  function(Farms)
-	_G.SelectedFarm = Farms
+function getFields()
+	local Fields = {}
+
+	for i,v in pairs(game:GetService("Workspace").FlowerZones:GetChildren()) do
+		table.insert(Fields, v.Name)
+	end
+	return Fields
+end
+Main:CreateDropdown("Select Field", getFields(),function(Field)
+	SelectedField = Field
+end, "Dandelion Field")
+
+
+
+
+
+
+
+local previousField = nil
+local tween = nil
+
+
+
+
+
+
+
+Main:CreateToggle("Auto Farm", false, function(isEnabled)
+    ToggleTable.Toggles.AutoFarm = isEnabled
+
+    spawn(function()
+        while ToggleTable.Toggles.AutoFarm do
+            task.wait()
+
+            if isEnabled then
+                if SelectedField then
+                    local currentField = SelectedField
+                    local targetCFrame = WS.FlowerZones[currentField].CFrame * CFrame.new(0, 5, 0)
+                    local tweenTime = 7
+
+                    -- Tween to the new selected field if it has changed
+                    if currentField ~= previousField then
+                        previousField = currentField
+
+                        local humanoidRootPart = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
+                        if humanoidRootPart then
+                            local tweenInfo = TweenInfo.new(tweenTime, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false, 0)
+                            local tween = game:GetService("TweenService"):Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
+                            tween:Play()
+
+                            -- Wait for tween completion
+                            tween.Completed:Wait()
+                            
+                            -- Fire server event and perform other actions
+                            game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer(unpack(Sprinkler))
+                            wait(0.5)
+                            moveAroundTarget(targetCFrame.Position)
+                        end
+                    end
+                else
+                    previousField = nil
+                    -- Handle stopping actions when SelectedField is nil
+                    -- Cancel tween if exists
+                    if tween then
+                        tween:Cancel()
+                    end
+                end
+            else
+                -- Handle stopping actions when AutoFarm is toggled off
+                previousField = nil
+                -- Cancel tween if exists
+                if tween then
+                    tween:Cancel()
+                end
+            end
+        end
+    end)
 end)
-
-
-
-
-Main:CreateDivider("Auto Farms")
-
-Main:CreateToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
 
 --Upgrades
 
