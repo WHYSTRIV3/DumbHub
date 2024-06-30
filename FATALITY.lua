@@ -281,10 +281,10 @@ function library:CreateWindow()
 		InsideActContanierScrollingFrameUIListLayout.Name = "InsideActContanierScrollingFrameUIListLayout"
 		InsideActContanierScrollingFrameUIListLayout.Parent = InsideActContanierScrollingFrame
 		InsideActContanierScrollingFrameUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		InsideActContanierScrollingFrameUIListLayout.Padding = UDim.new(0, 5)
+		InsideActContanierScrollingFrameUIListLayout.Padding = UDim.new(0, 7)
 		
 		InsideActContanierScrollingFrame.ChildAdded:Connect(function(child)
-			InsideActContanierScrollingFrame.CanvasSize = UDim2.new(0,0,0,InsideActContanierScrollingFrameUIListLayout.AbsoluteContentSize.Y + 70) -- Change 70 to your choosing.
+			InsideActContanierScrollingFrame.CanvasSize = UDim2.new(0,0,0,InsideActContanierScrollingFrameUIListLayout.AbsoluteContentSize.Y + 80) -- Change 70 to your choosing.
 		end)
 		
 		InsideActContanierScrollingFrameUIPadding.Name = "InsideActContanierScrollingFrameUIPadding"
