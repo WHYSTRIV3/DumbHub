@@ -261,9 +261,10 @@ function library:CreateWindow()
 	local Category = {}
 
 	local firstTabCreated = false -- Flag to check if the first tab is created
+	local selectedTab = nil -- Variable to keep track of the currently selected tab
 	
 	function Category:new(TabName)
-		assert(typeof(TabName) == "string", "specify type string for CreateNew function")
+		assert(typeof(TabName) == "string", "Specify type string for CreateNew function")
 	
 		local Tab = Instance.new("TextButton")
 	
@@ -279,14 +280,7 @@ function library:CreateWindow()
 		InsideActContanierScrollingFrame.Position = UDim2.new(0.0147783253, 0, 0.110889658, 0)
 		InsideActContanierScrollingFrame.Size = UDim2.new(0, 394, 0, 292)
 		InsideActContanierScrollingFrame.ScrollBarThickness = 4
-	
-		if not firstTabCreated then
-			InsideActContanierScrollingFrame.Visible = true
-			SelectedTab.Text = TabName .. " Tab"
-			firstTabCreated = true
-		else
-			InsideActContanierScrollingFrame.Visible = false
-		end
+
 	
 		InsideActContanierScrollingFrameUIListLayout.Name = "InsideActContanierScrollingFrameUIListLayout"
 		InsideActContanierScrollingFrameUIListLayout.Parent = InsideActContanierScrollingFrame
@@ -311,22 +305,32 @@ function library:CreateWindow()
 		Tab.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Tab.TextSize = 20.000
 		Tab.TextXAlignment = Enum.TextXAlignment.Left
+
+
+		if not firstTabCreated then
+			InsideActContanierScrollingFrame.Visible = true
+			SelectedTab.Text = TabName .. " Tab"
+			firstTabCreated = true
+			Tab.TextColor3 = Color3.fromRGB(170, 0, 0) -- Highlight the first tab
+			selectedTab = Tab -- Set the first tab as selected
+		else
+			InsideActContanierScrollingFrame.Visible = false
+		end
 	
-		SelectedTab.Name = "SelectedTab"
-		SelectedTab.Parent = ActivactionsContainer
-		SelectedTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		SelectedTab.BackgroundTransparency = 1.000
-		SelectedTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		SelectedTab.BorderSizePixel = 0
-		SelectedTab.Position = UDim2.new(0.0295566507, 0, 0.0182370823, 0)
-		SelectedTab.Size = UDim2.new(0, 188, 0, 27)
-		SelectedTab.Font = Enum.Font.Bangers
-		SelectedTab.Text = firstTabCreated and SelectedTab.Text or (TabName .. " Tab")
-		SelectedTab.TextColor3 = Color3.fromRGB(255, 255, 255)
-		SelectedTab.TextSize = 20.000
-		SelectedTab.TextXAlignment = Enum.TextXAlignment.Left
-	
+
 		Tab.MouseButton1Click:Connect(function()
+			-- Reset the previously selected tab color
+			if selectedTab then
+				selectedTab.TextColor3 = Color3.fromRGB(255, 255, 255) -- Original color
+			end
+	
+			-- Highlight the clicked tab
+			Tab.TextColor3 = Color3.fromRGB(170, 0, 0)
+	
+			-- Update the selected tab reference
+			selectedTab = Tab
+	
+			-- Toggle visibility of scrolling frames and update selected tab text
 			for _, v in pairs(ActivactionsContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
 					v.Visible = false
@@ -336,6 +340,8 @@ function library:CreateWindow()
 			InsideActContanierScrollingFrame.Visible = true
 			SelectedTab.Text = TabName .. " Tab"
 		end)
+
+	
 
 	
 
@@ -717,6 +723,8 @@ function library:CreateWindow()
 			local DropDownSearchTextBox = Instance.new("TextBox")
 			local DropDownUIPadding = Instance.new("UIPadding")
 			local DropDownContainerUIGridLayout = Instance.new("UIGridLayout")
+			local DropDownTitleTextSizeConstraint = Instance.new("UITextSizeConstraint")
+
 
 			DropDown.Name = "DropDown"
 			DropDown.Parent = InsideActContanierScrollingFrame
@@ -742,6 +750,12 @@ function library:CreateWindow()
 			DropDownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownTitle.TextSize = 20.000
 			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
+			DropDownTitle.TextScaled = true
+
+				-- Adding UITextSizeConstraint
+			DropDownTitleTextSizeConstraint.Parent = DropDownTitle
+			DropDownTitleTextSizeConstraint.MinTextSize = 10
+			DropDownTitleTextSizeConstraint.MaxTextSize = 20
 
 			DropDownTitlePadding.Name = "ToggleUIPadding"
 			DropDownTitlePadding.Parent = DropDownTitle
@@ -881,6 +895,21 @@ function library:CreateWindow()
 					CallBack(MultiSelectedItems)
 				end)
 
+
+				DropDownButton.MouseButton1Click:Connect(function()
+					DropDownContainer.Visible = not DropDownContainer.Visible
+					if DropDownContainer.Visible then
+						DropDownButton.Text = "-"
+						DropDownButton.TextSize = 65 -- Set the size for the minus sign
+						DropDownButton.Position = UDim2.new(0.878873229, 0, -0.1, 0)  -- Adjust position up
+					else
+						DropDownButton.Text = "+"
+						DropDownButton.TextSize = 44  -- Set the size back to original for the plus sign
+						DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)  -- Reset to original position
+					end
+				end)
+				
+
 				-- Store the button for later use
 				SelectedItemButtons[itemName] = DropDownTextButton
 			end
@@ -895,7 +924,7 @@ function library:CreateWindow()
 				if DropDownContainer.Visible then
 					-- If the dropdown is visible, hide it and make elements visible again
 					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") then
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel") then
 							v.Visible = true
 						end
 					end
@@ -905,7 +934,7 @@ function library:CreateWindow()
 					-- If the dropdown is not visible, hide elements and show the dropdown
 					BeforeOpenn = InsideActContanierScrollingFrame.CanvasSize
 					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") then
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel") then
 							v.Visible = false
 						end
 					end
@@ -931,11 +960,10 @@ function library:CreateWindow()
 
 
 		function Module:CreateDropdown(DropDownName, ItemList, CallBack)
-			assert(type(DropDownName) == "string", "specify type string for CreateDropdown() function")
-			assert(type(ItemList) == "table", "specify type table for CreateDropdown() function Example: {'wow', 'your cool', 'gay'}")
-			assert(type(CallBack) == "function", "specify type function for CreateDropdown()")
-
-
+			assert(type(DropDownName) == "string", "Specify type string for DropDownName")
+			assert(type(ItemList) == "table", "Specify type table for ItemList")
+			assert(type(CallBack) == "function", "Specify type function for CallBack")
+		
 			local DropDown = Instance.new("Frame")
 			local DropDownUICorner = Instance.new("UICorner")
 			local DropDownTitle = Instance.new("TextLabel")
@@ -947,36 +975,36 @@ function library:CreateWindow()
 			local DropDownSearchTextBox = Instance.new("TextBox")
 			local DropDownUIPadding = Instance.new("UIPadding")
 			local DropDownContainerUIGridLayout = Instance.new("UIGridLayout")
-
+		
 			DropDown.Name = "DropDown"
 			DropDown.Parent = InsideActContanierScrollingFrame
 			DropDown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 			DropDown.BorderColor3 = Color3.fromRGB(31, 31, 31)
 			DropDown.BorderSizePixel = 0
 			DropDown.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
-			DropDown.Size = UDim2.new(0, 378,0, 38)
-
+			DropDown.Size = UDim2.new(0, 378, 0, 38)
+		
 			DropDownUICorner.CornerRadius = UDim.new(0, 3)
 			DropDownUICorner.Name = "DropDownUICorner"
 			DropDownUICorner.Parent = DropDown
-
+		
 			DropDownTitle.Name = "DropDownTitle"
 			DropDownTitle.Parent = DropDown
 			DropDownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownTitle.BackgroundTransparency = 1.000
 			DropDownTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
 			DropDownTitle.BorderSizePixel = 0
-			DropDownTitle.Size = UDim2.new(0, 378,0, 38)
+			DropDownTitle.Size = UDim2.new(0, 378, 0, 38)
 			DropDownTitle.Font = Enum.Font.SourceSans
-			DropDownTitle.Text = DropDownName.. ": Nil"
+			DropDownTitle.Text = DropDownName .. ": None"
 			DropDownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownTitle.TextSize = 20.000
 			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
-
+		
 			DropDownTitlePadding.Name = "ToggleUIPadding"
 			DropDownTitlePadding.Parent = DropDownTitle
 			DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
-
+		
 			DropDownButton.Name = "DropDownButton"
 			DropDownButton.Parent = DropDown
 			DropDownButton.Active = false
@@ -990,7 +1018,7 @@ function library:CreateWindow()
 			DropDownButton.Text = "+"
 			DropDownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownButton.TextSize = 44.000
-
+		
 			DropDownContainer.Name = "DropDownContainer"
 			DropDownContainer.Parent = DropDown
 			DropDownContainer.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
@@ -999,22 +1027,22 @@ function library:CreateWindow()
 			DropDownContainer.Position = UDim2.new(0, 0, 0.973684192, 0)
 			DropDownContainer.Size = UDim2.new(0, 372, 0, 449)
 			DropDownContainer.Visible = false
-
+		
 			DropDownContainerUIGridLayout.Name = "DropDownContainerUIGridLayout"
 			DropDownContainerUIGridLayout.Parent = DropDownContainer
 			DropDownContainerUIGridLayout.FillDirection = Enum.FillDirection.Vertical
 			DropDownContainerUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			DropDownContainerUIGridLayout.CellSize = UDim2.new(1, 40, 0, 40)
-
+		
 			DropDownUIListLayout.Name = "DropDownUIListLayout"
 			DropDownUIListLayout.Parent = DropDownContainer
 			DropDownUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			DropDownUIListLayout.Padding = UDim.new(0, 3)
-
+		
 			DropDownUIGridLayout.Name = "DropDownUIGridLayout"
 			DropDownUIGridLayout.Parent = DropDownContainer
 			DropDownUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-
+		
 			DropDownSearchTextBox.Name = "DropDownSearchTextBox"
 			DropDownSearchTextBox.Parent = DropDownContainer
 			DropDownSearchTextBox.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
@@ -1026,14 +1054,13 @@ function library:CreateWindow()
 			DropDownSearchTextBox.Text = ""
 			DropDownSearchTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownSearchTextBox.TextSize = 21.000
-
+		
 			local function DropDownSearchTextBox() -- DropdownOptionsHolder.LocalScript 
 				local script = Instance.new('LocalScript', DropDownContainer)
-
+		
 				local SearchBar = script.Parent.DropDownSearchTextBox
-
 				local Items = script.Parent
-
+		
 				function UpdateResults()
 					local Search = string.lower(SearchBar.Text)
 					for i,v in pairs(Items:GetChildren()) do
@@ -1051,33 +1078,21 @@ function library:CreateWindow()
 						end
 					end
 				end
-
+		
 				SearchBar.Changed:Connect(UpdateResults)
 			end
 			coroutine.wrap(DropDownSearchTextBox)()
-
+		
 			DropDownContainer.ChildAdded:Connect(function()
 				DropDownContainer.CanvasSize = UDim2.new(0,0,0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 80)
 			end)
-
-
-
-
-			SelectedBar.Name = "SelectedBar"
-			SelectedBar.Parent = DropDownTextButton
-			SelectedBar.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
-			SelectedBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			SelectedBar.BorderSizePixel = 0
-			SelectedBar.Position = UDim2.new(-0.0272727273, 0, 0.253360152, 0)
-			SelectedBar.Size = UDim2.new(0, 4, 0, 19)
-
-
+		
 			local BeforeOpen = nil
-
+		
 			for _,v in pairs(ItemList) do
 				local DropDownTextButton = Instance.new("TextButton")
 				local DropDownTextButtonUIPadding = Instance.new("UIPadding")
-
+		
 				DropDownTextButton.Name = "DropDownTextButton"
 				DropDownTextButton.Parent = DropDownContainer
 				DropDownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1091,72 +1106,56 @@ function library:CreateWindow()
 				DropDownTextButton.TextSize = 22.000
 				DropDownTextButton.TextXAlignment = Enum.TextXAlignment.Left
 				DropDownTextButton.Text = v
-
-
-
+		
 				DropDownTextButtonUIPadding.Parent = DropDownTextButton
 				DropDownTextButtonUIPadding.PaddingLeft = UDim.new(0, 15)
-
+		
 				DropDownTextButton.MouseButton1Click:Connect(function()
-					DropDownTitle.Text = DropDownName..": "..v
+					DropDownTitle.Text = DropDownName .. ": " .. v
 					pcall(CallBack, v)
-					for _,d in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+					for _, d in pairs(InsideActContanierScrollingFrame:GetChildren()) do
 						if d:IsA("Frame") or d:IsA("TextButton") then
 							d.Visible = true
 						end
 					end
 					InsideActContanierScrollingFrame.CanvasSize = BeforeOpen
 					DropDownContainer.Visible = false
+					DropDownButton.Text = "+"  -- Reset text to plus sign
+					DropDownButton.TextSize = 44  -- Reset text size to original
+					DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)  -- Reset position
 				end)
 			end
-
-
-
-			local BeforeOpen = nil
-
-
+		
 			DropDownButton.MouseButton1Click:Connect(function()
 				if DropDownContainer.Visible then
 					-- If the dropdown is visible, hide it and make elements visible again
 					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") then
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel") then
 							v.Visible = true
 						end
 					end
 					InsideActContanierScrollingFrame.CanvasSize = BeforeOpen
 					DropDownContainer.Visible = false
+					DropDownButton.Text = "+"  -- Reset text to plus sign
+					DropDownButton.TextSize = 44  -- Reset text size to original
+					DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)  -- Reset position
 				else
 					-- If the dropdown is not visible, hide elements and show the dropdown
 					BeforeOpen = InsideActContanierScrollingFrame.CanvasSize
 					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") then
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel") then
 							v.Visible = false
 						end
 					end
 					DropDownContainer.Visible = true
 					DropDownContainer.Parent.Visible = true
+					DropDownButton.Text = "-"  -- Change text to minus sign
+					DropDownButton.TextSize = 65  -- Change text size for minus sign
+					DropDownButton.Position = UDim2.new(0.878873229, 0, -0.1, 0)  -- Adjust position
 				end
 			end)
-
-
-			for _, DropDownTextButton in pairs(DropDownContainer:GetChildren()) do
-				if DropDownTextButton:IsA("TextButton") then
-					DropDownTextButton.MouseButton1Click:Connect(function()
-						local v = DropDownTextButton.Text -- Assuming the text button's text is the value
-						DropDownTitle.Text = DropDownName .. ": " .. v
-						pcall(CallBack, v)
-						for _, d in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-							if d:IsA("Frame") or d:IsA("TextButton") then
-								d.Visible = true
-							end
-						end
-						InsideActContanierScrollingFrame.CanvasSize = BeforeOpen
-						DropDownContainer.Visible = false
-					end)
-				end
-			end
-
 		end
+		
 
 
 
@@ -1615,4 +1614,3 @@ end)
 --]]
 
 return library
- 
