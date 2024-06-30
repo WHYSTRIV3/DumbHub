@@ -194,6 +194,7 @@ function library:CreateWindow()
 	TabContainer.BottomImage = ""
 	TabContainer.MidImage = ""
 	TabContainer.TopImage = ""
+	
 
 	TabContainerUICorner.CornerRadius = UDim.new(0, 4)
 	TabContainerUICorner.Name = "TabContainerUICorner"
@@ -972,12 +973,12 @@ function library:CreateWindow()
 
 
 
-
-		function Module:CreateDropdown(DropDownName, ItemList, CallBack)
+		function Module:CreateDropdown(DropDownName, ItemList, CallBack, defaultValue)
 			assert(type(DropDownName) == "string", "Specify type string for DropDownName")
 			assert(type(ItemList) == "table", "Specify type table for ItemList")
 			assert(type(CallBack) == "function", "Specify type function for CallBack")
-		
+
+			
 			local DropDown = Instance.new("Frame")
 			local DropDownUICorner = Instance.new("UICorner")
 			local DropDownTitle = Instance.new("TextLabel")
@@ -1010,10 +1011,10 @@ function library:CreateWindow()
 			DropDownTitle.BorderSizePixel = 0
 			DropDownTitle.Size = UDim2.new(0, 378, 0, 38)
 			DropDownTitle.Font = Enum.Font.SourceSans
-			DropDownTitle.Text = DropDownName .. ": None"
 			DropDownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownTitle.TextSize = 20.000
 			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
+			DropDownTitle.Text = DropDownName .. ": " .. (defaultValue or "None")
 		
 			DropDownTitlePadding.Name = "ToggleUIPadding"
 			DropDownTitlePadding.Parent = DropDownTitle
@@ -1169,6 +1170,7 @@ function library:CreateWindow()
 				end
 			end)
 		end
+		
 		
 
 
@@ -1463,18 +1465,23 @@ end)
 
 local Teleport = true
 
+local GetMethods = {"Default", "Micro-Converters", "Instant Converters"}
 
+Main:CreateDropdown("Select Converting Method", GetMethods, function(selected)
+    SelectedConvertingMethod = selected
+end, "Default Converting")
 
 Main:CreateDivider("Auto Farms")
 
 
-Main:CreateDropdown("Selected Farm", Codes, function(Farms)
+
+
+Main:CreateDropdown("Selected Farm", Codes,  function(Farms)
 	_G.SelectedFarm = Farms
 end)
 
-Main:CreateMultiDropdown("Selected Farm", Codes, function(Farms)
-	_G.SelectedFarm = Farms
-end)
+
+
 
 Main:CreateDivider("Auto Farms")
 
@@ -1490,91 +1497,6 @@ end)
 Main:CreateActiveToggle("Auto Farm", true, function()
 	game.Players.LocalPlayer.Character.Humanoid.Jump = false
 end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
-Main:CreateActiveToggle("Auto Farm", true, function()
-	game.Players.LocalPlayer.Character.Humanoid.Jump = false
-end)
-
 
 
 --Upgrades
