@@ -1295,6 +1295,48 @@ function library:CreateWindow()
 
 		end
 
+
+
+
+
+
+		function Module:CreateTextBox(TextBoxPlaceholderText, CallBack)
+			assert(type(TextBoxPlaceholderText) == "string", "specify type string for TextBoxPlaceholderText parameter")
+			assert(type(CallBack) == "function", "specify type function for CallBack parameter")
+
+			local TextBox = Instance.new("TextBox")
+
+
+			TextBox.Parent = InsideActContanierScrollingFrame
+			TextBox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+			TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextBox.BorderSizePixel = 0
+			TextBox.Size = UDim2.new(0, 378, 0, 38)
+			TextBox.Font = Enum.Font.SourceSans
+			TextBox.PlaceholderText = TextBoxPlaceholderText
+			TextBox.Text = ""
+			TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextBox.TextSize = 19.000
+			TextBox.TextWrapped = true
+
+
+			TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+				CallBack(TextBox.Text)
+			end)
+		
+			-- Update CallBack when focus is lost and Enter is pressed
+			TextBox.FocusLost:Connect(function(enterPressed)
+				if enterPressed then
+					CallBack(TextBox.Text)
+				end
+			end)
+		end
+
+
+
+
+		
+
 		return Module
 	end
 	return Category
@@ -1587,6 +1629,47 @@ Main:CreateToggle("Auto Farm", false, function(isEnabled)
             end
         end
     end)
+end)
+
+
+
+
+
+
+
+Main:CreateTextBox("Enter your text here", function(text)
+    EnteredText = text
+    print("EnteredText updated: " .. EnteredText)  -- Debugging print statement
+end)
+
+Main:CreateButton("ChangeMask1", function()
+    if not EnteredText then
+        print("No text entered")  -- Debugging print statement
+    else
+        print("Changing Mask 1 with text: " .. EnteredText)  -- Debugging print statement
+        game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(unpack({
+            [1] = "Equip",
+            [2] = {
+                ["Type"] = tostring(EnteredText),
+                ["Category"] = "Accessory"
+            }
+        }))
+    end
+end)
+
+Main:CreateButton("ChangeMask2", function()
+    if not EnteredText then
+        print("No text entered")  -- Debugging print statement
+    else
+        print("Changing Mask 2 with text: " .. EnteredText)  -- Debugging print statement
+        game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(unpack({
+            [1] = "Equip",
+            [2] = {
+                ["Type"] = tostring(EnteredText),
+                ["Category"] = "Accessory"
+            }
+        }))
+    end
 end)
 
 --Upgrades
