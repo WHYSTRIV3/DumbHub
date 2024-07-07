@@ -40,6 +40,19 @@ function library:CreateWindow()
 	local TextLabel_2 = Instance.new("TextLabel")
 	local TextLabel_3 = Instance.new("TextLabel")
 	local TextLabel_4 = Instance.new("TextLabel")
+	local SettingsButton = Instance.new("ImageButton")
+
+	local SettingsFrame = Instance.new("Frame")
+	local SettingsFrameUiCorner = Instance.new("UICorner")
+	local FPSSaveButton = Instance.new("TextButton")
+	local ShowFPSButton = Instance.new("TextButton")
+	local CopyDiscordButton = Instance.new("TextButton")
+	local RefreshUIButton = Instance.new("TextButton")
+	local UninjectButton = Instance.new("TextButton")
+	local UninjectRejoinButton = Instance.new("TextButton")
+	local SettingsTitle = Instance.new("TextLabel")
+	local SettingsDivider = Instance.new("Frame")
+	local SettingsXButton = Instance.new("TextButton")
 
 	function dragify(Frame)
 		dragToggle = nil
@@ -85,8 +98,8 @@ function library:CreateWindow()
 	Main.Name = "Main"
 	Main.Parent = FATALITY
 	Main.AnchorPoint = Vector2.new(0.5, 0.5)
-	Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Main.Position = UDim2.new(0.576666296, 0, 0.424260199, 0)
+	Main.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 649, 0, 377)
 	Main.Visible = true
 
@@ -95,20 +108,12 @@ function library:CreateWindow()
 	MainUiCorner.Parent = Main
 
 
-	FatalityLogo.Name = "FatalityLogo"
-	FatalityLogo.Parent = Main
-	FatalityLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	FatalityLogo.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	FatalityLogo.BorderSizePixel = 0
-	FatalityLogo.Size = UDim2.new(0, 47, 0, 47)
-	FatalityLogo.Image = "rbxassetid://17308281713"
-
 
 	FatalityTitle.Name = "FatalityTitle"
 	FatalityTitle.Parent = Main
 	FatalityTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	FatalityTitle.BackgroundTransparency = 1.000
-	FatalityTitle.Position = UDim2.new(0.072419107, 0, -0.0188508779, 0)
+	FatalityTitle.Position = UDim2.new(0.012, 0, -0.019, 0)
 	FatalityTitle.Size = UDim2.new(0, 102, 0, 60)
 	FatalityTitle.Font = Enum.Font.Bangers
 	FatalityTitle.Text = "FATALITY"
@@ -174,6 +179,27 @@ function library:CreateWindow()
 	Minimizebutton.MouseButton1Click:connect(function()
 		Main.Visible = false
 		OpenButton.Visible = true
+	end)
+
+
+
+
+
+	SettingsButton.Name = "SettingsButton"
+	SettingsButton.Parent = Main
+	SettingsButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SettingsButton.BackgroundTransparency = 1.000
+	SettingsButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	SettingsButton.BorderSizePixel = 0
+	SettingsButton.Position = UDim2.new(0.844375968, 0, 0.0213778466, 0)
+	SettingsButton.Size = UDim2.new(0, 24, 0, 25)
+	SettingsButton.Image = "rbxassetid://8285095937"
+	
+	local isSettingsVisible = false
+
+	SettingsButton.MouseButton1Click:Connect(function()
+		isSettingsVisible = not isSettingsVisible
+		SettingsFrame.Visible = isSettingsVisible
 	end)
 
 
@@ -252,6 +278,386 @@ function library:CreateWindow()
 	TitleDivider.Size = UDim2.new(0, 212, 0, 3)
 
 
+
+
+	local VU = game:GetService("VirtualUser")
+	local Player = game:GetService("Players").LocalPlayer
+	local WS = game:GetService("Workspace")
+	local RS = game:GetService("ReplicatedStorage")
+	local T = WS.Terrain
+	local LI = game:GetService("Lighting")
+
+	SettingsFrame.Name = "SettingsFrame"
+	SettingsFrame.Parent = Main
+	SettingsFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+	SettingsFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	SettingsFrame.BorderSizePixel = 0
+	SettingsFrame.Position = UDim2.new(1.04930663, 0, 0, 0)
+	SettingsFrame.Size = UDim2.new(0, 349, 0, 377)
+	SettingsFrame.Visible = false
+
+	SettingsFrameUiCorner.CornerRadius = UDim.new(0, 5)
+	SettingsFrameUiCorner.Name = "SettingsFrameUiCorner"
+	SettingsFrameUiCorner.Parent = SettingsFrame
+
+	FPSSaveButton.Name = "FPSSaveButton"
+	FPSSaveButton.Parent = SettingsFrame
+	FPSSaveButton.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+	FPSSaveButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	FPSSaveButton.BorderSizePixel = 0
+	FPSSaveButton.Position = UDim2.new(0.51971525, 0, 0.458885938, 0)
+	FPSSaveButton.Size = UDim2.new(0, 146, 0, 47)
+	FPSSaveButton.Font = Enum.Font.SourceSans
+	FPSSaveButton.Text = "FPS Saver"
+	FPSSaveButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	FPSSaveButton.TextSize = 22.000
+	FPSSaveButton.TextWrapped = true
+
+	FPSSaveButton.MouseButton1Click:connect(function()
+		local decalsyeeted = true
+		local g = game
+		T.WaterWaveSize = 0
+		T.WaterWaveSpeed = 0
+		T.WaterReflectance = 0
+		T.WaterTransparency = 0
+		LI.GlobalShadows = false
+		LI.FogEnd = 9e9
+		LI.Brightness = 0
+		settings().Rendering.QualityLevel = "Level01"
+		for _, v in pairs(g:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+				v.Enabled = false
+			elseif v:IsA("MeshPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+				v.TextureID = 10385902758728957
+			end
+		end
+		for _, e in pairs(LI:GetChildren()) do
+			if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+				e.Enabled = false
+			end
+		end
+	end)
+
+	local TextLabel = Instance.new("TextLabel")
+
+	TextLabel.Parent = game:GetService("CoreGui").FATALITY
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.Position = UDim2.new(0.0745672435, 0, 0.0299251862, 0)
+	TextLabel.Size = UDim2.new(0, 1216, 0, 50)
+	TextLabel.Font = Enum.Font.SourceSans
+	TextLabel.Text = "FPS: Loading"
+	TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel.TextSize = 47.000
+	TextLabel.TextWrapped = true
+	TextLabel.Name = "FPStext"
+	TextLabel.Visible = false
+
+	FPSAverage = {}
+	local Ticking = false
+	local LastTick = tick()
+
+	local RunService = game:GetService("RunService")
+	RunService:BindToRenderStep("UpdateInfo", 1000, function()
+		if Ticking == true then
+			local fps = math.floor(.5 + (1 / (tick() - LastTick)))
+			local sum = 0
+			local ave = 0
+			table.insert(FPSAverage, fps)
+			for i = 1, #FPSAverage do
+				sum = sum + FPSAverage[i]
+			end
+			game:GetService("CoreGui").FATALITY.FPStext.Text = "FPS: " .. tostring(fps) .. " Average: " .. string.format("%.0f", (sum / #FPSAverage))
+			if (tick() - LastTick) >= 15 then
+				FPSAverage = { }
+				LastTick = tick()
+			end
+			LastTick = tick()
+		end
+	end)
+
+
+
+
+
+	ShowFPSButton.Name = "ShowFPSButton"
+	ShowFPSButton.Parent = SettingsFrame
+	ShowFPSButton.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+	ShowFPSButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ShowFPSButton.BorderSizePixel = 0
+	ShowFPSButton.Position = UDim2.new(0.0469358601, 0, 0.458885938, 0)
+	ShowFPSButton.Size = UDim2.new(0, 146, 0, 47)
+	ShowFPSButton.Font = Enum.Font.SourceSans
+	ShowFPSButton.Text = "Show FPS "
+	ShowFPSButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ShowFPSButton.TextSize = 22.000
+	ShowFPSButton.TextWrapped = true
+
+
+	ShowFPSButton.MouseButton1Click:connect(function()
+		game:GetService("CoreGui").FATALITY.FPStext.Visible = not game:GetService("CoreGui").FATALITY.FPStext.Visible
+		Ticking = not Ticking
+	end)
+
+
+
+	CopyDiscordButton.Name = "CopyDiscordButton"
+	CopyDiscordButton.Parent = SettingsFrame
+	CopyDiscordButton.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+	CopyDiscordButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	CopyDiscordButton.BorderSizePixel = 0
+	CopyDiscordButton.Position = UDim2.new(0.0469358601, 0, 0.644562423, 0)
+	CopyDiscordButton.Size = UDim2.new(0, 146, 0, 47)
+	CopyDiscordButton.Font = Enum.Font.SourceSans
+	CopyDiscordButton.Text = "Copy Discord"
+	CopyDiscordButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	CopyDiscordButton.TextSize = 22.000
+	CopyDiscordButton.TextWrapped = true
+
+	CopyDiscordButton.MouseButton1Click:connect(function()
+	setclipboard("https://discord.gg/ups8GeuYAD")
+		game.StarterGui:SetCore("SendNotification", {
+			Title = "Discord";
+			Text = "Discord copied  To ClipBoard"; 
+			Icon = "";
+			Duration = 3;
+		})
+	end)
+
+	RefreshUIButton.Name = "RefreshUIButton"
+	RefreshUIButton.Parent = SettingsFrame
+	RefreshUIButton.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+	RefreshUIButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	RefreshUIButton.BorderSizePixel = 0
+	RefreshUIButton.Position = UDim2.new(0.51971525, 0, 0.644562364, 0)
+	RefreshUIButton.Size = UDim2.new(0, 146, 0, 47)
+	RefreshUIButton.Font = Enum.Font.SourceSans
+	RefreshUIButton.Text = "Refresh UI"
+	RefreshUIButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	RefreshUIButton.TextSize = 22.000
+	RefreshUIButton.TextWrapped = true
+
+	RefreshUIButton.MouseButton1Click:connect(function()
+		game:GetService("CoreGui").FATALITY:Destroy()
+		task.wait(1)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub/main/DumbHub.lua"))()
+	end)
+
+
+	UninjectButton.Name = "UninjectButton"
+	UninjectButton.Parent = SettingsFrame
+	UninjectButton.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+	UninjectButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	UninjectButton.BorderSizePixel = 0
+	UninjectButton.Position = UDim2.new(0.51971525, 0, 0.827586234, 0)
+	UninjectButton.Size = UDim2.new(0, 146, 0, 47)
+	UninjectButton.Font = Enum.Font.SourceSans
+	UninjectButton.Text = "Uninject"
+	UninjectButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	UninjectButton.TextSize = 22.000
+	UninjectButton.TextWrapped = true
+
+	UninjectButton.MouseButton1Click:connect(function()
+		game:GetService("CoreGui").FATALITY:Destroy()
+	end)
+
+
+	UninjectRejoinButton.Name = "Uninject/RejoinButton"
+	UninjectRejoinButton.Parent = SettingsFrame
+	UninjectRejoinButton.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+	UninjectRejoinButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	UninjectRejoinButton.BorderSizePixel = 0
+	UninjectRejoinButton.Position = UDim2.new(0.0469358601, 0, 0.827586234, 0)
+	UninjectRejoinButton.Size = UDim2.new(0, 146, 0, 47)
+	UninjectRejoinButton.Font = Enum.Font.SourceSans
+	UninjectRejoinButton.Text = "Uninject/Rejoin"
+	UninjectRejoinButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	UninjectRejoinButton.TextSize = 22.000
+	UninjectRejoinButton.TextWrapped = true
+
+
+	UninjectRejoinButton.MouseButton1Click:connect(function()
+		game:GetService("CoreGui").FATALITY:Destroy()
+		TeleportService:Teleport(game.PlaceId)
+	end)
+
+
+
+-- Create UI elements for WalkSpeedSlider
+local WalkSpeedSlider = Instance.new("Frame")
+local SliderUICorner = Instance.new("UICorner")
+local SliderTitle = Instance.new("TextLabel")
+local SliderBack = Instance.new("TextButton") -- Change to TextButton for clickable behavior
+local SliderBcakUICorner = Instance.new("UICorner")
+local MainSlider = Instance.new("Frame")
+local MainSliderUICorner = Instance.new("UICorner")
+
+-- Properties for WalkSpeedSlider
+WalkSpeedSlider.Name = "WalkSpeedSlider"
+WalkSpeedSlider.Parent = SettingsFrame
+WalkSpeedSlider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+WalkSpeedSlider.BorderColor3 = Color3.fromRGB(31, 31, 31)
+WalkSpeedSlider.BorderSizePixel = 0
+WalkSpeedSlider.Position = UDim2.new(0.0440710559, 0, 0.248275876, 0)
+WalkSpeedSlider.Size = UDim2.new(0, 311, 0, 38)
+
+SliderUICorner.CornerRadius = UDim.new(0, 3)
+SliderUICorner.Name = "SliderUICorner"
+SliderUICorner.Parent = WalkSpeedSlider
+
+SliderTitle.Name = "SliderTitle"
+SliderTitle.Parent = WalkSpeedSlider
+SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SliderTitle.BackgroundTransparency = 1.000
+SliderTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+SliderTitle.BorderSizePixel = 0
+SliderTitle.Size = UDim2.new(0, 118, 0, 38)
+SliderTitle.Font = Enum.Font.SourceSans
+SliderTitle.Text = "Walk Speed: 200"
+SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+SliderTitle.TextSize = 20.000
+SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+SliderBack.Name = "SliderBack"
+SliderBack.Parent = WalkSpeedSlider
+SliderBack.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+SliderBack.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SliderBack.BorderSizePixel = 0
+SliderBack.Position = UDim2.new(0.389053345, 0, 0.349638283, 0)
+SliderBack.Size = UDim2.new(0, 178, 0, 14)
+SliderBack.TextTransparency = 1
+
+SliderBcakUICorner.CornerRadius = UDim.new(0, 6)
+SliderBcakUICorner.Name = "SliderBcakUICorner"
+SliderBcakUICorner.Parent = SliderBack
+
+MainSlider.Name = "MainSlider"
+MainSlider.Parent = SliderBack
+MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainSlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainSlider.BorderSizePixel = 0
+MainSlider.Size = UDim2.new(0, 85, 0, 14)
+
+MainSliderUICorner.CornerRadius = UDim.new(0, 6)
+MainSliderUICorner.Name = "MainSliderUICorner"
+MainSliderUICorner.Parent = MainSlider
+
+-- Define UIS and Options
+local UIS = game:GetService("UserInputService")
+local Options = {
+    min = 16, -- Minimum walk speed
+    max = 200 -- Maximum walk speed
+}
+
+local mousedown = false
+
+-- Function to set the walk speed
+local function SetWalkSpeed(newSpeed)
+    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+    humanoid.WalkSpeed = newSpeed
+end
+
+-- Default value
+local defaultValue = 50 -- Adjust this to your desired default speed
+
+-- Initialize UI with default value
+local defaultPercent = (defaultValue - Options.min) / (Options.max - Options.min)
+SliderTitle.Text = "Walk Speed: " .. defaultValue
+MainSlider.Size = UDim2.new(defaultPercent, 0, 0, 14)
+
+-- Event listeners for slider interaction
+UIS.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        mousedown = false
+    end
+end)
+
+SliderBack.MouseButton1Down:Connect(function()
+    mousedown = true
+end)
+
+SliderBack.MouseButton1Up:Connect(function()
+    mousedown = false
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if mousedown and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local mousePos = input.Position
+        local sliderPos = SliderBack.AbsolutePosition
+        local sliderSize = SliderBack.AbsoluteSize
+
+        local percent = math.clamp((mousePos.X - sliderPos.X) / sliderSize.X, 0, 1)
+        local newValue = Options.min + percent * (Options.max - Options.min)
+        newValue = math.floor(newValue)
+
+        SliderTitle.Text = "Walk Speed: " .. newValue
+        MainSlider.Size = UDim2.new(percent, 0, 0, 14)
+
+        -- Set walk speed based on newValue
+        SetWalkSpeed(newValue)
+    end
+end)
+
+
+
+
+
+
+
+
+
+
+
+	SettingsTitle.Name = "SettingsTitle"
+	SettingsTitle.Parent = SettingsFrame
+	SettingsTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SettingsTitle.BackgroundTransparency = 1.000
+	SettingsTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	SettingsTitle.BorderSizePixel = 0
+	SettingsTitle.Size = UDim2.new(0, 349, 0, 47)
+	SettingsTitle.Font = Enum.Font.SourceSans
+	SettingsTitle.Text = "Settings"
+	SettingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+	SettingsTitle.TextSize = 35.000
+	SettingsTitle.TextWrapped = true
+
+	SettingsDivider.Name = "SettingsDivider"
+	SettingsDivider.Parent = SettingsFrame
+	SettingsDivider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SettingsDivider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	SettingsDivider.BorderSizePixel = 0
+	SettingsDivider.Position = UDim2.new(-0.00286532962, 0, 0.114058353, 0)
+	SettingsDivider.Size = UDim2.new(0, 350, 0, 4)
+
+	SettingsXButton.Name = "SettingsXButton"
+	SettingsXButton.Parent = SettingsFrame
+	SettingsXButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SettingsXButton.BackgroundTransparency = 1.000
+	SettingsXButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	SettingsXButton.BorderSizePixel = 0
+	SettingsXButton.Position = UDim2.new(0.918980658, 0, 0.0160729289, 0)
+	SettingsXButton.Size = UDim2.new(0, 28, 0, 27)
+	SettingsXButton.Font = Enum.Font.SourceSans
+	SettingsXButton.Text = "X"
+	SettingsXButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	SettingsXButton.TextSize = 34.000
+
+
+	SettingsXButton.MouseButton1Click:connect(function()
+		SettingsFrame.Visible = false
+	end)
 
 
 
@@ -1420,7 +1826,7 @@ Info:CreateLabel("Spider", "Spider Crab Timer: 0?")
 Info:CreateLabel("WereWolf", "WereWolf Crab Timer: 0?")
 
 
-local BeforeHoney = Player.CoreStats.Honey.Value
+
 local StartTime = os.time()  
 
 local function formatNumberWithCommas(number)
@@ -1459,52 +1865,7 @@ end
 
 
 
-Info:CreateActiveToggle("Activate List", true, function()
-	local Current = Player.CoreStats.Honey.Value
-	local UpdatedHoney = Current - BeforeHoney
-	local formattedHoney = formatNumberWithAbbreviation(UpdatedHoney)
 
-	Info:EditLabel("HoneyMade", "Honey Made: " .. formattedHoney)
-
-
-
-	local Current = Player.CoreStats.Honey.Value
-	local ElapsedTime = os.time() - StartTime 
-	local HoneyGainedInHour = (Current - BeforeHoney) / ElapsedTime * 3600
-	local formattedHoneyGained = formatNumberWithAbbreviation(HoneyGainedInHour)
-
-	Info:EditLabel("Estimated Honey", "Estimated Honey Gain In A Hour: ".. formattedHoneyGained)
-
-
-
-	local Currentt = Player.CoreStats.Honey.Value
-	local ElapsedTimee = os.time() - StartTime  
-	local HoneyGainedInHourr = (Currentt - BeforeHoney) / ElapsedTimee * 86400  
-	local formattedHoneyGainedd = formatNumberWithAbbreviation(HoneyGainedInHourr)
-
-	Info:EditLabel("Estimated Day Honey", "Estimated Honey Gain In A Day: ".. formattedHoneyGainedd)
-
-
-
-
-	if WS.Balloons.HiveBalloons:FindFirstChild("HiveBalloonInstance") == nil then
-		repeat
-			task.wait()
-		until WS.Balloons.HiveBalloons:FindFirstChild("HiveBalloonInstance")
-	else
-
-
-		local BalloonPollen = WS.Balloons.HiveBalloons.HiveBalloonInstance.BalloonBody.GuiAttach.Gui.Bar.TextLabel.Text
-
-		Info:EditLabel("Balloon", "Your Balloon Pollen is at: "..BalloonPollen)
-
-
-		local BalloonBlessing = WS.Balloons.HiveBalloons.HiveBalloonInstance.BalloonBody.GuiAttach.Gui.BlessingBar.TextLabel.Text
-
-		Info:EditLabel("BalloonBlessing", "Your Balloon Blessing is at: "..BalloonBlessing)
-
-	end
-end)
 
 
 --Main
@@ -1546,23 +1907,6 @@ local Feilds = {
 	"Pineapple Patch", 
 	"Dandelion Field"
 }
-
-
-
-
-local SelectedField;
-
-function getFields()
-	local Fields = {}
-
-	for i,v in pairs(game:GetService("Workspace").FlowerZones:GetChildren()) do
-		table.insert(Fields, v.Name)
-	end
-	return Fields
-end
-Main:CreateDropdown("Select Field", getFields(),function(Field)
-	SelectedField = Field
-end, "Dandelion Field")
 
 
 
@@ -1777,7 +2121,7 @@ Misc:CreateButton("Redeem Codes", function()
 end)
 
 
-Misc:CreateSlider("WalkSpeed", {min = 16, max = 200, default = 16}, function(state)
+Misc:CreateSlider("WalkSpeed", {min = 16, max = 218, default = 16}, function(state)
 	Player.Character.Humanoid.WalkSpeed = state
 end)
 
