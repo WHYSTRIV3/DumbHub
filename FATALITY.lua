@@ -47,12 +47,46 @@ function library:CreateWindow()
 	local FPSSaveButton = Instance.new("TextButton")
 	local ShowFPSButton = Instance.new("TextButton")
 	local CopyDiscordButton = Instance.new("TextButton")
-	local RefreshUIButton = Instance.new("TextButton")
+	local ConsoleButton = Instance.new("TextButton")
 	local UninjectButton = Instance.new("TextButton")
 	local UninjectRejoinButton = Instance.new("TextButton")
 	local SettingsTitle = Instance.new("TextLabel")
 	local SettingsDivider = Instance.new("Frame")
 	local SettingsXButton = Instance.new("TextButton")
+	local Console = Instance.new("Frame")
+	local ConsoleUICorner = Instance.new("UICorner")
+	local ConsoleTitle = Instance.new("TextLabel")
+	local ConsoleDivider = Instance.new("Frame")
+	local ConsoleScrollingFrame = Instance.new("ScrollingFrame")
+	local ConsoleTextLabel = Instance.new("TextLabel")
+	local UIListLayout = Instance.new("UIListLayout")
+	local UIGridLayout = Instance.new("UIGridLayout")
+	local ClearConsoleButton = Instance.new("TextButton")
+	local UICorner = Instance.new("UICorner")
+	local ConsoleXButton = Instance.new("TextButton")
+	local WalkSpeedSlider = Instance.new("Frame")
+	local SliderUICorner = Instance.new("UICorner")
+	local SliderTitle = Instance.new("TextLabel")
+	local SliderBack = Instance.new("TextButton") -- Change to TextButton for clickable behavior
+	local SliderBcakUICorner = Instance.new("UICorner")
+	local MainSlider = Instance.new("Frame")
+	local MainSliderUICorner = Instance.new("UICorner")
+	local VU = game:GetService("VirtualUser")
+	local Player = game:GetService("Players").LocalPlayer
+	local WS = game:GetService("Workspace")
+	local RS = game:GetService("ReplicatedStorage")
+	local T = WS.Terrain
+	local LI = game:GetService("Lighting")
+	local PrintsButton = Instance.new("TextButton")
+	local UICorner1 = Instance.new("UICorner")
+	local WarningButton = Instance.new("TextButton")
+	local UICorner_2 = Instance.new("UICorner")
+	local ErrorButton = Instance.new("TextButton")
+	local UICorner_3 = Instance.new("UICorner")
+	local ConsoleTitle = Instance.new("TextLabel")
+	local PrintsLabel = Instance.new("TextLabel")
+	local ErrorsLabel = Instance.new("TextLabel")
+	local Warningslabel = Instance.new("TextLabel")
 
 	function dragify(Frame)
 		dragToggle = nil
@@ -194,13 +228,24 @@ function library:CreateWindow()
 	SettingsButton.Position = UDim2.new(0.844375968, 0, 0.0213778466, 0)
 	SettingsButton.Size = UDim2.new(0, 24, 0, 25)
 	SettingsButton.Image = "rbxassetid://8285095937"
-	
+
 	local isSettingsVisible = false
+
+
+	local originalMainPosition = Main.Position
 
 	SettingsButton.MouseButton1Click:Connect(function()
 		isSettingsVisible = not isSettingsVisible
 		SettingsFrame.Visible = isSettingsVisible
+
+		if isSettingsVisible then
+			Main.Position = UDim2.new(0.33, 0, 0.5, 0)  -- Adjust this position as needed
+		else
+			-- If settings are closed, reset the position to its original state
+			Main.Position = originalMainPosition
+		end
 	end)
+
 
 
 	BeforeTabContanier.Name = "BeforeTabContanier"
@@ -220,7 +265,7 @@ function library:CreateWindow()
 	TabContainer.BottomImage = ""
 	TabContainer.MidImage = ""
 	TabContainer.TopImage = ""
-	
+
 
 	TabContainerUICorner.CornerRadius = UDim.new(0, 4)
 	TabContainerUICorner.Name = "TabContainerUICorner"
@@ -278,14 +323,6 @@ function library:CreateWindow()
 	TitleDivider.Size = UDim2.new(0, 212, 0, 3)
 
 
-
-
-	local VU = game:GetService("VirtualUser")
-	local Player = game:GetService("Players").LocalPlayer
-	local WS = game:GetService("Workspace")
-	local RS = game:GetService("ReplicatedStorage")
-	local T = WS.Terrain
-	local LI = game:GetService("Lighting")
 
 	SettingsFrame.Name = "SettingsFrame"
 	SettingsFrame.Parent = Main
@@ -427,7 +464,7 @@ function library:CreateWindow()
 	CopyDiscordButton.TextWrapped = true
 
 	CopyDiscordButton.MouseButton1Click:connect(function()
-	setclipboard("https://discord.gg/ups8GeuYAD")
+		setclipboard("https://discord.gg/ups8GeuYAD")
 		game.StarterGui:SetCore("SendNotification", {
 			Title = "Discord";
 			Text = "Discord copied  To ClipBoard"; 
@@ -436,24 +473,23 @@ function library:CreateWindow()
 		})
 	end)
 
-	RefreshUIButton.Name = "RefreshUIButton"
-	RefreshUIButton.Parent = SettingsFrame
-	RefreshUIButton.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
-	RefreshUIButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	RefreshUIButton.BorderSizePixel = 0
-	RefreshUIButton.Position = UDim2.new(0.51971525, 0, 0.644562364, 0)
-	RefreshUIButton.Size = UDim2.new(0, 146, 0, 47)
-	RefreshUIButton.Font = Enum.Font.SourceSans
-	RefreshUIButton.Text = "Refresh UI"
-	RefreshUIButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-	RefreshUIButton.TextSize = 22.000
-	RefreshUIButton.TextWrapped = true
+	ConsoleButton.Name = "Console"
+	ConsoleButton.Parent = SettingsFrame
+	ConsoleButton.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+	ConsoleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ConsoleButton.BorderSizePixel = 0
+	ConsoleButton.Position = UDim2.new(0.51971525, 0, 0.644562364, 0)
+	ConsoleButton.Size = UDim2.new(0, 146, 0, 47)
+	ConsoleButton.Font = Enum.Font.SourceSans
+	ConsoleButton.Text = "Console"
+	ConsoleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ConsoleButton.TextSize = 22.000
+	ConsoleButton.TextWrapped = true
 
-	RefreshUIButton.MouseButton1Click:connect(function()
-		game:GetService("CoreGui").FATALITY:Destroy()
-		task.wait(1)
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub/main/DumbHub.lua"))()
+	ConsoleButton.MouseButton1Click:connect(function()
+		Console.Visible = true
 	end)
+
 
 
 	UninjectButton.Name = "UninjectButton"
@@ -495,129 +531,111 @@ function library:CreateWindow()
 
 
 
--- Create UI elements for WalkSpeedSlider
-local WalkSpeedSlider = Instance.new("Frame")
-local SliderUICorner = Instance.new("UICorner")
-local SliderTitle = Instance.new("TextLabel")
-local SliderBack = Instance.new("TextButton") -- Change to TextButton for clickable behavior
-local SliderBcakUICorner = Instance.new("UICorner")
-local MainSlider = Instance.new("Frame")
-local MainSliderUICorner = Instance.new("UICorner")
+	-- Properties for WalkSpeedSlider
+	WalkSpeedSlider.Name = "WalkSpeedSlider"
+	WalkSpeedSlider.Parent = SettingsFrame
+	WalkSpeedSlider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+	WalkSpeedSlider.BorderColor3 = Color3.fromRGB(31, 31, 31)
+	WalkSpeedSlider.BorderSizePixel = 0
+	WalkSpeedSlider.Position = UDim2.new(0.0440710559, 0, 0.248275876, 0)
+	WalkSpeedSlider.Size = UDim2.new(0, 311, 0, 38)
 
--- Properties for WalkSpeedSlider
-WalkSpeedSlider.Name = "WalkSpeedSlider"
-WalkSpeedSlider.Parent = SettingsFrame
-WalkSpeedSlider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-WalkSpeedSlider.BorderColor3 = Color3.fromRGB(31, 31, 31)
-WalkSpeedSlider.BorderSizePixel = 0
-WalkSpeedSlider.Position = UDim2.new(0.0440710559, 0, 0.248275876, 0)
-WalkSpeedSlider.Size = UDim2.new(0, 311, 0, 38)
+	SliderUICorner.CornerRadius = UDim.new(0, 3)
+	SliderUICorner.Name = "SliderUICorner"
+	SliderUICorner.Parent = WalkSpeedSlider
 
-SliderUICorner.CornerRadius = UDim.new(0, 3)
-SliderUICorner.Name = "SliderUICorner"
-SliderUICorner.Parent = WalkSpeedSlider
+	SliderTitle.Name = "SliderTitle"
+	SliderTitle.Parent = WalkSpeedSlider
+	SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SliderTitle.BackgroundTransparency = 1.000
+	SliderTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+	SliderTitle.BorderSizePixel = 0
+	SliderTitle.Size = UDim2.new(0, 118, 0, 38)
+	SliderTitle.Font = Enum.Font.SourceSans
+	SliderTitle.Text = "Walk Speed: 200"
+	SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+	SliderTitle.TextSize = 20.000
+	SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-SliderTitle.Name = "SliderTitle"
-SliderTitle.Parent = WalkSpeedSlider
-SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-SliderTitle.BackgroundTransparency = 1.000
-SliderTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
-SliderTitle.BorderSizePixel = 0
-SliderTitle.Size = UDim2.new(0, 118, 0, 38)
-SliderTitle.Font = Enum.Font.SourceSans
-SliderTitle.Text = "Walk Speed: 200"
-SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-SliderTitle.TextSize = 20.000
-SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
+	SliderBack.Name = "SliderBack"
+	SliderBack.Parent = WalkSpeedSlider
+	SliderBack.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	SliderBack.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	SliderBack.BorderSizePixel = 0
+	SliderBack.Position = UDim2.new(0.389053345, 0, 0.349638283, 0)
+	SliderBack.Size = UDim2.new(0, 178, 0, 14)
+	SliderBack.TextTransparency = 1
 
-SliderBack.Name = "SliderBack"
-SliderBack.Parent = WalkSpeedSlider
-SliderBack.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-SliderBack.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SliderBack.BorderSizePixel = 0
-SliderBack.Position = UDim2.new(0.389053345, 0, 0.349638283, 0)
-SliderBack.Size = UDim2.new(0, 178, 0, 14)
-SliderBack.TextTransparency = 1
+	SliderBcakUICorner.CornerRadius = UDim.new(0, 6)
+	SliderBcakUICorner.Name = "SliderBcakUICorner"
+	SliderBcakUICorner.Parent = SliderBack
 
-SliderBcakUICorner.CornerRadius = UDim.new(0, 6)
-SliderBcakUICorner.Name = "SliderBcakUICorner"
-SliderBcakUICorner.Parent = SliderBack
+	MainSlider.Name = "MainSlider"
+	MainSlider.Parent = SliderBack
+	MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	MainSlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	MainSlider.BorderSizePixel = 0
+	MainSlider.Size = UDim2.new(0, 85, 0, 14)
 
-MainSlider.Name = "MainSlider"
-MainSlider.Parent = SliderBack
-MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-MainSlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-MainSlider.BorderSizePixel = 0
-MainSlider.Size = UDim2.new(0, 85, 0, 14)
+	MainSliderUICorner.CornerRadius = UDim.new(0, 6)
+	MainSliderUICorner.Name = "MainSliderUICorner"
+	MainSliderUICorner.Parent = MainSlider
 
-MainSliderUICorner.CornerRadius = UDim.new(0, 6)
-MainSliderUICorner.Name = "MainSliderUICorner"
-MainSliderUICorner.Parent = MainSlider
+	-- Define UIS and Options
+	local UIS = game:GetService("UserInputService")
+	local Options = {
+		min = 16, -- Minimum walk speed
+		max = 200 -- Maximum walk speed
+	}
 
--- Define UIS and Options
-local UIS = game:GetService("UserInputService")
-local Options = {
-    min = 16, -- Minimum walk speed
-    max = 200 -- Maximum walk speed
-}
+	local mousedown = false
 
-local mousedown = false
+	-- Function to set the walk speed
+	local function SetWalkSpeed(newSpeed)
+		local humanoid = game.Players.LocalPlayer.Character.Humanoid
+		humanoid.WalkSpeed = newSpeed
+	end
 
--- Function to set the walk speed
-local function SetWalkSpeed(newSpeed)
-    local humanoid = game.Players.LocalPlayer.Character.Humanoid
-    humanoid.WalkSpeed = newSpeed
-end
+	-- Default value
+	local defaultValue = 50 -- Adjust this to your desired default speed
 
--- Default value
-local defaultValue = 50 -- Adjust this to your desired default speed
+	-- Initialize UI with default value
+	local defaultPercent = (defaultValue - Options.min) / (Options.max - Options.min)
+	SliderTitle.Text = "Walk Speed: " .. defaultValue
+	MainSlider.Size = UDim2.new(defaultPercent, 0, 0, 14)
 
--- Initialize UI with default value
-local defaultPercent = (defaultValue - Options.min) / (Options.max - Options.min)
-SliderTitle.Text = "Walk Speed: " .. defaultValue
-MainSlider.Size = UDim2.new(defaultPercent, 0, 0, 14)
+	-- Event listeners for slider interaction
+	UIS.InputEnded:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			mousedown = false
+		end
+	end)
 
--- Event listeners for slider interaction
-UIS.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        mousedown = false
-    end
-end)
+	SliderBack.MouseButton1Down:Connect(function()
+		mousedown = true
+	end)
 
-SliderBack.MouseButton1Down:Connect(function()
-    mousedown = true
-end)
+	SliderBack.MouseButton1Up:Connect(function()
+		mousedown = false
+	end)
 
-SliderBack.MouseButton1Up:Connect(function()
-    mousedown = false
-end)
+	UIS.InputChanged:Connect(function(input)
+		if mousedown and input.UserInputType == Enum.UserInputType.MouseMovement then
+			local mousePos = input.Position
+			local sliderPos = SliderBack.AbsolutePosition
+			local sliderSize = SliderBack.AbsoluteSize
 
-UIS.InputChanged:Connect(function(input)
-    if mousedown and input.UserInputType == Enum.UserInputType.MouseMovement then
-        local mousePos = input.Position
-        local sliderPos = SliderBack.AbsolutePosition
-        local sliderSize = SliderBack.AbsoluteSize
+			local percent = math.clamp((mousePos.X - sliderPos.X) / sliderSize.X, 0, 1)
+			local newValue = Options.min + percent * (Options.max - Options.min)
+			newValue = math.floor(newValue)
 
-        local percent = math.clamp((mousePos.X - sliderPos.X) / sliderSize.X, 0, 1)
-        local newValue = Options.min + percent * (Options.max - Options.min)
-        newValue = math.floor(newValue)
+			SliderTitle.Text = "Walk Speed: " .. newValue
+			MainSlider.Size = UDim2.new(percent, 0, 0, 14)
 
-        SliderTitle.Text = "Walk Speed: " .. newValue
-        MainSlider.Size = UDim2.new(percent, 0, 0, 14)
-
-        -- Set walk speed based on newValue
-        SetWalkSpeed(newValue)
-    end
-end)
-
-
-
-
-
-
-
-
-
+			-- Set walk speed based on newValue
+			SetWalkSpeed(newValue)
+		end
+	end)
 
 
 	SettingsTitle.Name = "SettingsTitle"
@@ -655,8 +673,362 @@ end)
 	SettingsXButton.TextSize = 34.000
 
 
-	SettingsXButton.MouseButton1Click:connect(function()
+	SettingsXButton.MouseButton1Click:Connect(function()
 		SettingsFrame.Visible = false
+		if isSettingsVisible then
+			Main.Position = originalMainPosition
+		end
+	end)
+
+
+
+	--Properties:
+
+	Console.Name = "Console"
+	Console.Parent = SettingsFrame
+	Console.AnchorPoint = Vector2.new(0.5, 0.5)
+	Console.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+	Console.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Console.BorderSizePixel = 0
+	Console.Position = UDim2.new(-1.02148998, 0, 0.5, 0)
+	Console.Size = UDim2.new(0, 649, 0, 377)
+	Console.Visible = false
+
+	ConsoleUICorner.CornerRadius = UDim.new(0, 5)
+	ConsoleUICorner.Name = "ConsoleUICorner"
+	ConsoleUICorner.Parent = Console
+
+	ConsoleTitle.Name = "ConsoleTitle"
+	ConsoleTitle.Parent = Console
+	ConsoleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ConsoleTitle.BackgroundTransparency = 1.000
+	ConsoleTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ConsoleTitle.BorderSizePixel = 0
+	ConsoleTitle.Position = UDim2.new(-0.020030817, 0, -0.0185676385, 0)
+	ConsoleTitle.Size = UDim2.new(0, 144, 0, 52)
+	ConsoleTitle.Font = Enum.Font.SourceSans
+	ConsoleTitle.Text = "Console"
+	ConsoleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ConsoleTitle.TextSize = 36.000
+
+
+
+	PrintsButton.Name = "PrintsButton"
+	PrintsButton.Parent = Console
+	PrintsButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	PrintsButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
+	PrintsButton.BorderSizePixel = 0
+	PrintsButton.Position = UDim2.new(0.654653311, 0, 0.037652541, 0)
+	PrintsButton.Size = UDim2.new(0, 17, 0, 18)
+	PrintsButton.Font = Enum.Font.SourceSans
+	PrintsButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+	PrintsButton.TextSize = 14.000
+	PrintsButton.TextTransparency = 1.000
+
+	UICorner1.CornerRadius = UDim.new(0, 5)
+	UICorner1.Parent = PrintsButton
+
+	WarningButton.Name = "WarningButton"
+	WarningButton.Parent = Console
+	WarningButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	WarningButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
+	WarningButton.BorderSizePixel = 0
+	WarningButton.Position = UDim2.new(0.52700001, 0, 0.0379999988, 0)
+	WarningButton.Size = UDim2.new(0, 17, 0, 18)
+	WarningButton.Font = Enum.Font.SourceSans
+	WarningButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+	WarningButton.TextSize = 14.000
+	WarningButton.TextTransparency = 1.000
+
+	UICorner_2.CornerRadius = UDim.new(0, 5)
+	UICorner_2.Parent = WarningButton
+
+	ErrorButton.Name = "ErrorButton"
+	ErrorButton.Parent = Console
+	ErrorButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	ErrorButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
+	ErrorButton.BorderSizePixel = 0
+	ErrorButton.Position = UDim2.new(0.363999993, 0, 0.0379999988, 0)
+	ErrorButton.Size = UDim2.new(0, 17, 0, 18)
+	ErrorButton.Font = Enum.Font.SourceSans
+	ErrorButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ErrorButton.TextSize = 14.000
+	ErrorButton.TextTransparency = 1.000
+
+	UICorner_3.CornerRadius = UDim.new(0, 5)
+	UICorner_3.Parent = ErrorButton
+
+
+	PrintsLabel.Name = "PrintsLabel"
+	PrintsLabel.Parent = Console
+	PrintsLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	PrintsLabel.BackgroundTransparency = 1.000
+	PrintsLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	PrintsLabel.BorderSizePixel = 0
+	PrintsLabel.Position = UDim2.new(0.023, 350, 0.0340000018, 0)
+	PrintsLabel.Size = UDim2.new(0, 59, 0, 19)
+	PrintsLabel.Font = Enum.Font.SourceSans
+	PrintsLabel.Text = "Prints"
+	PrintsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	PrintsLabel.TextSize = 16.000
+
+	ErrorsLabel.Name = "ErrorsLabel"
+	ErrorsLabel.Parent = Console
+	ErrorsLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ErrorsLabel.BackgroundTransparency = 1.000
+	ErrorsLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ErrorsLabel.BorderSizePixel = 0
+	ErrorsLabel.Position = UDim2.new(0.272000015, 0, 0.0340000018, 0)
+	ErrorsLabel.Size = UDim2.new(0, 59, 0, 19)
+	ErrorsLabel.Font = Enum.Font.SourceSans
+	ErrorsLabel.Text = "Errors"
+	ErrorsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ErrorsLabel.TextSize = 16.000
+
+	Warningslabel.Name = "Warningslabel"
+	Warningslabel.Parent = Console
+	Warningslabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Warningslabel.BackgroundTransparency = 1.000
+	Warningslabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Warningslabel.BorderSizePixel = 0
+	Warningslabel.Position = UDim2.new(0.411000013, 0, 0.0340000018, 0)
+	Warningslabel.Size = UDim2.new(0, 59, 0, 19)
+	Warningslabel.Font = Enum.Font.SourceSans
+	Warningslabel.Text = "Warnings"
+	Warningslabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Warningslabel.TextSize = 16.000
+
+	ConsoleDivider.Name = "ConsoleDivider"
+	ConsoleDivider.Parent = Console
+	ConsoleDivider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ConsoleDivider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ConsoleDivider.BorderSizePixel = 0
+	ConsoleDivider.Position = UDim2.new(0, 0, 0.114058353, 0)
+	ConsoleDivider.Size = UDim2.new(0, 649, 0, 4)
+
+	ConsoleScrollingFrame.Name = "ConsoleScrollingFrame"
+	ConsoleScrollingFrame.Parent = Console
+	ConsoleScrollingFrame.Active = true
+	ConsoleScrollingFrame.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
+	ConsoleScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ConsoleScrollingFrame.BorderSizePixel = 0
+	ConsoleScrollingFrame.Position = UDim2.new(0.0169491526, 0, 0.14058356, 0)
+	ConsoleScrollingFrame.Size = UDim2.new(0, 626, 0, 288)
+
+
+
+
+	--Properties:
+
+	ConsoleXButton.Name = "ConsoleXButton"
+	ConsoleXButton.Parent = Console
+	ConsoleXButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ConsoleXButton.BackgroundTransparency = 1.000
+	ConsoleXButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ConsoleXButton.BorderSizePixel = 0
+	ConsoleXButton.Position = UDim2.new(0.946715653, 0, 0.016072968, 0)
+	ConsoleXButton.Size = UDim2.new(0, 28, 0, 27)
+	ConsoleXButton.Font = Enum.Font.SourceSans
+	ConsoleXButton.Text = "X"
+	ConsoleXButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ConsoleXButton.TextSize = 34.000
+
+	ConsoleXButton.MouseButton1Click:connect(function()
+		Console.Visible = false
+	end)
+
+
+	ClearConsoleButton.Name = "ClearConsoleButton"
+	ClearConsoleButton.Parent = Console
+	ClearConsoleButton.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
+	ClearConsoleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ClearConsoleButton.BorderSizePixel = 0
+	ClearConsoleButton.Position = UDim2.new(0.0184899848, 0, 0.91, 0)
+
+	ClearConsoleButton.Size = UDim2.new(0, 626, 0, 30)
+	ClearConsoleButton.Font = Enum.Font.SourceSans
+	ClearConsoleButton.Text = "Clear Console"
+	ClearConsoleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ClearConsoleButton.TextSize = 29.000
+	ClearConsoleButton.TextWrapped = true
+
+	UICorner.Parent = ClearConsoleButton
+
+	UIListLayout.Parent = ConsoleScrollingFrame
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	UIGridLayout.Parent = ConsoleScrollingFrame
+	UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+
+
+	-- Variable to track message count
+	local messageCount = 0
+	local maxMessages = 100  -- Adjust this number as needed
+	local currentLabels = {}  -- Track current labels for cleanup
+
+	local showPrints = true
+	local showWarnings = true
+	local showErrors = true
+
+	-- Function to format time in 12-hour format
+	local function formatTime12Hour()
+		local time = os.date("*t")
+		local period = "AM"
+		local hour = time.hour
+		if hour >= 12 then
+			period = "PM"
+			if hour > 12 then
+				hour = hour - 12
+			end
+		end
+		return string.format("%02d:%02d:%02d %s", hour, time.min, time.sec, period)
+	end
+
+	-- Function to update the CanvasSize of the scrolling frame
+	local function updateCanvasSize()
+		local totalHeight = 0
+		for _, label in ipairs(currentLabels) do
+			totalHeight = totalHeight + label.Size.Y.Offset
+		end
+		ConsoleScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, totalHeight)
+	end
+
+	-- Function to scroll to the bottom of the scrolling frame
+	local function scrollToBottom()
+		ConsoleScrollingFrame.CanvasPosition = Vector2.new(0, ConsoleScrollingFrame.CanvasSize.Y.Offset)
+	end
+
+	-- Function to append a message to ConsoleTextLabel
+	local function appendMessage(message, color, messageType)
+		-- Check if the message type should be shown
+		if (messageType == "Print" and not showPrints) or 
+			(messageType == "Warning" and not showWarnings) or 
+			(messageType == "Error" and not showErrors) then
+			return
+		end
+
+		-- Increment message count
+		messageCount = messageCount + 1
+
+		-- Remove oldest message if max messages reached
+		if #currentLabels >= maxMessages then
+			currentLabels[1]:Destroy()
+			table.remove(currentLabels, 1)
+		end
+
+		-- Format current date and time in 12-hour format
+		local timestamp = formatTime12Hour()
+
+		-- Create a new label for the message
+		local newLabel = Instance.new("TextBox")
+		newLabel.Parent = ConsoleScrollingFrame
+		newLabel.BackgroundTransparency = 1
+		newLabel.BorderSizePixel = 0
+		newLabel.Size = UDim2.new(1, 0, 0, 40)
+		newLabel.Font = Enum.Font.SourceSans
+		newLabel.TextSize = 22
+		newLabel.TextXAlignment = Enum.TextXAlignment.Left
+		newLabel.TextColor3 = color or Color3.fromRGB(255, 255, 255)
+		newLabel.TextWrapped = true
+		newLabel.TextYAlignment = Enum.TextYAlignment.Top
+		newLabel.Text = string.format("%s [%d]: %s", timestamp, messageCount, message)
+
+		-- Adjust height based on text content
+		newLabel.Size = UDim2.new(1, 0, 0, newLabel.TextBounds.Y)
+
+		-- Track the new label
+		table.insert(currentLabels, newLabel)
+
+		-- Update the canvas size and scroll to the bottom
+		updateCanvasSize()
+		scrollToBottom()
+	end
+
+	-- Function to clear the console
+	local function clearConsole()
+		for _, label in ipairs(currentLabels) do
+			label:Destroy()
+		end
+		currentLabels = {}
+		messageCount = 0
+		updateCanvasSize()
+	end
+
+	-- Override warn to redirect to our function
+	warn = function(...)
+		local args = {...}
+		local message = table.concat(args, " ")
+		appendMessage("Warning: " .. message, Color3.fromRGB(255, 165, 0), "Warning")
+	end
+
+	-- Override print to redirect to our function
+	print = function(...)
+		local args = {...}
+		local message = table.concat(args, " ")
+		appendMessage(message, Color3.fromRGB(255, 255, 255), "Print")
+	end
+
+	-- Function to log Roblox errors and warnings
+	local function logRobloxMessages(message, messageType)
+		local color = Color3.fromRGB(255, 255, 255)
+		if messageType == Enum.MessageType.MessageError then
+			color = Color3.fromRGB(255, 0, 0)
+			appendMessage("[ERROR] " .. message, color, "Error")
+		elseif messageType == Enum.MessageType.MessageWarning then
+			color = Color3.fromRGB(255, 165, 0)
+			appendMessage("[WARNING] " .. message, color, "Warning")
+		else
+			appendMessage(message, color, "Print")
+		end
+	end
+
+	-- Connect to LogService to capture Roblox errors and warnings
+	local LogService = game:GetService("LogService")
+	LogService.MessageOut:Connect(logRobloxMessages)
+
+	-- Initialize button colors to white
+	PrintsButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	WarningButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ErrorButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+	-- Toggle functions for buttons
+	local function togglePrints()
+		showPrints = not showPrints
+		PrintsButton.BackgroundColor3 = showPrints and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(45, 45, 45)
+	end
+
+	local function toggleWarnings()
+		showWarnings = not showWarnings
+		WarningButton.BackgroundColor3 = showWarnings and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(45, 45, 45)
+	end
+
+	local function toggleErrors()
+		showErrors = not showErrors
+		ErrorButton.BackgroundColor3 = showErrors and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(45, 45, 45)
+	end
+
+	-- Connect buttons to their toggle functions
+	PrintsButton.MouseButton1Click:Connect(togglePrints)
+	WarningButton.MouseButton1Click:Connect(toggleWarnings)
+	ErrorButton.MouseButton1Click:Connect(toggleErrors)
+
+	-- Example usage:
+	print("Hello, world!")
+	warn("This is a warning!")
+
+
+
+
+
+
+
+	ConsoleXButton.MouseButton1Click:Connect(function()
+		Console.Visible = false
+	end)
+
+	ClearConsoleButton.MouseButton1Click:Connect(function()
+		clearConsole()
 	end)
 
 
@@ -665,16 +1037,16 @@ end)
 
 	local firstTabCreated = false -- Flag to check if the first tab is created
 	local selectedTab = nil -- Variable to keep track of the currently selected tab
-	
+
 	function Category:new(TabName)
 		assert(typeof(TabName) == "string", "Specify type string for CreateNew function")
-	
+
 		local Tab = Instance.new("TextButton")
-	
+
 		local InsideActContanierScrollingFrame = Instance.new("ScrollingFrame")
 		local InsideActContanierScrollingFrameUIPadding = Instance.new("UIPadding")
 		local InsideActContanierScrollingFrameUIListLayout = Instance.new("UIListLayout")
-		
+
 		InsideActContanierScrollingFrame.Name = "InsideActContanierScrollingFrame"
 		InsideActContanierScrollingFrame.Parent = ActivactionsContainer
 		InsideActContanierScrollingFrame.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
@@ -684,21 +1056,21 @@ end)
 		InsideActContanierScrollingFrame.Size = UDim2.new(0, 394, 0, 292)
 		InsideActContanierScrollingFrame.ScrollBarThickness = 4
 		InsideActContanierScrollingFrame.CanvasSize = UDim2.new(0,0,0,0)
-		
+
 		InsideActContanierScrollingFrameUIListLayout.Name = "InsideActContanierScrollingFrameUIListLayout"
 		InsideActContanierScrollingFrameUIListLayout.Parent = InsideActContanierScrollingFrame
 		InsideActContanierScrollingFrameUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		InsideActContanierScrollingFrameUIListLayout.Padding = UDim.new(0, 7)
-		
+
 		InsideActContanierScrollingFrame.ChildAdded:Connect(function(child)
 			InsideActContanierScrollingFrame.CanvasSize = UDim2.new(0,0,0,InsideActContanierScrollingFrameUIListLayout.AbsoluteContentSize.Y + 80) -- Change 70 to your choosing.
 		end)
-		
+
 		InsideActContanierScrollingFrameUIPadding.Name = "InsideActContanierScrollingFrameUIPadding"
 		InsideActContanierScrollingFrameUIPadding.Parent = InsideActContanierScrollingFrame
 		InsideActContanierScrollingFrameUIPadding.PaddingLeft = UDim.new(0, 6)
 		InsideActContanierScrollingFrameUIPadding.PaddingTop = UDim.new(0, 5)
-	
+
 		Tab.Name = "Tab"
 		Tab.Parent = TabContainer
 		Tab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -737,20 +1109,20 @@ end)
 		else
 			InsideActContanierScrollingFrame.Visible = false
 		end
-	
+
 
 		Tab.MouseButton1Click:Connect(function()
 			-- Reset the previously selected tab color
 			if selectedTab then
 				selectedTab.TextColor3 = Color3.fromRGB(255, 255, 255) -- Original color
 			end
-	
+
 			-- Highlight the clicked tab
 			Tab.TextColor3 = Color3.fromRGB(170, 0, 0)
-	
+
 			-- Update the selected tab reference
 			selectedTab = Tab
-	
+
 			-- Toggle visibility of scrolling frames and update selected tab text
 			for _, v in pairs(ActivactionsContainer:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
@@ -762,11 +1134,11 @@ end)
 			SelectedTab.Text = TabName .. " Tab"
 		end)
 
-	
 
-	
 
-	
+
+
+
 
 		local Module = {}
 
@@ -907,10 +1279,10 @@ end)
 					togglingg = false
 					-- Optionally wait for any ongoing processes to complete
 					wait(0.5)
-				
 
-				-- Destroy the UI
-				FATALITY:Destroy()
+
+					-- Destroy the UI
+					FATALITY:Destroy()
 				end
 			end)
 		end
@@ -1004,8 +1376,8 @@ end)
 					end
 					toggling = false
 					wait(0.5)
-				FATALITY:Destroy()
-			end
+					FATALITY:Destroy()
+				end
 			end)
 
 			-- Initially start the toggle callback if Repeat is true
@@ -1173,7 +1545,7 @@ end)
 			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
 			DropDownTitle.TextScaled = true
 
-				-- Adding UITextSizeConstraint
+			-- Adding UITextSizeConstraint
 			DropDownTitleTextSizeConstraint.Parent = DropDownTitle
 			DropDownTitleTextSizeConstraint.MinTextSize = 10
 			DropDownTitleTextSizeConstraint.MaxTextSize = 20
@@ -1329,7 +1701,7 @@ end)
 						DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)  -- Reset to original position
 					end
 				end)
-				
+
 
 				-- Store the button for later use
 				SelectedItemButtons[itemName] = DropDownTextButton
@@ -1384,7 +1756,7 @@ end)
 			assert(type(ItemList) == "table", "Specify type table for ItemList")
 			assert(type(CallBack) == "function", "Specify type function for CallBack")
 
-			
+
 			local DropDown = Instance.new("Frame")
 			local DropDownUICorner = Instance.new("UICorner")
 			local DropDownTitle = Instance.new("TextLabel")
@@ -1396,7 +1768,7 @@ end)
 			local DropDownSearchTextBox = Instance.new("TextBox")
 			local DropDownUIPadding = Instance.new("UIPadding")
 			local DropDownContainerUIGridLayout = Instance.new("UIGridLayout")
-		
+
 			DropDown.Name = "DropDown"
 			DropDown.Parent = InsideActContanierScrollingFrame
 			DropDown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
@@ -1404,11 +1776,11 @@ end)
 			DropDown.BorderSizePixel = 0
 			DropDown.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
 			DropDown.Size = UDim2.new(0, 378, 0, 38)
-		
+
 			DropDownUICorner.CornerRadius = UDim.new(0, 3)
 			DropDownUICorner.Name = "DropDownUICorner"
 			DropDownUICorner.Parent = DropDown
-		
+
 			DropDownTitle.Name = "DropDownTitle"
 			DropDownTitle.Parent = DropDown
 			DropDownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1421,11 +1793,11 @@ end)
 			DropDownTitle.TextSize = 20.000
 			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
 			DropDownTitle.Text = DropDownName .. ": " .. (defaultValue or "None")
-		
+
 			DropDownTitlePadding.Name = "ToggleUIPadding"
 			DropDownTitlePadding.Parent = DropDownTitle
 			DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
-		
+
 			DropDownButton.Name = "DropDownButton"
 			DropDownButton.Parent = DropDown
 			DropDownButton.Active = false
@@ -1439,7 +1811,7 @@ end)
 			DropDownButton.Text = "+"
 			DropDownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownButton.TextSize = 44.000
-		
+
 			DropDownContainer.Name = "DropDownContainer"
 			DropDownContainer.Parent = DropDown
 			DropDownContainer.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
@@ -1448,22 +1820,22 @@ end)
 			DropDownContainer.Position = UDim2.new(0, 0, 0.973684192, 0)
 			DropDownContainer.Size = UDim2.new(0, 372, 0, 449)
 			DropDownContainer.Visible = false
-		
+
 			DropDownContainerUIGridLayout.Name = "DropDownContainerUIGridLayout"
 			DropDownContainerUIGridLayout.Parent = DropDownContainer
 			DropDownContainerUIGridLayout.FillDirection = Enum.FillDirection.Vertical
 			DropDownContainerUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			DropDownContainerUIGridLayout.CellSize = UDim2.new(1, 40, 0, 40)
-		
+
 			DropDownUIListLayout.Name = "DropDownUIListLayout"
 			DropDownUIListLayout.Parent = DropDownContainer
 			DropDownUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			DropDownUIListLayout.Padding = UDim.new(0, 3)
-		
+
 			DropDownUIGridLayout.Name = "DropDownUIGridLayout"
 			DropDownUIGridLayout.Parent = DropDownContainer
 			DropDownUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		
+
 			DropDownSearchTextBox.Name = "DropDownSearchTextBox"
 			DropDownSearchTextBox.Parent = DropDownContainer
 			DropDownSearchTextBox.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
@@ -1475,13 +1847,13 @@ end)
 			DropDownSearchTextBox.Text = ""
 			DropDownSearchTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownSearchTextBox.TextSize = 21.000
-		
+
 			local function DropDownSearchTextBox() -- DropdownOptionsHolder.LocalScript 
 				local script = Instance.new('LocalScript', DropDownContainer)
-		
+
 				local SearchBar = script.Parent.DropDownSearchTextBox
 				local Items = script.Parent
-		
+
 				function UpdateResults()
 					local Search = string.lower(SearchBar.Text)
 					for i,v in pairs(Items:GetChildren()) do
@@ -1499,21 +1871,21 @@ end)
 						end
 					end
 				end
-		
+
 				SearchBar.Changed:Connect(UpdateResults)
 			end
 			coroutine.wrap(DropDownSearchTextBox)()
-		
+
 			DropDownContainer.ChildAdded:Connect(function()
 				DropDownContainer.CanvasSize = UDim2.new(0,0,0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 80)
 			end)
-		
+
 			local BeforeOpen = nil
-		
+
 			for _,v in pairs(ItemList) do
 				local DropDownTextButton = Instance.new("TextButton")
 				local DropDownTextButtonUIPadding = Instance.new("UIPadding")
-		
+
 				DropDownTextButton.Name = "DropDownTextButton"
 				DropDownTextButton.Parent = DropDownContainer
 				DropDownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1527,10 +1899,10 @@ end)
 				DropDownTextButton.TextSize = 22.000
 				DropDownTextButton.TextXAlignment = Enum.TextXAlignment.Left
 				DropDownTextButton.Text = v
-		
+
 				DropDownTextButtonUIPadding.Parent = DropDownTextButton
 				DropDownTextButtonUIPadding.PaddingLeft = UDim.new(0, 15)
-		
+
 				DropDownTextButton.MouseButton1Click:Connect(function()
 					DropDownTitle.Text = DropDownName .. ": " .. v
 					pcall(CallBack, v)
@@ -1546,7 +1918,7 @@ end)
 					DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)  -- Reset position
 				end)
 			end
-		
+
 			DropDownButton.MouseButton1Click:Connect(function()
 				if DropDownContainer.Visible then
 					-- If the dropdown is visible, hide it and make elements visible again
@@ -1580,8 +1952,8 @@ end)
 				pcall(CallBack, defaultValue)
 			end
 		end
-		
-		
+
+
 
 
 
@@ -1729,7 +2101,7 @@ end)
 			TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 				CallBack(TextBox.Text)
 			end)
-		
+
 			-- Update CallBack when focus is lost and Enter is pressed
 			TextBox.FocusLost:Connect(function(enterPressed)
 				if enterPressed then
@@ -1741,7 +2113,7 @@ end)
 
 
 
-		
+
 
 		return Module
 	end
@@ -1924,55 +2296,55 @@ local tween = nil
 
 
 Main:CreateToggle("Auto Farm", false, function(isEnabled)
-    ToggleTable.Toggles.AutoFarm = isEnabled
+	ToggleTable.Toggles.AutoFarm = isEnabled
 
-    spawn(function()
-        while ToggleTable.Toggles.AutoFarm do
-            task.wait()
+	spawn(function()
+		while ToggleTable.Toggles.AutoFarm do
+			task.wait()
 
-            if isEnabled then
-                if SelectedField then
-                    local currentField = SelectedField
-                    local targetCFrame = WS.FlowerZones[currentField].CFrame * CFrame.new(0, 5, 0)
-                    local tweenTime = 7
+			if isEnabled then
+				if SelectedField then
+					local currentField = SelectedField
+					local targetCFrame = WS.FlowerZones[currentField].CFrame * CFrame.new(0, 5, 0)
+					local tweenTime = 7
 
-                    -- Tween to the new selected field if it has changed
-                    if currentField ~= previousField then
-                        previousField = currentField
+					-- Tween to the new selected field if it has changed
+					if currentField ~= previousField then
+						previousField = currentField
 
-                        local humanoidRootPart = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
-                        if humanoidRootPart then
-                            local tweenInfo = TweenInfo.new(tweenTime, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false, 0)
-                            local tween = game:GetService("TweenService"):Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
-                            tween:Play()
+						local humanoidRootPart = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
+						if humanoidRootPart then
+							local tweenInfo = TweenInfo.new(tweenTime, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false, 0)
+							local tween = game:GetService("TweenService"):Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
+							tween:Play()
 
-                            -- Wait for tween completion
-                            tween.Completed:Wait()
-                            
-                            -- Fire server event and perform other actions
-                            game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer(unpack(Sprinkler))
-                            wait(0.5)
-                            moveAroundTarget(targetCFrame.Position)
-                        end
-                    end
-                else
-                    previousField = nil
-                    -- Handle stopping actions when SelectedField is nil
-                    -- Cancel tween if exists
-                    if tween then
-                        tween:Cancel()
-                    end
-                end
-            else
-                -- Handle stopping actions when AutoFarm is toggled off
-                previousField = nil
-                -- Cancel tween if exists
-                if tween then
-                    tween:Cancel()
-                end
-            end
-        end
-    end)
+							-- Wait for tween completion
+							tween.Completed:Wait()
+
+							-- Fire server event and perform other actions
+							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer(unpack(Sprinkler))
+							wait(0.5)
+							moveAroundTarget(targetCFrame.Position)
+						end
+					end
+				else
+					previousField = nil
+					-- Handle stopping actions when SelectedField is nil
+					-- Cancel tween if exists
+					if tween then
+						tween:Cancel()
+					end
+				end
+			else
+				-- Handle stopping actions when AutoFarm is toggled off
+				previousField = nil
+				-- Cancel tween if exists
+				if tween then
+					tween:Cancel()
+				end
+			end
+		end
+	end)
 end)
 
 
@@ -1982,40 +2354,61 @@ end)
 
 
 Main:CreateTextBox("Enter your text here", function(text)
-    EnteredText = text
-    print("EnteredText updated: " .. EnteredText)  -- Debugging print statement
+	EnteredText = text
+	print("EnteredText updated: " .. EnteredText)  -- Debugging print statement
 end)
 
 Main:CreateButton("ChangeMask1", function()
-    if not EnteredText then
-        print("No text entered")  -- Debugging print statement
-    else
-        print("Changing Mask 1 with text: " .. EnteredText)  -- Debugging print statement
-        game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(unpack({
-            [1] = "Equip",
-            [2] = {
-                ["Type"] = tostring(EnteredText),
-                ["Category"] = "Accessory"
-            }
-        }))
-    end
+	if not EnteredText then
+		print("No text entered")  -- Debugging print statement
+	else
+		print("Changing Mask 1 with text: " .. EnteredText)  -- Debugging print statement
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(unpack({
+			[1] = "Equip",
+			[2] = {
+				["Type"] = tostring(EnteredText),
+				["Category"] = "Accessory"
+			}
+		}))
+	end
 end)
 
 Main:CreateButton("ChangeMask2", function()
-    if not EnteredText then
-        print("No text entered")  -- Debugging print statement
-    else
-        print("Changing Mask 2 with text: " .. EnteredText)  -- Debugging print statement
-        game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(unpack({
-            [1] = "Equip",
-            [2] = {
-                ["Type"] = tostring(EnteredText),
-                ["Category"] = "Accessory"
-            }
-        }))
-    end
+	if not EnteredText then
+		print("No text entered")  -- Debugging print statement
+	else
+		print("Changing Mask 2 with text: " .. EnteredText)  -- Debugging print statement
+		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(unpack({
+			[1] = "Equip",
+			[2] = {
+				["Type"] = tostring(EnteredText),
+				["Category"] = "Accessory"
+			}
+		}))
+	end
 end)
 
+local value = 1
+
+-- Define a variable to hold the value
+
+-- Function to update the value and print it
+local function updateAndPrint()
+	value = value + 1
+	print("Current value:", value)
+end
+
+Main:CreateButton("Test", function()
+
+	updateAndPrint()
+end)
+
+
+
+Main:CreateButton("dddd", function()
+
+	Print("Men")
+end)
 --Upgrades
 
 
