@@ -8,7 +8,7 @@ local LocalPlayer = Players.LocalPlayer
 local Hb = game:GetService("RunService").Heartbeat;
 local UIS = game:GetService("UserInputService")
 local CG = game:GetService("CoreGui")
-
+local TweenService = game:GetService("TweenService")
 
 function library:CreateWindow()
 	local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
@@ -1181,133 +1181,28 @@ function library:CreateWindow()
 		end
 
 
+
+
+
 		function Module:CreateToggle(ToggleName, Repeatt, CallBackk)
-			assert(type(ToggleName) == "string", "specify type string for CreateToggle() function")
+			assert(type(ToggleName) == "string", "Specify type string for CreateToggle() function")
 
-
+			-- Create UI elements
 			local Toggle = Instance.new("Frame")
-			local ToggleUICorner = Instance.new("UICorner")
-			local ToggleTitle = Instance.new("TextLabel")
-			local ToggleUIPadding = Instance.new("UIPadding")
-			local ToggleButton = Instance.new("TextButton")
-			local ToggledImage = Instance.new("ImageLabel")
-
 			Toggle.Name = "Toggle"
 			Toggle.Parent = InsideActContanierScrollingFrame
 			Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 			Toggle.BorderColor3 = Color3.fromRGB(31, 31, 31)
 			Toggle.BorderSizePixel = 0
-			Toggle.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
-			Toggle.Size = UDim2.new(0, 378,0, 38)
-
-			ToggleUICorner.CornerRadius = UDim.new(0, 3)
-			ToggleUICorner.Name = "ToggleUICorner"
-			ToggleUICorner.Parent = Toggle
-
-			ToggleTitle.Name = "ToggleTitle"
-			ToggleTitle.Parent = Toggle
-			ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ToggleTitle.BackgroundTransparency = 1.000
-			ToggleTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
-			ToggleTitle.BorderSizePixel = 0
-			ToggleTitle.Size = UDim2.new(0, 378,0, 38)
-			ToggleTitle.Font = Enum.Font.SourceSans
-			ToggleTitle.Text = ToggleName
-			ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-			ToggleTitle.TextSize = 20.000
-			ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
-
-			ToggleUIPadding.Name = "ToggleUIPadding"
-			ToggleUIPadding.Parent = ToggleTitle
-			ToggleUIPadding.PaddingLeft = UDim.new(0, 6)
-
-			ToggleButton.Name = "ToggleButton"
-			ToggleButton.Parent = Toggle
-			ToggleButton.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-			ToggleButton.BorderColor3 = Color3.fromRGB(243, 243, 243)
-			ToggleButton.Position = UDim2.new(0.917999983, 0, 0.254999995, 0)
-			ToggleButton.Size = UDim2.new(0, 20, 0, 20)
-			ToggleButton.Text = ""
-
-
-
-			ToggledImage.Name = "ToggledImage"
-			ToggledImage.Parent = ToggleButton
-			ToggledImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ToggledImage.BackgroundTransparency = 1.000
-			ToggledImage.Position = UDim2.new(0, -3, -0.0669998154, 0)
-			ToggledImage.Size = UDim2.new(0, 26, 0, 20)
-			ToggledImage.Image = "rbxassetid://2790552399"
-			ToggledImage.Visible = false
-
-
-
-			local togglingg = false
-			local togConn = nil
-
-			ToggleButton.MouseButton1Click:Connect(function()
-				togglingg = not togglingg
-
-				library.flags[ToggleName] = togglingg
-
-				if Repeatt then
-					if togglingg then
-						togConn = RunService.RenderStepped:Connect(CallBackk)
-						ToggledImage.Visible = true
-					else
-						if togConn then
-							togConn:Disconnect()
-						end
-						ToggledImage.Visible = false
-					end
-				else
-					if togglingg then
-						CallBackk(togglingg)
-						ToggledImage.Visible = true
-					else
-						CallBackk(togglingg)
-						ToggledImage.Visible = false
-					end
-				end
-			end)
-
-			XButton.MouseButton1Click:Connect(function()
-				if togglingg then
-					if togConn then
-						togConn:Disconnect()  -- Disconnect the toggle connection if it exists
-					end
-					togglingg = false
-					-- Optionally wait for any ongoing processes to complete
-					wait(0.5)
-
-
-					-- Destroy the UI
-					FATALITY:Destroy()
-				end
-			end)
-		end
-
-		function Module:CreateActiveToggle(ToggleName, Repeat, CallBack)
-			assert(type(ToggleName) == "string", "Specify type string for CreateToggle() function")
-
-			local Toggle = Instance.new("Frame")
-			local ToggleUICorner = Instance.new("UICorner")
-			local ToggleTitle = Instance.new("TextLabel")
-			local ToggleUIPadding = Instance.new("UIPadding")
-			local ToggleButton = Instance.new("TextButton")
-			local ToggledImage = Instance.new("ImageLabel")
-
-			Toggle.Name = "Toggle"
-			Toggle.Parent = InsideActContanierScrollingFrame  -- Adjust to your specific parent frame
-			Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-			Toggle.BorderColor3 = Color3.fromRGB(31, 31, 31)
-			Toggle.BorderSizePixel = 0
+			Toggle.Position = UDim2.new(0, 0, 0.111498259, 0)
 			Toggle.Size = UDim2.new(0, 378, 0, 38)
 
+			local ToggleUICorner = Instance.new("UICorner")
 			ToggleUICorner.CornerRadius = UDim.new(0, 3)
 			ToggleUICorner.Name = "ToggleUICorner"
 			ToggleUICorner.Parent = Toggle
 
+			local ToggleTitle = Instance.new("TextLabel")
 			ToggleTitle.Name = "ToggleTitle"
 			ToggleTitle.Parent = Toggle
 			ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1321,70 +1216,240 @@ function library:CreateWindow()
 			ToggleTitle.TextSize = 20.000
 			ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 
+			local ToggleUIPadding = Instance.new("UIPadding")
 			ToggleUIPadding.Name = "ToggleUIPadding"
 			ToggleUIPadding.Parent = ToggleTitle
 			ToggleUIPadding.PaddingLeft = UDim.new(0, 6)
 
+			local ToggleButtonHolder = Instance.new("Frame")
+			ToggleButtonHolder.Name = "ToggleButtonHolder"
+			ToggleButtonHolder.Parent = Toggle
+			ToggleButtonHolder.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
+			ToggleButtonHolder.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ToggleButtonHolder.BorderSizePixel = 0
+			ToggleButtonHolder.Position = UDim2.new(0.828042328, 0, 0.210526317, 0)
+			ToggleButtonHolder.Size = UDim2.new(0, 48, 0, 22)
+
+			local ToggleBUttonHOlderUIcorner = Instance.new("UICorner")
+			ToggleBUttonHOlderUIcorner.CornerRadius = UDim.new(0, 10)
+			ToggleBUttonHOlderUIcorner.Name = "ToggleBUttonHOlderUIcorner"
+			ToggleBUttonHOlderUIcorner.Parent = ToggleButtonHolder
+
+			local ToggleButton = Instance.new("TextButton")
 			ToggleButton.Name = "ToggleButton"
-			ToggleButton.Parent = Toggle
-			ToggleButton.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-			ToggleButton.BorderColor3 = Color3.fromRGB(243, 243, 243)
-			ToggleButton.Position = UDim2.new(0.917999983, 0, 0.254999995, 0)
-			ToggleButton.Size = UDim2.new(0, 20, 0, 20)
+			ToggleButton.Parent = ToggleButtonHolder
+			ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ToggleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ToggleButton.BorderSizePixel = 0
+			ToggleButton.Position = UDim2.new(0, 0, 0, 0)
+			ToggleButton.Size = UDim2.new(0, 26, 0, 22)
+			ToggleButton.Font = Enum.Font.SourceSans
 			ToggleButton.Text = ""
+			ToggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+			ToggleButton.TextSize = 14.000
 
-			ToggledImage.Name = "ToggledImage"
-			ToggledImage.Parent = ToggleButton
-			ToggledImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ToggledImage.BackgroundTransparency = 1.000
-			ToggledImage.Position = UDim2.new(0, -3, -0.0669998154, 0)
-			ToggledImage.Size = UDim2.new(0, 26, 0, 20)
-			ToggledImage.Image = "rbxassetid://2790552399"
-			ToggledImage.Visible = true  -- Initially visible since toggle is active
+			local ToggleuButtonUICorner = Instance.new("UICorner")
+			ToggleuButtonUICorner.CornerRadius = UDim.new(2, 5)
+			ToggleuButtonUICorner.Name = "ToggleuButtonUICorner"
+			ToggleuButtonUICorner.Parent = ToggleButton
 
-			local toggling = true  -- Start with toggle active
-			local togCon = nil
+			-- Toggle state and tweens
+			local togglingg = false
+			local togConn = nil
+			local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+			local whiteColor = Color3.fromRGB(255, 255, 255)
+			local redColor = Color3.fromRGB(170, 0, 0)
+			local tween = nil
 
+			local function toggleButtonColor(color)
+				tween = TweenService:Create(ToggleButton, tweenInfo, {BackgroundColor3 = color})
+				tween:Play()
+			end
+
+			local function toggleButtonPosition(position)
+				tween = TweenService:Create(ToggleButton, tweenInfo, {Position = position})
+				tween:Play()
+			end
+
+			-- Toggle button click event
 			ToggleButton.MouseButton1Click:Connect(function()
-				toggling = not toggling
-				library.flags[ToggleName] = toggling
+				togglingg = not togglingg
+				CallBackk(togglingg)
 
-				if Repeat then
-					if toggling then
-						togCon = RunService.RenderStepped:Connect(CallBack)
-						ToggledImage.Visible = true
+				if Repeatt then
+					if togglingg then
+						togConn = RunService.RenderStepped:Connect(function()
+							CallBackk(togglingg)
+						end)
+						toggleButtonColor(redColor)
+						toggleButtonPosition(UDim2.new(0.458333343, 0, 0, 0))
 					else
-						togCon:Disconnect()
-						ToggledImage.Visible = false
+						if togConn then
+							togConn:Disconnect()
+						end
+						toggleButtonColor(whiteColor)
+						toggleButtonPosition(UDim2.new(0, 0, 0, 0))
 					end
 				else
-					if toggling then
-						CallBack(toggling)
-						ToggledImage.Visible = true
+					if togglingg then
+						toggleButtonColor(redColor)
+						toggleButtonPosition(UDim2.new(0.458333343, 0, 0, 0))
 					else
-						CallBack(toggling)
-						ToggledImage.Visible = false
+						toggleButtonColor(whiteColor)
+						toggleButtonPosition(UDim2.new(0, 0, 0, 0))
 					end
 				end
 			end)
+
 
 
 			XButton.MouseButton1Click:Connect(function()
-				if toggling then
-					if togCon then
-						togCon:Disconnect()  -- Disconnect the first toggle connection if it exists
+				if togglingg then
+					if togConn then
+						togConn:Disconnect()
 					end
-					toggling = false
-					wait(0.5)
-					FATALITY:Destroy()
+					togglingg = false
+					wait(0.5)  -- Optionally wait for ongoing processes to complete
+					Toggle:Destroy()
 				end
 			end)
-
-			-- Initially start the toggle callback if Repeat is true
-			if Repeat then
-				togCon = RunService.RenderStepped:Connect(CallBack)
-			end
 		end
+
+
+
+
+
+		function Module:CreateActiveToggle(ToggleName, Repeat, CallBack)
+			assert(type(ToggleName) == "string", "Specify type string for CreateActiveToggle() function")
+
+			-- Create UI elements
+			local Toggle = Instance.new("Frame")
+			Toggle.Name = "Toggle"
+			Toggle.Parent = InsideActContanierScrollingFrame
+			Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+			Toggle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			Toggle.BorderSizePixel = 0
+			Toggle.Position = UDim2.new(0, 0, 0.111498259, 0)
+			Toggle.Size = UDim2.new(0, 378, 0, 38)
+
+			local ToggleUICorner = Instance.new("UICorner")
+			ToggleUICorner.CornerRadius = UDim.new(0, 3)
+			ToggleUICorner.Name = "ToggleUICorner"
+			ToggleUICorner.Parent = Toggle
+
+			local ToggleTitle = Instance.new("TextLabel")
+			ToggleTitle.Name = "ToggleTitle"
+			ToggleTitle.Parent = Toggle
+			ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ToggleTitle.BackgroundTransparency = 1.000
+			ToggleTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			ToggleTitle.BorderSizePixel = 0
+			ToggleTitle.Size = UDim2.new(0, 378, 0, 38)
+			ToggleTitle.Font = Enum.Font.SourceSans
+			ToggleTitle.Text = ToggleName
+			ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+			ToggleTitle.TextSize = 20.000
+			ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+			local ToggleUIPadding = Instance.new("UIPadding")
+			ToggleUIPadding.Name = "ToggleUIPadding"
+			ToggleUIPadding.Parent = ToggleTitle
+			ToggleUIPadding.PaddingLeft = UDim.new(0, 6)
+
+			local ToggleButtonHolder = Instance.new("Frame")
+			ToggleButtonHolder.Name = "ToggleButtonHolder"
+			ToggleButtonHolder.Parent = Toggle
+			ToggleButtonHolder.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
+			ToggleButtonHolder.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ToggleButtonHolder.BorderSizePixel = 0
+			ToggleButtonHolder.Position = UDim2.new(0.828042328, 0, 0.210526317, 0)
+			ToggleButtonHolder.Size = UDim2.new(0, 48, 0, 22)
+
+			local ToggleBUttonHOlderUIcorner = Instance.new("UICorner")
+			ToggleBUttonHOlderUIcorner.CornerRadius = UDim.new(0, 10)
+			ToggleBUttonHOlderUIcorner.Name = "ToggleBUttonHOlderUIcorner"
+			ToggleBUttonHOlderUIcorner.Parent = ToggleButtonHolder
+
+			local ToggleButton = Instance.new("TextButton")
+			ToggleButton.Name = "ToggleButton"
+			ToggleButton.Parent = ToggleButtonHolder
+			ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)  -- Start with white background
+			ToggleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ToggleButton.BorderSizePixel = 0
+			ToggleButton.Position = UDim2.new(0, 0, 0, 0)
+			ToggleButton.Size = UDim2.new(0, 26, 0, 22)
+			ToggleButton.Font = Enum.Font.SourceSans
+			ToggleButton.Text = ""
+			ToggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+			ToggleButton.TextSize = 14.000
+
+			local ToggleuButtonUICorner = Instance.new("UICorner")
+			ToggleuButtonUICorner.CornerRadius = UDim.new(2, 5)
+			ToggleuButtonUICorner.Name = "ToggleuButtonUICorner"
+			ToggleuButtonUICorner.Parent = ToggleButton
+
+			local toggling = true  
+			local togCon = nil
+		
+
+			ToggleButton.MouseButton1Click:Connect(function()
+				toggling = not toggling
+
+				if toggling then
+
+					local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+					local tween = TweenService:Create(ToggleButton, tweenInfo, { Position = UDim2.new(0.458333343, 0, 0, 0) })
+					tween:Play()
+		
+					ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) 
+		
+
+					if Repeat then
+						togCon = RunService.RenderStepped:Connect(function()
+							CallBack(toggling)
+						end)
+					else
+						CallBack(toggling)
+					end
+				else
+					-- Tweens for toggling off
+					local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+					local tween = TweenService:Create(ToggleButton, tweenInfo, { Position = UDim2.new(0, 0, 0, 0) })
+					tween:Play()
+		
+					ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
+		
+					if togCon then
+						togCon:Disconnect()
+					end
+					CallBack(toggling)
+				end
+			end)
+		
+
+			if Repeat then
+				ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) 
+		
+				local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+				local tween = TweenService:Create(ToggleButton, tweenInfo, { Position = UDim2.new(0.458333343, 0, 0, 0) })
+				tween:Play()
+		
+				togCon = RunService.RenderStepped:Connect(function()
+					CallBack(toggling)
+				end)
+			end
+		
+
+			XButton.MouseButton1Click:Connect(function()
+				if togCon then
+					togCon:Disconnect()  
+				end
+	
+				wait(0.5)
+				FATALITY:Destroy() 
+			end)
+		end
+
 
 
 
@@ -2078,34 +2143,67 @@ function library:CreateWindow()
 
 
 
-		function Module:CreateTextBox(TextBoxPlaceholderText, CallBack)
+		function Module:CreateTextBox(EnterValueName, TextBoxPlaceholderText, CallBack)
+			assert(type(EnterValueName) == "string", "specify type string for EnterValueName parameter")
 			assert(type(TextBoxPlaceholderText) == "string", "specify type string for TextBoxPlaceholderText parameter")
 			assert(type(CallBack) == "function", "specify type function for CallBack parameter")
 
-			local TextBox = Instance.new("TextBox")
+				local EnterValue = Instance.new("Frame")
+				local EnterValueTextBox = Instance.new("TextBox")
+				local EnterValueTitle = Instance.new("TextLabel")
+				local DropDownTitlePadding = Instance.new("UIPadding")
+				
+				--Properties:
+				
+				EnterValue.Name = "EnterValue"
+				EnterValue.Parent = InsideActContanierScrollingFrame
+				EnterValue.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+				EnterValue.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				EnterValue.BorderSizePixel = 0
+				EnterValue.Position = UDim2.new(0, 0, 0.48780489, 0)
+				EnterValue.Size = UDim2.new(0, 378, 0, 38)
+				
+				EnterValueTextBox.Name = "EnterValueTextBox"
+				EnterValueTextBox.Parent = EnterValue
+				EnterValueTextBox.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+				EnterValueTextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				EnterValueTextBox.BorderSizePixel = 0
+				EnterValueTextBox.Position = UDim2.new(0.563712001, 0, 0.153773263, 0)
+				EnterValueTextBox.Size = UDim2.new(0, 148, 0, 25)
+				EnterValueTextBox.Font = Enum.Font.SourceSans
+				EnterValueTextBox.PlaceholderText = "Enter Blessing.."
+				EnterValueTextBox.Text = ""
+				EnterValueTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+				EnterValueTextBox.TextSize = 19.000
+				EnterValueTextBox.TextWrapped = true
+				EnterValueTextBox.PlaceholderText = TextBoxPlaceholderText
+				
+				EnterValueTitle.Name = "EnterValueTitle"
+				EnterValueTitle.Parent = EnterValue
+				EnterValueTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				EnterValueTitle.BackgroundTransparency = 1.000
+				EnterValueTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+				EnterValueTitle.BorderSizePixel = 0
+				EnterValueTitle.Size = UDim2.new(0, 231, 0, 38)
+				EnterValueTitle.Font = Enum.Font.SourceSans
+				EnterValueTitle.Text = EnterValueName
+				EnterValueTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+				EnterValueTitle.TextSize = 20.000
+				EnterValueTitle.TextXAlignment = Enum.TextXAlignment.Left
+				
+				DropDownTitlePadding.Name = "DropDownTitlePadding"
+				DropDownTitlePadding.Parent = EnterValueTitle
+				DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
 
 
-			TextBox.Parent = InsideActContanierScrollingFrame
-			TextBox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-			TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextBox.BorderSizePixel = 0
-			TextBox.Size = UDim2.new(0, 378, 0, 38)
-			TextBox.Font = Enum.Font.SourceSans
-			TextBox.PlaceholderText = TextBoxPlaceholderText
-			TextBox.Text = ""
-			TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextBox.TextSize = 19.000
-			TextBox.TextWrapped = true
-
-
-			TextBox:GetPropertyChangedSignal("Text"):Connect(function()
-				CallBack(TextBox.Text)
+				EnterValueTextBox:GetPropertyChangedSignal("Text"):Connect(function()
+				CallBack(EnterValueTextBox.Text)
 			end)
 
 			-- Update CallBack when focus is lost and Enter is pressed
-			TextBox.FocusLost:Connect(function(enterPressed)
+			EnterValueTextBox.FocusLost:Connect(function(enterPressed)
 				if enterPressed then
-					CallBack(TextBox.Text)
+					CallBack(EnterValueTextBox.Text)
 				end
 			end)
 		end
@@ -2295,83 +2393,24 @@ local tween = nil
 
 
 
-Main:CreateToggle("Auto Farm", false, function(isEnabled)
-	ToggleTable.Toggles.AutoFarm = isEnabled
+Main:CreateToggle("Auto Farm", true, function()
+	print("Men")
+end)
 
-	spawn(function()
-		while ToggleTable.Toggles.AutoFarm do
-			task.wait()
 
-			if isEnabled then
-				if SelectedField then
-					local currentField = SelectedField
-					local targetCFrame = WS.FlowerZones[currentField].CFrame * CFrame.new(0, 5, 0)
-					local tweenTime = 7
-
-					-- Tween to the new selected field if it has changed
-					if currentField ~= previousField then
-						previousField = currentField
-
-						local humanoidRootPart = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
-						if humanoidRootPart then
-							local tweenInfo = TweenInfo.new(tweenTime, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false, 0)
-							local tween = game:GetService("TweenService"):Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
-							tween:Play()
-
-							-- Wait for tween completion
-							tween.Completed:Wait()
-
-							-- Fire server event and perform other actions
-							game:GetService("ReplicatedStorage").Events.PlayerActivesCommand:FireServer(unpack(Sprinkler))
-							wait(0.5)
-							moveAroundTarget(targetCFrame.Position)
-						end
-					end
-				else
-					previousField = nil
-					-- Handle stopping actions when SelectedField is nil
-					-- Cancel tween if exists
-					if tween then
-						tween:Cancel()
-					end
-				end
-			else
-				-- Handle stopping actions when AutoFarm is toggled off
-				previousField = nil
-				-- Cancel tween if exists
-				if tween then
-					tween:Cancel()
-				end
-			end
-		end
-	end)
+Main:CreateActiveToggle("Auto Farm", true, function()
+	print("Men")
 end)
 
 
 
 
-
-
-
-Main:CreateTextBox("Enter your text here", function(text)
+Main:CreateTextBox("Dealfault ID", "Enter your text here", function(text)
 	EnteredText = text
 	print("EnteredText updated: " .. EnteredText)  -- Debugging print statement
 end)
 
-Main:CreateButton("ChangeMask1", function()
-	if not EnteredText then
-		print("No text entered")  -- Debugging print statement
-	else
-		print("Changing Mask 1 with text: " .. EnteredText)  -- Debugging print statement
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(unpack({
-			[1] = "Equip",
-			[2] = {
-				["Type"] = tostring(EnteredText),
-				["Category"] = "Accessory"
-			}
-		}))
-	end
-end)
+
 
 Main:CreateButton("ChangeMask2", function()
 	if not EnteredText then
