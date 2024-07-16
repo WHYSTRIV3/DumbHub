@@ -1457,7 +1457,13 @@ function library:CreateWindow()
 		function Module:CreateSlider(SliderName, Options, CallBack)
 			assert(type(SliderName) == "string", "Specify type string for CreateSlider() function")
 			assert(type(Options) == "table", "Options must be a table")
-
+			assert(type(Options.min) == "number", "Options.min must be a number")
+			assert(type(Options.max) == "number", "Options.max must be a number")
+			assert(type(Options.default) == "number", "Options.default must be a number")
+		
+			-- Clamp the default value to be within min and max range
+			Options.default = math.clamp(Options.default, Options.min, Options.max)
+		
 			local Slider = Instance.new("Frame")
 			local SliderUICorner = Instance.new("UICorner")
 			local SliderTitle = Instance.new("TextLabel")
@@ -1467,7 +1473,7 @@ function library:CreateWindow()
 			local SliderBackUICorner = Instance.new("UICorner")
 			local MainSlider = Instance.new("Frame")
 			local MainSliderUICorner = Instance.new("UICorner")
-
+		
 			Slider.Name = "Slider"
 			Slider.Parent = InsideActContanierScrollingFrame  -- Adjust to your specific parent frame
 			Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
@@ -1475,11 +1481,11 @@ function library:CreateWindow()
 			Slider.BorderSizePixel = 0
 			Slider.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
 			Slider.Size = UDim2.new(0, 378, 0, 38)
-
+		
 			SliderUICorner.CornerRadius = UDim.new(0, 3)
 			SliderUICorner.Name = "SliderUICorner"
 			SliderUICorner.Parent = Slider
-
+		
 			SliderTitle.Name = "SliderTitle"
 			SliderTitle.Parent = Slider
 			SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1492,13 +1498,13 @@ function library:CreateWindow()
 			SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderTitle.TextSize = 20.000
 			SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
-
+		
 			UIPadding.Parent = SliderTitle
-
+		
 			SliderUIPadding.Name = "SliderUIPadding"
 			SliderUIPadding.Parent = Slider
 			SliderUIPadding.PaddingLeft = UDim.new(0, 6)
-
+		
 			SliderBack.Name = "SliderBack"
 			SliderBack.Parent = Slider
 			SliderBack.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -1507,56 +1513,57 @@ function library:CreateWindow()
 			SliderBack.Position = UDim2.new(0.438395411, 0, 0.349638283, 0)
 			SliderBack.Size = UDim2.new(0, 178, 0, 14)
 			SliderBack.Text = ""
-
+		
 			SliderBackUICorner.CornerRadius = UDim.new(0, 6)
 			SliderBackUICorner.Name = "SliderBackUICorner"
 			SliderBackUICorner.Parent = SliderBack
-
+		
 			MainSlider.Name = "MainSlider"
 			MainSlider.Parent = SliderBack
 			MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			MainSlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			MainSlider.BorderSizePixel = 0
 			MainSlider.Size = UDim2.new((Options.default - Options.min) / (Options.max - Options.min), 0, 0, 14)
-
+		
 			MainSliderUICorner.CornerRadius = UDim.new(0, 6)
 			MainSliderUICorner.Name = "MainSliderUICorner"
 			MainSliderUICorner.Parent = MainSlider
-
+		
 			local mousedown = false
-
+		
 			UIS.InputEnded:Connect(function(input)
 				if input.UserInputType == Enum.UserInputType.MouseButton1 then
 					mousedown = false
 				end
-			end)
-
+				end)
+		
 			SliderBack.MouseButton1Down:Connect(function()
 				mousedown = true
 			end)
-
+		
 			SliderBack.MouseButton1Up:Connect(function()
 				mousedown = false
 			end)
-
+		
 			UIS.InputChanged:Connect(function(input)
 				if mousedown and input.UserInputType == Enum.UserInputType.MouseMovement then
 					local mousePos = input.Position
 					local sliderPos = SliderBack.AbsolutePosition
 					local sliderSize = SliderBack.AbsoluteSize
-
+		
 					local percent = math.clamp((mousePos.X - sliderPos.X) / sliderSize.X, 0, 1)
 					local newValue = Options.min + percent * (Options.max - Options.min)
 					newValue = math.floor(newValue)
-
+		
 					SliderTitle.Text = SliderName .. ": " .. newValue
 					MainSlider.Size = UDim2.new(percent, 0, 0, 14)
-
+		
 					library.flags[SliderName] = newValue
 					CallBack(newValue)
 				end
 			end)
 		end
+		
 
 
 
@@ -2262,192 +2269,27 @@ end)
 
 -- Labels
 
-Info:CreateDivider("Hive Stats")
 
 
-Info:CreateLabel("HoneyMade", "Honey Made: 0?")
-
-Info:CreateLabel("Estimated Honey", "Estimated Honey Gain In A Hour: 0?")
-
-Info:CreateLabel("Estimated Day Honey", "Estimated Honey Gain In A Day: 0?")
-
-
-Info:CreateDivider("Balloon Info")
-
-
-Info:CreateLabel("BalloonBlessing", "Your Balloon Blessing is at: Waiting For Balloon")
-
-
-Info:CreateLabel("Balloon", "Your Balloon Pollen is at: Waiting For Balloon")
-
-
-
-
-Info:CreateDivider("Mob Timers")
-
-
-Info:CreateLabel("Mondo", "Mondo Chick Timer: 0?")
-
-
-
-Info:CreateLabel("Spider", "Spider Crab Timer: 0?")
-
-
-Info:CreateLabel("WereWolf", "WereWolf Crab Timer: 0?")
-
-
-
-local StartTime = os.time()  
-
-local function formatNumberWithCommas(number)
-
-	local formatted = tostring(number)
-
-
-	formatted = string.reverse(formatted)
-	formatted = string.gsub(formatted, "(%d%d%d)", "%1,")
-
-
-	formatted = string.gsub(formatted, ",$", "")
-	formatted = string.reverse(formatted)
-
-	return formatted
-end
-
-
-
--- Function to format large numbers with abbreviations
-local function formatNumberWithAbbreviation(number)
-	local suffixes = {"", "K", "M", "B", "T", "Qd"}  -- Suffixes for thousand, million, billion, trillion
-
-	local formattedNumber = tonumber(number)
-	local suffixIndex = 1
-
-	while formattedNumber >= 1000 and suffixIndex < #suffixes do
-		formattedNumber = formattedNumber / 1000
-		suffixIndex = suffixIndex + 1
-	end
-
-	return string.format("%.1f%s", formattedNumber, suffixes[suffixIndex])
-end
-
-
-
-
-
-
-
-
---Main
-getgenv().ToggleTable = { 
-	Toggles = {
-		AutoFarm = false,
-		AutoDig = false,
-		AutoCollect = false,
-		IgnoreHoneyCollect = false,
-		ConvertBalloon = false,
-		FarmFuzzyBombs = false,
-		FarmBubbleBloat = false,
-		FarmBalloon = false,
-		AutoSticker = false,
-		FarmingField = false,
-		FarmFlames = false,
-		farmflower = false,
-		AutoHoneyMaskEquip = false,
-
-	}
-}
-
-local Feilds = {
-	"Mushroom Field", 
-	"Strawberry Field", 
-	"Sunflower Field", 
-	"Blue Flower Field", 
-	"Spider Field", 
-	"Pumpkin Patch", 
-	"Mountain Top Field", 
-	"Bamboo Field", 
-	"Pine Tree Forest", 
-	"Rose Field", 
-	"Cactus Field", 
-	"Stump Field", 
-	"Clover Field", 
-	"Coconut Field", 
-	"Pepper Patch",
-	"Pineapple Patch", 
-	"Dandelion Field"
-}
-
-
-
-
-
-
-
-local previousField = nil
-local tween = nil
-
-
-
-
-
-
-
-Main:CreateToggle("Auto Farm", true, function()
-	print("Men")
+Main:CreateSlider("Set Roll Amount", {min = 1, max = 6, default = 1}, function(state)
+	RollAmount = state
 end)
 
 
-Main:CreateActiveToggle("Auto Farm", true, function()
-	print("Men")
+Main:CreateToggle("Auto Roll", true, function()
+    if RollAmount then
+	    game:GetService("ReplicatedStorage").Events.To_Server:FireServer(unpack({[1] = {["Open_Amount"] = RollAmount ,["Action"] = "Gacha_Activate",["Name"] = "Avatars_1"}}))
+    end
 end)
 
 
 
 
-Main:CreateTextBox("Dealfault ID", "Enter your text here", function(text)
-	EnteredText = text
-	print("EnteredText updated: " .. EnteredText)  -- Debugging print statement
-end)
 
 
 
-Main:CreateButton("ChangeMask2", function()
-	if not EnteredText then
-		print("No text entered")  -- Debugging print statement
-	else
-		print("Changing Mask 2 with text: " .. EnteredText)  -- Debugging print statement
-		game:GetService("ReplicatedStorage").Events.ItemPackageEvent:InvokeServer(unpack({
-			[1] = "Equip",
-			[2] = {
-				["Type"] = tostring(EnteredText),
-				["Category"] = "Accessory"
-			}
-		}))
-	end
-end)
-
-local value = 1
-
--- Define a variable to hold the value
-
--- Function to update the value and print it
-local function updateAndPrint()
-	value = value + 1
-	print("Current value:", value)
-end
-
-Main:CreateButton("Test", function()
-
-	updateAndPrint()
-end)
 
 
-
-Main:CreateButton("dddd", function()
-
-	Print("Men")
-end)
 --Upgrades
 
 
