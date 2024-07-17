@@ -498,7 +498,6 @@ Premium()
 
 
 
-
 local function PlayerImageAndId() -- Container.PlayerImageScript 
 
 	local Player = game. Players.LocalPlayer
