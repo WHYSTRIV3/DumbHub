@@ -1,5 +1,5 @@
 --Everyday at 12
-local TwoFourHourKey = "PumpkinPie"
+local Key = "PumpkinPie"
 
 
 
@@ -374,45 +374,39 @@ ConfirmButtonUICorner.Parent = ConfirmButton
 
 
 
-local HttpService = game:GetService("HttpService")
-local firebaseUrl = "https://fatalitykey-default-rtdb.firebaseio.com/keys.json"  -- Replace with your Firebase Realtime Database URL
 
-local function checkKey(key)
-    local success, result = pcall(function()
-        return HttpService:GetAsync(firebaseUrl)
-    end)
-
-    if success then
-        local keysData = HttpService:JSONDecode(result)
-        for _, entry in pairs(keysData) do
-            if entry.key == key then
-                return true
-            end
-        end
-    else
-        warn("Error fetching data from Firebase:", result)
-    end
-
-    return false
-end
 
 
 
 ConfirmButton.MouseButton1Click:Connect(function()
-    local key = TextBox.Text
-    CheckingKeyText.Visible = true
-    CheckingKeyText.Text = "> Checking Key.."
-
-    local validKey = checkKey(key)
-
-    if validKey then
+    if TextBox.Text == Key then
+        CheckingKeyText.Visible = true
+        CheckingKeyText.Text = "> Checking Key.. 1/3"
+        wait(1)
+        CheckingKeyText.Text = "> Checking Key.. 2/3"
+        wait(1)
+        CheckingKeyText.Text = "> Checking Key.. 3/3"
+        wait(1)
         CheckingKeyText.Text = "> Valid Key"
-        -- Handle what happens when the key is valid
+        wait(1)
+        CheckingGameText.Visible = true
+        CheckingGameText.Text = " > Checking For Script.. 1/3"
+        wait(1)
+        CheckingGameText.Text = " > Checking For Script.. 2/3"
+        wait(1)
+        CheckingGameText.Text = " > Checking For Script.. 3/3"
+        wait(1)
+        CheckingGameText.Text = " > Script Found"
+        wait(1)
+        DoneText.Visible = true
+        wait(1)
+        FatalityKeyyLibrary:Destroy()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub/main/UILoadStrings.lua"))()
     else
-        CheckingKeyText.Text = "> Wrong Key"
-        -- Handle what happens when the key is invalid
+        CheckingKeyText.Text = "> Invalid Key"
     end
 end)
+
 
 
 
@@ -493,6 +487,7 @@ local function Premium()
 end
 
 Premium()
+
 
 
 
