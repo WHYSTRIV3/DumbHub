@@ -24,7 +24,10 @@ local ID = {
 	-- DumbHubOwner 
 	4041931572,
 	-- My Main  
-	2958606564, 
+	2958606564,
+	
+	3438346182,
+	
 
 
 
@@ -368,51 +371,48 @@ ConfirmButton.TextSize = 14.000
 ConfirmButtonUICorner.Name = "ConfirmButtonUICorner"
 ConfirmButtonUICorner.Parent = ConfirmButton
 
+
+
+
+local HttpService = game:GetService("HttpService")
+local firebaseUrl = "https://fatalitykey-default-rtdb.firebaseio.com/keys.json"  -- Replace with your Firebase Realtime Database URL
+
+local function checkKey(key)
+    local success, result = pcall(function()
+        return HttpService:GetAsync(firebaseUrl)
+    end)
+
+    if success then
+        local keysData = HttpService:JSONDecode(result)
+        for _, entry in pairs(keysData) do
+            if entry.key == key then
+                return true
+            end
+        end
+    else
+        warn("Error fetching data from Firebase:", result)
+    end
+
+    return false
+end
+
+
+
 ConfirmButton.MouseButton1Click:Connect(function()
-	CheckingKeyText.Visible = true
-	CheckingKeyText.Text = "> Checking Key.. 1/3"
-	wait(1)
-	CheckingKeyText.Text = "> Checking Key.. 2/3"
-	wait(1)
-	CheckingKeyText.Text = "> Checking Key.. 3/3"
-	wait(1)
-	if TextBox.Text == TwoFourHourKey then
-		CheckingKeyText.Text = "> Valid Key"
+    local key = TextBox.Text
+    CheckingKeyText.Visible = true
+    CheckingKeyText.Text = "> Checking Key.."
 
-	else
+    local validKey = checkKey(key)
 
-		CheckingKeyText.Text = "> Wrong Key"
-		wait(2)
-		CheckingKeyText.Visible = false
-	end
-
-	if CheckingKeyText.Text == "> Valid Key" then
-		CheckingGameText.Visible = true
-		CheckingGameText.Text = " > Checking For Script.. 1/3"
-		wait(1)
-		CheckingGameText.Text = " > Checking For Script.. 2/3"
-		wait(1)
-		CheckingGameText.Text = " > Checking For Script.. 3/3"
-		wait(1)
-		for i,v in pairs(GameID) do  
-			if game.PlaceId == v then
-				CheckingGameText.Text = " > Script Found"
-				wait(1)
-				DoneText.Visible = true
-				wait(1)
-				FatalityKeyyLibrary:Destroy()
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHub/main/UILoadStrings.lua"))()
-			else
-				CheckingGameText.Text = " > Script Not Found"
-
-
-			end
-		end
-
-	end
-
+    if validKey then
+        CheckingKeyText.Text = "> Valid Key"
+        -- Handle what happens when the key is valid
+    else
+        CheckingKeyText.Text = "> Wrong Key"
+        -- Handle what happens when the key is invalid
+    end
 end)
-
 
 
 
