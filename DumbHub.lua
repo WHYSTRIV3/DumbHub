@@ -2270,65 +2270,16 @@ end)
 -- Labels
 
 
-local Farms = {"Farm Selected Mob",  "All Mobs"}
 
-Main:CreateDivider("Auto Farm")
-
-Main:CreateLabel("Gotta Use The Free Auto Click To Attack Mobs", "Gotta Use The Free Auto Click To Attack Mobs")
-
-Main:CreateDropdown("Selected Farm", Farms, function(Farm)
-    _G.SelectedFarm = Farm
+Main:CreateSlider("Set Roll Amount", {min = 1, max = 6, default = 1}, function(state)
+	RollAmount = state
 end)
 
 
-local Mobs = {"Head Captain", "Kiri", "Merum", "Former Captain", "Geto", "Armored Titan", "Shiza", "Upper Sun III", "Dio", "Geto", "Kakoshi", "Katana Man", "Medara", "Merum", "Dark King", "Denzo"}
-
-_G.SelectedMobs = {}
-
-Main:CreateMultiDropdown("Selected Mob", Mobs, function(Mob)
-    _G.SelectedMobs = Mob
-end)
-
-Main:CreateToggle("Auto Farm", false, function(x)
-    Toggled = x
-    spawn(function()
-        while Toggled do
-            task.wait()
-            if Toggled then
-                if _G.SelectedFarm == "Farm Selected Mob" then
-                    if #_G.SelectedMobs > 0 then
-                        for _, mobName in pairs(_G.SelectedMobs) do
-                            for _, v in pairs(game:GetService("Workspace").Debris.Monsters:GetDescendants()) do
-                                if v:IsA("Model") and v:FindFirstChild("BillboardGui") and v.BillboardGui:FindFirstChild("Frame") and v.BillboardGui.Frame:FindFirstChild("Mob_Name") then
-                                    if v.BillboardGui.Frame.Mob_Name.Text == mobName and v:FindFirstChild("HumanoidRootPart") then
-                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 2)
-                                        break
-                                    end
-                                end
-                            end
-                        end
-                    end
-                elseif _G.SelectedFarm == "All Mobs" then
-                    local nearest
-                    local NearestOne = 1000
-                    for _, v in pairs(game:GetService("Workspace").Debris.Monsters:GetDescendants()) do
-                        if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
-                            local distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                            if distance < NearestOne then
-                                nearest = v
-                                NearestOne = distance
-                            end
-                        end
-                    end
-                    if nearest then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = nearest.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5)
-                    else
-                        print("No nearest mob found") -- Debug print statement
-                    end
-                end
-            end
-        end
-    end)
+Main:CreateToggle("Auto Roll", true, function()
+    if RollAmount then
+	    game:GetService("ReplicatedStorage").Events.To_Server:FireServer(unpack({[1] = {["Open_Amount"] = RollAmount ,["Action"] = "Gacha_Activate",["Name"] = "Avatars_1"}}))
+    end
 end)
 
 
