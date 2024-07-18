@@ -1706,7 +1706,7 @@ function library:CreateWindow()
 			coroutine.wrap(DropDownSearchTextBox)()
 
 			DropDownContainer.ChildAdded:Connect(function()
-				DropDownContainer.CanvasSize = UDim2.new(0,0,0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 80)
+				DropDownContainer.CanvasSize = UDim2.new(0,0,0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 1000)
 			end)
 
 			local function UpdateTitleText()
