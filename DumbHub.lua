@@ -46,14 +46,10 @@ local ID = {
 
 	------------------------------Youtuber Role---------------------
 
-	-- Qrto#9387
-	3512195573
+
 }
 
--- Gui to Lua
--- Version: 3.2
 
--- Instances:
 
 local FatalityKeyyLibrary = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
@@ -86,6 +82,9 @@ local Access_2 = Instance.new("TextLabel")
 local MainUICorner = Instance.new("UICorner")
 local MainTitle = Instance.new("TextLabel")
 local MainTopDivider = Instance.new("Frame")
+
+
+local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
 --Properties:
 
@@ -281,7 +280,7 @@ Access_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
 Access_2.Position = UDim2.new(0.00952405669, 0, 0.844176114, 0)
 Access_2.Size = UDim2.new(0, 185, 0, 29)
 Access_2.Font = Enum.Font.Gotham
-Access_2.Text = "Game: Bee Swarm Simulator"
+Access_2.Text = "Game: "..GameName
 Access_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 Access_2.TextSize = 20.000
 Access_2.TextXAlignment = Enum.TextXAlignment.Left
