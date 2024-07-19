@@ -1390,7 +1390,7 @@ function library:CreateWindow()
 
 			local toggling = true  
 			local togCon = nil
-		
+
 
 			ToggleButton.MouseButton1Click:Connect(function()
 				toggling = not toggling
@@ -1400,9 +1400,9 @@ function library:CreateWindow()
 					local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 					local tween = TweenService:Create(ToggleButton, tweenInfo, { Position = UDim2.new(0.458333343, 0, 0, 0) })
 					tween:Play()
-		
+
 					ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) 
-		
+
 
 					if Repeat then
 						togCon = RunService.RenderStepped:Connect(function()
@@ -1416,35 +1416,35 @@ function library:CreateWindow()
 					local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 					local tween = TweenService:Create(ToggleButton, tweenInfo, { Position = UDim2.new(0, 0, 0, 0) })
 					tween:Play()
-		
+
 					ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
-		
+
 					if togCon then
 						togCon:Disconnect()
 					end
 					CallBack(toggling)
 				end
 			end)
-		
+
 
 			if Repeat then
 				ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) 
-		
+
 				local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 				local tween = TweenService:Create(ToggleButton, tweenInfo, { Position = UDim2.new(0.458333343, 0, 0, 0) })
 				tween:Play()
-		
+
 				togCon = RunService.RenderStepped:Connect(function()
 					CallBack(toggling)
 				end)
 			end
-		
+
 
 			XButton.MouseButton1Click:Connect(function()
 				if togCon then
 					togCon:Disconnect()  
 				end
-	
+
 				wait(0.5)
 				FATALITY:Destroy() 
 			end)
@@ -1460,10 +1460,10 @@ function library:CreateWindow()
 			assert(type(Options.min) == "number", "Options.min must be a number")
 			assert(type(Options.max) == "number", "Options.max must be a number")
 			assert(type(Options.default) == "number", "Options.default must be a number")
-		
+
 			-- Clamp the default value to be within min and max range
 			Options.default = math.clamp(Options.default, Options.min, Options.max)
-		
+
 			local Slider = Instance.new("Frame")
 			local SliderUICorner = Instance.new("UICorner")
 			local SliderTitle = Instance.new("TextLabel")
@@ -1473,7 +1473,7 @@ function library:CreateWindow()
 			local SliderBackUICorner = Instance.new("UICorner")
 			local MainSlider = Instance.new("Frame")
 			local MainSliderUICorner = Instance.new("UICorner")
-		
+
 			Slider.Name = "Slider"
 			Slider.Parent = InsideActContanierScrollingFrame  -- Adjust to your specific parent frame
 			Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
@@ -1481,11 +1481,11 @@ function library:CreateWindow()
 			Slider.BorderSizePixel = 0
 			Slider.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
 			Slider.Size = UDim2.new(0, 378, 0, 38)
-		
+
 			SliderUICorner.CornerRadius = UDim.new(0, 3)
 			SliderUICorner.Name = "SliderUICorner"
 			SliderUICorner.Parent = Slider
-		
+
 			SliderTitle.Name = "SliderTitle"
 			SliderTitle.Parent = Slider
 			SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1498,13 +1498,13 @@ function library:CreateWindow()
 			SliderTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			SliderTitle.TextSize = 20.000
 			SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
-		
+
 			UIPadding.Parent = SliderTitle
-		
+
 			SliderUIPadding.Name = "SliderUIPadding"
 			SliderUIPadding.Parent = Slider
 			SliderUIPadding.PaddingLeft = UDim.new(0, 6)
-		
+
 			SliderBack.Name = "SliderBack"
 			SliderBack.Parent = Slider
 			SliderBack.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -1513,57 +1513,57 @@ function library:CreateWindow()
 			SliderBack.Position = UDim2.new(0.438395411, 0, 0.349638283, 0)
 			SliderBack.Size = UDim2.new(0, 178, 0, 14)
 			SliderBack.Text = ""
-		
+
 			SliderBackUICorner.CornerRadius = UDim.new(0, 6)
 			SliderBackUICorner.Name = "SliderBackUICorner"
 			SliderBackUICorner.Parent = SliderBack
-		
+
 			MainSlider.Name = "MainSlider"
 			MainSlider.Parent = SliderBack
 			MainSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			MainSlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			MainSlider.BorderSizePixel = 0
 			MainSlider.Size = UDim2.new((Options.default - Options.min) / (Options.max - Options.min), 0, 0, 14)
-		
+
 			MainSliderUICorner.CornerRadius = UDim.new(0, 6)
 			MainSliderUICorner.Name = "MainSliderUICorner"
 			MainSliderUICorner.Parent = MainSlider
-		
+
 			local mousedown = false
-		
+
 			UIS.InputEnded:Connect(function(input)
 				if input.UserInputType == Enum.UserInputType.MouseButton1 then
 					mousedown = false
 				end
-				end)
-		
+			end)
+
 			SliderBack.MouseButton1Down:Connect(function()
 				mousedown = true
 			end)
-		
+
 			SliderBack.MouseButton1Up:Connect(function()
 				mousedown = false
 			end)
-		
+
 			UIS.InputChanged:Connect(function(input)
 				if mousedown and input.UserInputType == Enum.UserInputType.MouseMovement then
 					local mousePos = input.Position
 					local sliderPos = SliderBack.AbsolutePosition
 					local sliderSize = SliderBack.AbsoluteSize
-		
+
 					local percent = math.clamp((mousePos.X - sliderPos.X) / sliderSize.X, 0, 1)
 					local newValue = Options.min + percent * (Options.max - Options.min)
 					newValue = math.floor(newValue)
-		
+
 					SliderTitle.Text = SliderName .. ": " .. newValue
 					MainSlider.Size = UDim2.new(percent, 0, 0, 14)
-		
+
 					library.flags[SliderName] = newValue
 					CallBack(newValue)
 				end
 			end)
 		end
-		
+
 
 
 
@@ -2027,6 +2027,214 @@ function library:CreateWindow()
 
 
 
+		function Module:CreateRefreshDropdown(DropDownName, ItemList, CallBack, RefreshFunction, defaultValue)
+			assert(type(DropDownName) == "string", "Specify type string for DropDownName")
+			assert(type(ItemList) == "table", "Specify type table for ItemList")
+			assert(type(CallBack) == "function", "Specify type function for CallBack")
+			assert(type(RefreshFunction) == "function", "Specify type function for RefreshFunction")
+
+			local DropDown = Instance.new("Frame")
+			local DropDownUICorner = Instance.new("UICorner")
+			local DropDownTitle = Instance.new("TextLabel")
+			local DropDownTitlePadding = Instance.new("UIPadding")
+			local DropDownButton = Instance.new("TextButton")
+			local DropDownContainer = Instance.new("ScrollingFrame")
+			local DropDownUIListLayout = Instance.new("UIListLayout")
+			local DropDownSearchTextBox = Instance.new("TextBox")
+
+			DropDown.Name = "DropDown"
+			DropDown.Parent = InsideActContanierScrollingFrame
+			DropDown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+			DropDown.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			DropDown.BorderSizePixel = 0
+			DropDown.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
+			DropDown.Size = UDim2.new(0, 378, 0, 38)
+
+			DropDownUICorner.CornerRadius = UDim.new(0, 3)
+			DropDownUICorner.Name = "DropDownUICorner"
+			DropDownUICorner.Parent = DropDown
+
+			DropDownTitle.Name = "DropDownTitle"
+			DropDownTitle.Parent = DropDown
+			DropDownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownTitle.BackgroundTransparency = 1.000
+			DropDownTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			DropDownTitle.BorderSizePixel = 0
+			DropDownTitle.Size = UDim2.new(0, 378, 0, 38)
+			DropDownTitle.Font = Enum.Font.SourceSans
+			DropDownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownTitle.TextSize = 20.000
+			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
+			DropDownTitle.Text = DropDownName .. ": " .. (defaultValue or "None")
+
+			DropDownTitlePadding.Name = "ToggleUIPadding"
+			DropDownTitlePadding.Parent = DropDownTitle
+			DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
+
+			DropDownButton.Name = "DropDownButton"
+			DropDownButton.Parent = DropDown
+			DropDownButton.Active = false
+			DropDownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownButton.BackgroundTransparency = 1.000
+			DropDownButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			DropDownButton.BorderSizePixel = 0
+			DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)
+			DropDownButton.Size = UDim2.new(0, 48, 0, 38)
+			DropDownButton.Font = Enum.Font.SourceSans
+			DropDownButton.Text = "+"
+			DropDownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownButton.TextSize = 44.000
+
+			DropDownContainer.Name = "DropDownContainer"
+			DropDownContainer.Parent = DropDown
+			DropDownContainer.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
+			DropDownContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			DropDownContainer.BorderSizePixel = 0
+			DropDownContainer.Position = UDim2.new(0, 0, 0.973684192, 0)
+			DropDownContainer.Size = UDim2.new(0, 372, 0, 300)  -- Adjust size as needed
+			DropDownContainer.Visible = false
+			DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, 0)  -- To be dynamically set
+			DropDownContainer.ScrollBarThickness = 6
+
+			DropDownUIListLayout.Name = "DropDownUIListLayout"
+			DropDownUIListLayout.Parent = DropDownContainer
+			DropDownUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			DropDownUIListLayout.Padding = UDim.new(0, 3)
+
+			DropDownSearchTextBox.Name = "DropDownSearchTextBox"
+			DropDownSearchTextBox.Parent = DropDownContainer
+			DropDownSearchTextBox.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+			DropDownSearchTextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			DropDownSearchTextBox.BorderSizePixel = 0
+			DropDownSearchTextBox.Size = UDim2.new(0, 372, 0, 38)
+			DropDownSearchTextBox.Font = Enum.Font.SourceSans
+			DropDownSearchTextBox.PlaceholderText = "Search..."
+			DropDownSearchTextBox.Text = ""
+			DropDownSearchTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			DropDownSearchTextBox.TextSize = 21.000
+
+			local function UpdateSearchResults()
+				local SearchBar = DropDownSearchTextBox
+				local Items = DropDownContainer:GetChildren()
+				local Search = string.lower(SearchBar.Text)
+
+				for _, item in pairs(Items) do
+					if item:IsA("TextButton") and item.Name == "DropDownTextButton" then
+						if Search ~= "" then
+							local ItemText = string.lower(item.Text)
+							item.Visible = string.find(ItemText, Search) ~= nil
+						else
+							item.Visible = true
+						end
+					end
+				end
+			end
+
+			DropDownSearchTextBox.Changed:Connect(UpdateSearchResults)
+
+			local function RefreshDropdown()
+				if not DropDownSearchTextBox:IsFocused() then
+					-- Clear existing dropdown items
+					for _, child in pairs(DropDownContainer:GetChildren()) do
+						if child:IsA("TextButton") and child.Name == "DropDownTextButton" then
+							child:Destroy()
+						end
+					end
+
+					-- Call the RefreshFunction to get updated items
+					local updatedItemList = RefreshFunction()
+
+					-- Add updated items to the dropdown
+					for _, v in pairs(updatedItemList) do
+						local DropDownTextButton = Instance.new("TextButton")
+						local DropDownTextButtonUIPadding = Instance.new("UIPadding")
+
+						DropDownTextButton.Name = "DropDownTextButton"
+						DropDownTextButton.Parent = DropDownContainer
+						DropDownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+						DropDownTextButton.BackgroundTransparency = 1.000
+						DropDownTextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+						DropDownTextButton.BorderSizePixel = 0
+						DropDownTextButton.Position = UDim2.new(0, 0, 0.0913140327, 0)
+						DropDownTextButton.Size = UDim2.new(0, 370, 0, 38)
+						DropDownTextButton.Font = Enum.Font.SourceSans
+						DropDownTextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+						DropDownTextButton.TextSize = 22.000
+						DropDownTextButton.TextXAlignment = Enum.TextXAlignment.Left
+						DropDownTextButton.Text = v
+
+						DropDownTextButtonUIPadding.Parent = DropDownTextButton
+						DropDownTextButtonUIPadding.PaddingLeft = UDim.new(0, 15)
+
+						DropDownTextButton.MouseButton1Click:Connect(function()
+							DropDownTitle.Text = DropDownName .. ": " .. v
+							pcall(CallBack, v)
+							for _, d in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+								if d:IsA("Frame") or d:IsA("TextButton") or d:IsA("TextLabel") then
+									d.Visible = true
+								end
+							end
+							InsideActContanierScrollingFrame.CanvasSize = BeforeOpen
+							DropDownContainer.Visible = false
+							DropDownButton.Text = "+"  -- Reset text to plus sign
+							DropDownButton.TextSize = 44  -- Reset text size to original
+							DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)  -- Reset position
+						end)
+					end
+
+					-- Update the canvas size for scrolling
+					DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, DropDownUIListLayout.AbsoluteContentSize.Y + 10)
+				end
+			end
+
+			-- Refresh dropdown items when the dropdown is opened
+			DropDownButton.MouseButton1Click:Connect(function()
+				if DropDownContainer.Visible then
+					-- If the dropdown is visible, hide it and make elements visible again
+					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel") then
+							v.Visible = true
+						end
+					end
+					InsideActContanierScrollingFrame.CanvasSize = BeforeOpen
+					DropDownContainer.Visible = false
+					DropDownButton.Text = "+"  -- Reset text to plus sign
+					DropDownButton.TextSize = 44  -- Reset text size to original
+					DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)  -- Reset position
+				else
+					-- If the dropdown is not visible, hide elements and show the dropdown
+					BeforeOpen = InsideActContanierScrollingFrame.CanvasSize
+					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel") then
+							v.Visible = false
+						end
+					end
+					DropDownContainer.Visible = true
+					DropDownContainer.Parent.Visible = true
+					DropDownButton.Text = "-"  -- Change text to minus sign
+					DropDownButton.TextSize = 65  -- Change text size for minus sign
+					DropDownButton.Position = UDim2.new(0.878873229, 0, -0.1, 0)  -- Adjust position
+
+					-- Refresh dropdown items
+					RefreshDropdown()
+
+					-- Create a loop to continuously refresh the dropdown
+					local function continuousRefresh()
+						while DropDownContainer.Visible do
+							RefreshDropdown()
+							wait(1)  -- Refresh every 5 seconds
+						end
+					end
+
+					spawn(continuousRefresh)
+				end
+			end)
+
+			-- Initial call to set up the dropdown items
+			RefreshDropdown()
+		end
+
+
 
 
 		function Module:CreateDivider(DividerText)
@@ -2155,55 +2363,55 @@ function library:CreateWindow()
 			assert(type(TextBoxPlaceholderText) == "string", "specify type string for TextBoxPlaceholderText parameter")
 			assert(type(CallBack) == "function", "specify type function for CallBack parameter")
 
-				local EnterValue = Instance.new("Frame")
-				local EnterValueTextBox = Instance.new("TextBox")
-				local EnterValueTitle = Instance.new("TextLabel")
-				local DropDownTitlePadding = Instance.new("UIPadding")
-				
-				--Properties:
-				
-				EnterValue.Name = "EnterValue"
-				EnterValue.Parent = InsideActContanierScrollingFrame
-				EnterValue.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-				EnterValue.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				EnterValue.BorderSizePixel = 0
-				EnterValue.Position = UDim2.new(0, 0, 0.48780489, 0)
-				EnterValue.Size = UDim2.new(0, 378, 0, 38)
-				
-				EnterValueTextBox.Name = "EnterValueTextBox"
-				EnterValueTextBox.Parent = EnterValue
-				EnterValueTextBox.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
-				EnterValueTextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				EnterValueTextBox.BorderSizePixel = 0
-				EnterValueTextBox.Position = UDim2.new(0.563712001, 0, 0.153773263, 0)
-				EnterValueTextBox.Size = UDim2.new(0, 148, 0, 25)
-				EnterValueTextBox.Font = Enum.Font.SourceSans
-				EnterValueTextBox.PlaceholderText = "Enter Blessing.."
-				EnterValueTextBox.Text = ""
-				EnterValueTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-				EnterValueTextBox.TextSize = 19.000
-				EnterValueTextBox.TextWrapped = true
-				EnterValueTextBox.PlaceholderText = TextBoxPlaceholderText
-				
-				EnterValueTitle.Name = "EnterValueTitle"
-				EnterValueTitle.Parent = EnterValue
-				EnterValueTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				EnterValueTitle.BackgroundTransparency = 1.000
-				EnterValueTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
-				EnterValueTitle.BorderSizePixel = 0
-				EnterValueTitle.Size = UDim2.new(0, 231, 0, 38)
-				EnterValueTitle.Font = Enum.Font.SourceSans
-				EnterValueTitle.Text = EnterValueName
-				EnterValueTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-				EnterValueTitle.TextSize = 20.000
-				EnterValueTitle.TextXAlignment = Enum.TextXAlignment.Left
-				
-				DropDownTitlePadding.Name = "DropDownTitlePadding"
-				DropDownTitlePadding.Parent = EnterValueTitle
-				DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
+			local EnterValue = Instance.new("Frame")
+			local EnterValueTextBox = Instance.new("TextBox")
+			local EnterValueTitle = Instance.new("TextLabel")
+			local DropDownTitlePadding = Instance.new("UIPadding")
+
+			--Properties:
+
+			EnterValue.Name = "EnterValue"
+			EnterValue.Parent = InsideActContanierScrollingFrame
+			EnterValue.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+			EnterValue.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			EnterValue.BorderSizePixel = 0
+			EnterValue.Position = UDim2.new(0, 0, 0.48780489, 0)
+			EnterValue.Size = UDim2.new(0, 378, 0, 38)
+
+			EnterValueTextBox.Name = "EnterValueTextBox"
+			EnterValueTextBox.Parent = EnterValue
+			EnterValueTextBox.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+			EnterValueTextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			EnterValueTextBox.BorderSizePixel = 0
+			EnterValueTextBox.Position = UDim2.new(0.563712001, 0, 0.153773263, 0)
+			EnterValueTextBox.Size = UDim2.new(0, 148, 0, 25)
+			EnterValueTextBox.Font = Enum.Font.SourceSans
+			EnterValueTextBox.PlaceholderText = "Enter Blessing.."
+			EnterValueTextBox.Text = ""
+			EnterValueTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			EnterValueTextBox.TextSize = 19.000
+			EnterValueTextBox.TextWrapped = true
+			EnterValueTextBox.PlaceholderText = TextBoxPlaceholderText
+
+			EnterValueTitle.Name = "EnterValueTitle"
+			EnterValueTitle.Parent = EnterValue
+			EnterValueTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			EnterValueTitle.BackgroundTransparency = 1.000
+			EnterValueTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
+			EnterValueTitle.BorderSizePixel = 0
+			EnterValueTitle.Size = UDim2.new(0, 231, 0, 38)
+			EnterValueTitle.Font = Enum.Font.SourceSans
+			EnterValueTitle.Text = EnterValueName
+			EnterValueTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+			EnterValueTitle.TextSize = 20.000
+			EnterValueTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+			DropDownTitlePadding.Name = "DropDownTitlePadding"
+			DropDownTitlePadding.Parent = EnterValueTitle
+			DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
 
 
-				EnterValueTextBox:GetPropertyChangedSignal("Text"):Connect(function()
+			EnterValueTextBox:GetPropertyChangedSignal("Text"):Connect(function()
 				CallBack(EnterValueTextBox.Text)
 			end)
 
@@ -2271,17 +2479,102 @@ end)
 
 
 
-Main:CreateSlider("Set Roll Amount", {min = 1, max = 6, default = 1}, function(state)
-	RollAmount = state
-end)
+--functions
 
+function getmobs()
+    local Mobs = {}
+    local UniqueMobs = {} -- Table to keep track of unique mob names
 
-Main:CreateToggle("Auto Roll", true, function()
-    if RollAmount then
-	    game:GetService("ReplicatedStorage").Events.To_Server:FireServer(unpack({[1] = {["Open_Amount"] = RollAmount ,["Action"] = "Gacha_Activate",["Name"] = "Avatars_1"}}))
+    for _, v in pairs(WS.Enemys:GetDescendants()) do
+        if v:IsA("TextLabel") and v.Name == "EnemyName" then
+            local mobName = v.Text
+            if not UniqueMobs[mobName] then
+                -- If mobName is not in UniqueMobs, add it to Mobs and mark it as seen
+                table.insert(Mobs, mobName)
+                UniqueMobs[mobName] = true
+            end
+        end
     end
+
+    return Mobs
+end
+
+
+
+--Main
+
+--Main
+
+local Farms = {"Farm Selected Mob", "All Mobs"}
+local SelectedFarm
+local SelectedMobs = {}
+
+Main:CreateDropdown("Selected Farm", Farms, function(Farm)
+    SelectedFarm = Farm
 end)
 
+Main:CreateRefreshDropdown("Selected Mob", getmobs(), function(Mob)
+    SelectedMobs = {Mob}
+end, getmobs)
+
+Main:CreateToggle("Auto Farm", false, function(x)
+    Toggled = x
+    spawn(function()
+        while Toggled do
+            task.wait()
+            if Toggled then
+                if SelectedFarm == "Farm Selected Mob" then
+                    if #SelectedMobs > 0 then
+                        for _, mobName in pairs(SelectedMobs) do
+                            for _, v in pairs(WS.Enemys:GetDescendants()) do
+                                if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+                                    if v.HumanoidRootPart.EnemyNameGui.EnemyName.Text == mobName then
+                                        if v.HumanoidRootPart.EnemyNameGui.HealthNum.Text > tostring(0) then
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
+                                            break
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                elseif SelectedFarm == "All Mobs" then
+                    local nearest
+                    local NearestOne = 1000
+                    for _, v in pairs(WS.Enemys:GetDescendants()) do
+                        if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+                            if v.HumanoidRootPart.EnemyNameGui.HealthNum.Text > tostring(0) then
+                                local distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                                if distance < NearestOne then
+                                    nearest = v
+                                    NearestOne = distance
+                                end
+                            end
+                        end
+                    end
+                    if nearest then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = nearest.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5)
+                    else
+                        print("No nearest mob found")
+                    end
+                end
+            end
+        end
+    end)
+end)
+
+
+
+
+
+Main:CreateToggle("Auto Collect", true, function()
+	for _,v in pairs(WS.Golds:GetChildren()) do
+		local Time = 1
+		local tween = game:GetService("TweenService"):Create(v, TweenInfo.new(Time), {CFrame = Player.Character.HumanoidRootPart.CFrame})
+		tween:Play()
+		tween.Completed:Wait()
+	end
+end)
 
 
 
