@@ -1573,101 +1573,76 @@ function library:CreateWindow()
 			assert(type(DropDownName) == "string", "Specify type string for DropDownName")
 			assert(type(ItemList) == "table", "Specify type table for ItemList")
 			assert(type(CallBack) == "function", "Specify type function for CallBack")
-
-			local MultiSelectedItems = {}  -- Table to store selected items
-			local SelectedItemButtons = {}  -- Table to store item buttons
-
+		
+			local MultiSelectedItems = {}
+			local SelectedItemButtons = {}
+		
 			local DropDown = Instance.new("Frame")
 			local DropDownUICorner = Instance.new("UICorner")
 			local DropDownTitle = Instance.new("TextLabel")
-			local DropDownTitlePadding = Instance.new("UIPadding")
 			local DropDownButton = Instance.new("TextButton")
 			local DropDownContainer = Instance.new("ScrollingFrame")
 			local DropDownUIListLayout = Instance.new("UIListLayout")
-			local DropDownUIGridLayout = Instance.new("UIGridLayout")
 			local DropDownSearchTextBox = Instance.new("TextBox")
-			local DropDownUIPadding = Instance.new("UIPadding")
-			local DropDownContainerUIGridLayout = Instance.new("UIGridLayout")
-			local DropDownTitleTextSizeConstraint = Instance.new("UITextSizeConstraint")
-
-
+		
 			DropDown.Name = "DropDown"
 			DropDown.Parent = InsideActContanierScrollingFrame
 			DropDown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 			DropDown.BorderColor3 = Color3.fromRGB(31, 31, 31)
 			DropDown.BorderSizePixel = 0
-			DropDown.Position = UDim2.new(0.372448981, 0, 0.144827589, 0)
-			DropDown.Size = UDim2.new(0, 378,0, 38)
-
+			DropDown.Size = UDim2.new(0, 378, 0, 38)
+		
 			DropDownUICorner.CornerRadius = UDim.new(0, 3)
-			DropDownUICorner.Name = "DropDownUICorner"
 			DropDownUICorner.Parent = DropDown
-
+		
 			DropDownTitle.Name = "DropDownTitle"
 			DropDownTitle.Parent = DropDown
 			DropDownTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownTitle.BackgroundTransparency = 1.000
-			DropDownTitle.BorderColor3 = Color3.fromRGB(31, 31, 31)
-			DropDownTitle.BorderSizePixel = 0
-			DropDownTitle.Size = UDim2.new(0, 378,0, 38)
+			DropDownTitle.Size = UDim2.new(0, 378, 0, 38)
 			DropDownTitle.Font = Enum.Font.SourceSans
 			DropDownTitle.Text = DropDownName.. ": None"
 			DropDownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownTitle.TextSize = 20.000
 			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
-			DropDownTitle.TextScaled = true
-
-			-- Adding UITextSizeConstraint
-			DropDownTitleTextSizeConstraint.Parent = DropDownTitle
-			DropDownTitleTextSizeConstraint.MinTextSize = 10
-			DropDownTitleTextSizeConstraint.MaxTextSize = 20
-
-			DropDownTitlePadding.Name = "ToggleUIPadding"
-			DropDownTitlePadding.Parent = DropDownTitle
-			DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
-
+		
 			DropDownButton.Name = "DropDownButton"
 			DropDownButton.Parent = DropDown
-			DropDownButton.Active = false
 			DropDownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownButton.BackgroundTransparency = 1.000
-			DropDownButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			DropDownButton.BorderSizePixel = 0
 			DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)
 			DropDownButton.Size = UDim2.new(0, 48, 0, 38)
 			DropDownButton.Font = Enum.Font.SourceSans
 			DropDownButton.Text = "+"
 			DropDownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownButton.TextSize = 44.000
-
+		
 			DropDownContainer.Name = "DropDownContainer"
 			DropDownContainer.Parent = DropDown
 			DropDownContainer.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
-			DropDownContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropDownContainer.BorderSizePixel = 0
-			DropDownContainer.Position = UDim2.new(0, 0, 0.973684192, 0)
-			DropDownContainer.Size = UDim2.new(0, 372, 0, 449)
+			DropDownContainer.Position = UDim2.new(0, 0, 1, 0)
+			DropDownContainer.Size = UDim2.new(0, 372, 0, 200)  -- Fixed height for scrolling
 			DropDownContainer.Visible = false
-
-			DropDownContainerUIGridLayout.Name = "DropDownContainerUIGridLayout"
-			DropDownContainerUIGridLayout.Parent = DropDownContainer
-			DropDownContainerUIGridLayout.FillDirection = Enum.FillDirection.Vertical
-			DropDownContainerUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-			DropDownContainerUIGridLayout.CellSize = UDim2.new(1, 40, 0, 40)
-
-			DropDownUIListLayout.Name = "DropDownUIListLayout"
+			DropDownContainer.ScrollBarThickness = 10
+			DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, 0)  -- Initialize CanvasSize
+			
+			-- Make sure to set the ScrollBarImageColor3 if you want to customize the scrollbar
+			DropDownContainer.ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255)
+			
+			-- Adjusting CanvasSize on child added
+			DropDownContainer.ChildAdded:Connect(function()
+				DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, DropDownUIListLayout.AbsoluteContentSize.Y)
+			end)
+			
+		
 			DropDownUIListLayout.Parent = DropDownContainer
 			DropDownUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			DropDownUIListLayout.Padding = UDim.new(0, 3)
-
-			DropDownUIGridLayout.Name = "DropDownUIGridLayout"
-			DropDownUIGridLayout.Parent = DropDownContainer
-			DropDownUIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-
+		
 			DropDownSearchTextBox.Name = "DropDownSearchTextBox"
 			DropDownSearchTextBox.Parent = DropDownContainer
 			DropDownSearchTextBox.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
-			DropDownSearchTextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropDownSearchTextBox.BorderSizePixel = 0
 			DropDownSearchTextBox.Size = UDim2.new(0, 372, 0, 38)
 			DropDownSearchTextBox.Font = Enum.Font.SourceSans
@@ -1675,57 +1650,41 @@ function library:CreateWindow()
 			DropDownSearchTextBox.Text = ""
 			DropDownSearchTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownSearchTextBox.TextSize = 21.000
-
-			local function DropDownSearchTextBox() -- DropdownOptionsHolder.LocalScript 
+		
+			local function DropDownSearchTextBox()
 				local script = Instance.new('LocalScript', DropDownContainer)
-
 				local SearchBar = script.Parent.DropDownSearchTextBox
-
 				local Items = script.Parent
-
+		
 				function UpdateResults()
 					local Search = string.lower(SearchBar.Text)
-					for i,v in pairs(Items:GetChildren()) do
+					for _, v in pairs(Items:GetChildren()) do
 						if v:IsA("TextButton") then
-							if Search ~= "" then
-								local Item = string.lower(v.Text)
-								if string.find(Item, Search) then
-									v.Visible = true
-								else
-									v.Visible = false
-								end
-							else
-								v.Visible = true
-							end
+							v.Visible = string.find(string.lower(v.Text), Search) ~= nil or Search == ""
 						end
 					end
 				end
-
+		
 				SearchBar.Changed:Connect(UpdateResults)
 			end
 			coroutine.wrap(DropDownSearchTextBox)()
-
-			DropDownContainer.ChildAdded:Connect(function()
-				DropDownContainer.CanvasSize = UDim2.new(0,0,0, DropDownContainerUIGridLayout.AbsoluteContentSize.Y + 1000)
-			end)
-
+		
 			local function UpdateTitleText()
 				if #MultiSelectedItems == 0 then
 					DropDownTitle.Text = DropDownName.. ": None"
 				elseif #MultiSelectedItems == 1 then
 					DropDownTitle.Text = DropDownName.. ": ".. MultiSelectedItems[1]
 				else
-					local selectedText = table.concat(MultiSelectedItems, ", ")
-					DropDownTitle.Text = DropDownName.. ": ".. selectedText
+					DropDownTitle.Text = DropDownName.. ": " .. table.concat(MultiSelectedItems, ", ")
 				end
 			end
-
+		
 			local function ToggleItemSelection(item, button)
 				local selected = false
 				for i, selectedItem in ipairs(MultiSelectedItems) do
 					if selectedItem == item then
 						table.remove(MultiSelectedItems, i)
-						button.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Reset background color
+						button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 						button.BackgroundTransparency = 1
 						selected = true
 						break
@@ -1733,90 +1692,75 @@ function library:CreateWindow()
 				end
 				if not selected then
 					table.insert(MultiSelectedItems, item)
-					button.BackgroundColor3 = Color3.fromRGB(40, 40, 40) -- Darker highlight for selected item
+					button.BackgroundColor3 = Color3.fromRGB(169, 169, 169)
 					button.BackgroundTransparency = 0
 				end
 			end
-
-
+		
 			local function CreateDropDownItem(itemName)
 				local DropDownTextButton = Instance.new("TextButton")
 				DropDownTextButton.Name = "DropDownTextButton"
 				DropDownTextButton.Parent = DropDownContainer
 				DropDownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				DropDownTextButton.BackgroundTransparency = 1
-				DropDownTextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				DropDownTextButton.BorderSizePixel = 0
 				DropDownTextButton.Size = UDim2.new(0, 370, 0, 38)
 				DropDownTextButton.Font = Enum.Font.SourceSans
 				DropDownTextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 				DropDownTextButton.TextSize = 22
 				DropDownTextButton.TextXAlignment = Enum.TextXAlignment.Left
 				DropDownTextButton.Text = itemName
-
+		
 				DropDownTextButton.MouseButton1Click:Connect(function()
 					ToggleItemSelection(itemName, DropDownTextButton)
 					UpdateTitleText()
 					CallBack(MultiSelectedItems)
 				end)
-
-
-				DropDownButton.MouseButton1Click:Connect(function()
-					DropDownContainer.Visible = not DropDownContainer.Visible
-					if DropDownContainer.Visible then
-						DropDownButton.Text = "-"
-						DropDownButton.TextSize = 65 -- Set the size for the minus sign
-						DropDownButton.Position = UDim2.new(0.878873229, 0, -0.1, 0)  -- Adjust position up
-					else
-						DropDownButton.Text = "+"
-						DropDownButton.TextSize = 44  -- Set the size back to original for the plus sign
-						DropDownButton.Position = UDim2.new(0.878873229, 0, -0.0171862151, 0)  -- Reset to original position
-					end
-				end)
-
-
-				-- Store the button for later use
+		
 				SelectedItemButtons[itemName] = DropDownTextButton
 			end
-
+		
 			for _, itemName in ipairs(ItemList) do
 				CreateDropDownItem(itemName)
 			end
-
-			local BeforeOpenn = nil
-
+		
 			local function ToggleDropDown()
+				DropDownContainer.Visible = not DropDownContainer.Visible
+			
 				if DropDownContainer.Visible then
-					-- If the dropdown is visible, hide it and make elements visible again
+					-- Hide other elements except for the dropdown itself
 					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel") then
-							v.Visible = true
-						end
-					end
-					InsideActContanierScrollingFrame.CanvasSize = BeforeOpenn
-					DropDownContainer.Visible = false
-				else
-					-- If the dropdown is not visible, hide elements and show the dropdown
-					BeforeOpenn = InsideActContanierScrollingFrame.CanvasSize
-					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
-						if v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel") then
+						if v ~= DropDown and (v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel")) then
 							v.Visible = false
 						end
 					end
-					DropDownContainer.Visible = true
-					DropDownContainer.Parent.Visible = true
+					DropDownButton.Text = "-"
+					DropDownButton.TextSize = 65  -- Adjusted size for the minus
+				else
+					-- Restore visibility for other elements
+					for _, v in pairs(InsideActContanierScrollingFrame:GetChildren()) do
+						if v ~= DropDown and (v:IsA("TextButton") or v:IsA("TextBox") or v:IsA("Frame") or v:IsA("TextLabel")) then
+							v.Visible = true
+						end
+					end
+					DropDownButton.Text = "+"
+					DropDownButton.TextSize = 44  -- Reset to original size
 				end
 			end
-
+			
+		
 			DropDownButton.MouseButton1Click:Connect(ToggleDropDown)
-
+		
 			DropDownContainer.ChildAdded:Connect(function()
-				DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, DropDownContainerUIListLayout.AbsoluteContentSize.Y + 4)
+				DropDownContainer.CanvasSize = UDim2.new(0, 0, 0, DropDownUIListLayout.AbsoluteContentSize.Y + 4)
 			end)
-
-			-- Initial title update
+		
 			UpdateTitleText()
 		end
+		
+		
+		
+
+
 
 
 
@@ -2479,107 +2423,19 @@ end)
 
 
 
---functions
+local Potions = {"Normal", "Rain", "Snow"}
+local SelectedPotions = {}
 
-function getmobs()
-    local Mobs = {}
-    local UniqueMobs = {} -- Table to keep track of unique mob names
+Main:CreateMultiDropdown("Select Potions", Codes, function(selected)
+    SelectedPotions = selected  -- Capture the selected potions
 
-    for _, v in pairs(WS.Enemys:GetDescendants()) do
-        if v:IsA("TextLabel") and v.Name == "EnemyName" then
-            local mobName = v.Text
-            if not UniqueMobs[mobName] then
-                -- If mobName is not in UniqueMobs, add it to Mobs and mark it as seen
-                table.insert(Mobs, mobName)
-                UniqueMobs[mobName] = true
-            end
-        end
-    end
-
-    return Mobs
-end
-
-
-
---Main
-
---Main
-
-local Farms = {"Farm Selected Mob", "All Mobs"}
-local SelectedFarm
-local SelectedMobs = {}
-
-Main:CreateDropdown("Selected Farm", Farms, function(Farm)
-    SelectedFarm = Farm
 end)
 
-Main:CreateRefreshDropdown("Selected Mob", getmobs(), function(Mob)
-    SelectedMobs = {Mob}
-end, getmobs)
-
-Main:CreateToggle("Auto Farm", false, function(x)
-    Toggled = x
-    spawn(function()
-        while Toggled do
-            task.wait()
-            if Toggled then
-                if SelectedFarm == "Farm Selected Mob" then
-                    if #SelectedMobs > 0 then
-                        for _, mobName in pairs(SelectedMobs) do
-                            for _, v in pairs(WS.Enemys:GetDescendants()) do
-                                if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
-                                    if v.HumanoidRootPart.EnemyNameGui.EnemyName.Text == mobName then
-                                        if v.HumanoidRootPart.EnemyNameGui.HealthNum.Text > tostring(0) then
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
-                                            break
-                                        end
-                                    end
-                                end
-                            end
-                        end
-                    end
-                elseif SelectedFarm == "All Mobs" then
-                    local nearest
-                    local NearestOne = 1000
-                    for _, v in pairs(WS.Enemys:GetDescendants()) do
-                        if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
-                            if v.HumanoidRootPart.EnemyNameGui.HealthNum.Text > tostring(0) then
-                                local distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                                if distance < NearestOne then
-                                    nearest = v
-                                    NearestOne = distance
-                                end
-                            end
-                        end
-                    end
-                    if nearest then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = nearest.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5)
-                    else
-                        print("No nearest mob found")
-                    end
-                end
-            end
-        end
-    end)
-end)
-
-
-
-
-
-Main:CreateToggle("Auto Collect", true, function()
-	for _,v in pairs(WS.Golds:GetChildren()) do
-		local Time = 1
-		local tween = game:GetService("TweenService"):Create(v, TweenInfo.new(Time), {CFrame = Player.Character.HumanoidRootPart.CFrame})
-		tween:Play()
-		tween.Completed:Wait()
+Main:CreateButton("Test", function()
+	for _,v in pairs(SelectedPotions) do
+		print(v)
 	end
 end)
-
-
-
-
-
 
 
 
