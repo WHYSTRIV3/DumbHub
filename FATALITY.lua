@@ -1584,7 +1584,8 @@ function library:CreateWindow()
 			local DropDownContainer = Instance.new("ScrollingFrame")
 			local DropDownUIListLayout = Instance.new("UIListLayout")
 			local DropDownSearchTextBox = Instance.new("TextBox")
-		
+			local DropDownTitlePadding = Instance.new("UIPadding")
+
 			DropDown.Name = "DropDown"
 			DropDown.Parent = InsideActContanierScrollingFrame
 			DropDown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
@@ -1605,6 +1606,11 @@ function library:CreateWindow()
 			DropDownTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 			DropDownTitle.TextSize = 20.000
 			DropDownTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+DropDownTitlePadding.Name = "ToggleUIPadding"
+DropDownTitlePadding.Parent = DropDown
+DropDownTitlePadding.PaddingLeft = UDim.new(0, 6)
+
 		
 			DropDownButton.Name = "DropDownButton"
 			DropDownButton.Parent = DropDown
@@ -1684,7 +1690,7 @@ function library:CreateWindow()
 				for i, selectedItem in ipairs(MultiSelectedItems) do
 					if selectedItem == item then
 						table.remove(MultiSelectedItems, i)
-						button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+						button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)  -- Default color
 						button.BackgroundTransparency = 1
 						selected = true
 						break
@@ -1692,10 +1698,11 @@ function library:CreateWindow()
 				end
 				if not selected then
 					table.insert(MultiSelectedItems, item)
-					button.BackgroundColor3 = Color3.fromRGB(169, 169, 169)
+					button.BackgroundColor3 = Color3.fromRGB(31, 31, 31)  -- Darker gray for selection
 					button.BackgroundTransparency = 0
 				end
 			end
+			
 		
 			local function CreateDropDownItem(itemName)
 				local DropDownTextButton = Instance.new("TextButton")
@@ -1703,21 +1710,23 @@ function library:CreateWindow()
 				DropDownTextButton.Parent = DropDownContainer
 				DropDownTextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				DropDownTextButton.BackgroundTransparency = 1
+				DropDownTextButton.BorderSizePixel = 0  -- Remove border
 				DropDownTextButton.Size = UDim2.new(0, 370, 0, 38)
 				DropDownTextButton.Font = Enum.Font.SourceSans
 				DropDownTextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 				DropDownTextButton.TextSize = 22
 				DropDownTextButton.TextXAlignment = Enum.TextXAlignment.Left
 				DropDownTextButton.Text = itemName
-		
+			
 				DropDownTextButton.MouseButton1Click:Connect(function()
 					ToggleItemSelection(itemName, DropDownTextButton)
 					UpdateTitleText()
 					CallBack(MultiSelectedItems)
 				end)
-		
+			
 				SelectedItemButtons[itemName] = DropDownTextButton
 			end
+			
 		
 			for _, itemName in ipairs(ItemList) do
 				CreateDropDownItem(itemName)
