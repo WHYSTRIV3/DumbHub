@@ -354,5 +354,10 @@ elseif game.PlaceId == 1537690962 then
 	-- Bee Swarm Simulator
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/WHYSTRIV3/DumbHubLoadStrings/main/BeeSwarmSimulator.lua"))()
 	-------------------------------------------------------------------------------------------------------------------------------------------------------------
+elseif game.PlaceId == 81440632616906 then
+	-- Dif To Earths Core
+	loadstring(game:HttpGet("")
+
+	
 end
 
