@@ -12,7 +12,9 @@ local GameID = {
 	--Bee Swarm Simualtor
 	1537690962,
 	--Anime Rarites
-	16778527574
+	16778527574,
+	--Dig To Earths Core!
+	81440632616906
 
 }
 
