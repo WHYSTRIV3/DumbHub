@@ -23,9 +23,9 @@ local GameID = {
 
 local ID = {
 
-	-- DumbHubOwner 
+
 	4041931572,
-	-- My Main  
+
 	2958606564,
 	
 	3438346182,
